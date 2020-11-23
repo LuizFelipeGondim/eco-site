@@ -104,3 +104,9 @@ dist
 .tern-port
 
 node_modules
+
+yarn.lock
+
+database.sqlite
+
+
