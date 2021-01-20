@@ -109,6 +109,10 @@ yarn.lock
 
 database.sqlite
 
-config
+server/config
+
+server/tmp/*
+
+!server/tmp/.gitkeep
 
 
