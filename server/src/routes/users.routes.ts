@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import multer from 'multer'
-import uploadConfig from '../config/upload'
 
+import uploadConfig from '../config/upload'
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 import CreateUserService from '../services/CreateUserService'
 import UpdateUserAvatarService from '../services/UpdateUserAvatarService'
@@ -11,11 +11,19 @@ const upload = multer(uploadConfig)
 
 usersRouter.post('/', async (request, response) => {
     try {
-        const data = request.body
+        const {first_name, last_name, email, password, city, uf, whatsapp} = request.body
 
         const createUser = new CreateUserService()
 
-        const user = await createUser.execute(data)
+        const user = await createUser.execute({
+            first_name, 
+            last_name, 
+            email, 
+            password, 
+            city, 
+            uf, 
+            whatsapp
+        })
 
         delete user.password
 

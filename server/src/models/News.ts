@@ -41,3 +41,5 @@ class News {
     updated_at: Date
 
 }
+
+export default News
