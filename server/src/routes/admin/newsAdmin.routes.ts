@@ -5,11 +5,12 @@ import multer from 'multer'
 import uploadConfig from '../../config/upload'
 import News from '../../models/News'
 import ensureAuthenticated from '../../middlewares/ensureAuthenticated'
+import verifyAdminStatus from '../../middlewares/verifyAdminStatus'
 
 const NewsRouter = Router()
 const upload = multer(uploadConfig)
 
-NewsRouter.get('/create', async (request, response) => {
+NewsRouter.get('/create', ensureAuthenticated,  verifyAdminStatus, async (request, response) => {
 	try {
        
 
