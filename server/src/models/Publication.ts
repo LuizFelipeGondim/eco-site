@@ -3,15 +3,19 @@ import {
     CreateDateColumn, 
     Entity, 
     JoinColumn, 
+    JoinTable, 
+    ManyToMany, 
     ManyToOne, 
     PrimaryGeneratedColumn, 
     UpdateDateColumn 
 } from 'typeorm'
 
+import Category from './Category'
+import Tag from './Tag'
 import User from './User'
 
-@Entity('news')
-class News {
+@Entity('publications')
+class Publication {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
@@ -34,6 +38,18 @@ class News {
     @Column()
     main_image: string
 
+    @ManyToMany(type => Category, category => category.publications, {
+        eager: true
+    })
+    @JoinTable({name: 'publications_categories'})
+    categories: Category[]
+
+    @ManyToMany(() => Tag, {
+        eager: true
+    })
+    @JoinTable({name: 'publications_tags'})
+    tags: Tag[]
+
     @CreateDateColumn()
     created_at: Date
 
@@ -42,4 +58,4 @@ class News {
 
 }
 
-export default News
+export default Publication

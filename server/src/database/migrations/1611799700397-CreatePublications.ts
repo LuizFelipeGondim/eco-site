@@ -4,7 +4,7 @@ export default class CreateNews1611799700397 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable( new Table({
-            name: 'news',
+            name: 'publications',
             columns: [
                 {
                     name: 'id',
@@ -47,8 +47,8 @@ export default class CreateNews1611799700397 implements MigrationInterface {
             ]
         }))
 
-        await queryRunner.createForeignKey('news', new TableForeignKey({
-			name: 'NewsAuthor',
+        await queryRunner.createForeignKey('publications', new TableForeignKey({
+			name: 'PublicationAuthor',
 			columnNames: ['user_id'],
 			referencedColumnNames: ['id'],
 			referencedTableName: 'users',
@@ -58,9 +58,9 @@ export default class CreateNews1611799700397 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('news', 'NewsAuthor')
+        await queryRunner.dropForeignKey('publications', 'PublicationAuthor')
 
-        await queryRunner.dropTable('news')
+        await queryRunner.dropTable('publications')
     }
 
 }

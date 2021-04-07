@@ -1,9 +1,9 @@
 import { Router } from "express"
 
-import newsAdminRouter from './newsAdmin.routes'
+import publicationsAdminRouter from './publicationsAdmin.routes'
 
 const adminRouter = Router()
 
-adminRouter.use('/news', newsAdminRouter)
+adminRouter.use('/publications', publicationsAdminRouter)
 
 export default adminRouter
