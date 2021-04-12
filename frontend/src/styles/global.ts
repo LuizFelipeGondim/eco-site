@@ -1,11 +1,26 @@
 import {createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
+
+    :root{
+        --dark-green: #167510;
+        --green: #24B338;
+        --light-green: #F2FFF7;
+        --dark: #334238;
+        --dark-gray: #D7D7D7;
+        --medium-gray: #F2F4F5;
+        --gray: #F7F9FA;
+        --light-gray: #FDFDFD;
+        --blue: #007AE9; 
+    }
+
    *{
        margin: 0;
        padding: 0;
        outline: 0;
        box-sizing: border-box;
+       list-style: none;
+       text-decoration: none;
    }
 
    body{

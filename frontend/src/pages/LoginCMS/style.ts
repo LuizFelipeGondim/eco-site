@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import backgroundLogin from '../../assets/background-login.svg'
-
 export const Container = styled.div`
     margin: 0;
     background: linear-gradient(277.67deg, #08AEEA -5.11%, #11A68C 27.36%, #15A261 59.71%, #4BD648 94.41%);

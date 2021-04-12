@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container, Form } from './style'
 
-const Dashboard: React.FC = () => {
+const LoginDashboard: React.FC = () => {
     return (
         <>
             <Container>
@@ -19,4 +19,4 @@ const Dashboard: React.FC = () => {
     )
 }
 
-export default Dashboard
+export default LoginDashboard
