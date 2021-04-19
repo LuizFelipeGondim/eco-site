@@ -8,7 +8,7 @@ import usuarios from '../../assets/usuarios.svg'
 import publicacoes from '../../assets/publicacoes.svg'
 import configuracoes from '../../assets/configuracoes.svg'
 
-const SidebarGeneric: React.FC = () => {
+const SidebarGeneric: React.FC = (props) => {
     return (
 
         <Sidebar className="sidebar">
@@ -30,7 +30,7 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/dashboard">
                                     <p>Dashboard</p>
                                 </a> 
                             </li>
@@ -46,12 +46,12 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/users">
                                     <p>Todos os usuários</p>
                                 </a> 
                             </li>
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/create-user">
                                     <p>Adicionar usuário</p>
                                 </a> 
                             </li>
@@ -72,7 +72,7 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/publications">
                                     <p>Todas as publicações</p>
                                 </a> 
                             </li>
@@ -82,7 +82,7 @@ const SidebarGeneric: React.FC = () => {
                                 </a> 
                             </li>
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/comments">
                                     <p>Comentários</p>
                                 </a> 
                             </li>

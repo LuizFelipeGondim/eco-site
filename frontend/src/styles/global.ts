@@ -11,7 +11,8 @@ export default createGlobalStyle`
         --medium-gray: #F2F4F5;
         --gray: #F7F9FA;
         --light-gray: #FDFDFD;
-        --blue: #007AE9; 
+        --blue: #007AE9;
+        --red: #FF4C61; 
     }
 
    *{
@@ -37,11 +38,11 @@ export default createGlobalStyle`
         color: #1B1B1B;
     }
 
-    input {
-        width: 100%;
+    input, select {
         height: 50px;
         border-radius: 4px;
-        border: 1px solid #E3E3E3; 
+        border: 1px solid #E3E3E3;
+        background-color: #fff; 
         padding: 0px 15px;
         margin-bottom: 30px;
         transition: 1s box-shadow;
@@ -60,6 +61,7 @@ export default createGlobalStyle`
         color: #fff;
         background-color: #24B338;
         border: none;
+        height: 44px;
         border-radius: 5px;
         padding: 12px 20px;
         cursor: pointer;

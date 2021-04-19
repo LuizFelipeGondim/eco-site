@@ -123,8 +123,6 @@ export const Sidebar = styled.div`
 export const MainContent = styled.div`
     position: relative;
     margin-left: 210px;
-    display: flex;
-    flex-direction: column;
     transition: 0.5s;
 
     &.active {
@@ -183,13 +181,15 @@ export const Header = styled.header`
 
 export const Content = styled.main`
     margin-top: 90px;
-    width: calc(100vw - 210px);
-    height: calc(100vh - 90px);
+    margin-bottom: 0px;
+    max-width: calc(100vw - 210px);
+    height: 100%;
     background-color: var(--gray);
     transition: width 0.5s;
+    padding: 20px 0px;
 
     &.active {
-        width: calc(100vw - 55px);
+        max-width: calc(100vw - 55px);
     }
 
     @media (max-width: 900px) {
