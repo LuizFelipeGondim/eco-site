@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Form } from './style'
+import { Container, Form } from './styles'
 
 const LoginDashboard: React.FC = () => {
     return (
