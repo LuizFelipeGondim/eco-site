@@ -2,7 +2,7 @@ import React from 'react'
 
 import SidebarGeneric from  '../../Generic/SidebarGeneric'
 import MainContentGeneric from  '../../Generic/MainContentGeneric'
-import { Container } from './styles'
+import { Container, Cards } from './styles'
 
 import alert from '../../../assets/alert.svg'
 import editar from '../../../assets/editar.svg'
@@ -50,6 +50,124 @@ const CategoriesCMS: React.FC = () => {
                         <form method="get">
                             <input type="text" placeholder="Pesquise aqui!"/>
                         </form>
+
+                        <Cards>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                            <div className="card">
+                                <div className="card-header"> 
+                                    <div>
+                                        <input type="checkbox"/>
+                                        <h4>
+                                            Agricultura
+                                        </h4>
+                                    </div>
+
+                                    <div className="card-options">
+                                        <img src={editar} alt="editar"/>    
+                                        <img src={excluir} alt="excluir"/>
+                                    </div>
+                                </div>
+                                <ul className="card-body">
+                                    <li>SLUG: agricultura-familiar </li>
+                                    <li>NÚMERO DE USO: 2 </li>
+                                </ul>
+                            </div>
+                        </Cards>
+
                         <table>
                             <thead>
                                 <tr>

@@ -3,12 +3,13 @@ import styled from 'styled-components'
 export const Container = styled.div`
     display: flex;
     padding: 25px;
+    max-width: 1400px;
 
     form {
         display: flex;
         flex-direction: column;
         width: 350px;
-        max-height: 420px;
+        max-height: 300px;
         padding: 25px;
         background-color: #fff;
         margin-right: 25px;
@@ -150,7 +151,7 @@ export const Container = styled.div`
         }
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1100px) {
 
         & {
             flex-direction: column;

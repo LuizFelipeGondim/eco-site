@@ -19,12 +19,16 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
 
+    label {
+        margin: 10px 0px;
+    }
+
     h1 {
         margin-bottom: 30px;
     }
 
     button {
-        float: right;
+        margin-top: 15px;
     }
 
 `
