@@ -3,15 +3,37 @@ import styled from 'styled-components'
 export const HeaderContent = styled.div`
     width: 100%;
     padding: 0px 20px;
+    max-width: 1400px;
 
     .top {
         width: 100%;
         display: flex;
+        margin-bottom: 25px;
         justify-content: space-between;
 
-        select {
-            margin-right: 20px;
-            width: 80px;
+        div {
+            display: flex;
+            width: 250px !important;
+            align-items: center;
+            
+            select {
+                margin-right: 20px;
+                width: 110px;
+            }
+
+            button {
+                width: 110px;
+            }
+        }
+        @media (max-width: 400px) {
+            div {
+                flex-direction: column-reverse;
+                align-items: baseline;
+
+                button {
+                    margin-bottom: 10px;
+                }
+            }
         }
     }
 
@@ -28,6 +50,7 @@ export const HeaderContent = styled.div`
         form {
             input {
                 width: 280px;
+                margin-bottom: 25px;
 
                 &:focus {
                     border: 1px solid var(--green);
@@ -37,20 +60,41 @@ export const HeaderContent = styled.div`
 
         .filter {
             display: flex;
-            width: 620px;
-            justify-content: space-between;
+            flex-wrap: wrap;
             margin-left: 15px;
 
             select {
                 width: 145px;
+                margin: 15px 10px 0px 0px;
+
+            }
+        }
+
+        @media (max-width: 1180px) {
+
+            & {
+                flex-direction: column;
+            }
+
+            .filter {
+                margin-left: 0px;
+                margin-bottom: 20px;
             }
         }
     }
 `
 export const Table = styled.div`
     padding: 0px 20px;
-    
-    
+    font-size: 15px;
+    max-width: 1400px;
+
+    input[type=checkbox] {
+                height: 20px;
+                width: 20px;
+                margin-bottom: 0px;
+                cursor: pointer;
+            }
+
     .info {
         width: 100%;
         display: flex;
@@ -58,6 +102,7 @@ export const Table = styled.div`
         background-color: #fff;
         padding: 16px 20px;
         border-radius: 8px 8px 0px 0px;
+        flex-wrap: wrap;
 
         .results {
             display: flex;
@@ -81,6 +126,15 @@ export const Table = styled.div`
                 margin-right: 10px;
             }
         }
+
+        @media (max-width: 630px) {
+
+            .results-per-page {
+                margin-top: 25px;
+            }
+
+        }
+
     }
 
     table {
@@ -94,13 +148,6 @@ export const Table = styled.div`
             max-width: 110px;
             word-wrap: break-word;
             padding: 0px 16px;
-
-            input {
-                height: 20px;
-                width: 20px;
-                margin-bottom: 0px;
-                cursor: pointer;
-            }
         }
 
         thead {
@@ -127,6 +174,14 @@ export const Table = styled.div`
                     opacity: 0.8;
                 }
             }
+        }
+
+        @media (max-width: 1180px) {
+
+            & {
+                display: none;
+            }
+
         }
     }
 
@@ -158,7 +213,77 @@ export const Table = styled.div`
 
         & > button {
             background-color: var(--red);
+            width: 150px;
+        }
+
+        @media (max-width: 510px) {
+            & {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+
+            & > button {
+                margin-bottom: 15px;
+                width: 80%;
+            }
         }
     }
 
+`
+
+export const Cards = styled.div`
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: none;
+
+    .card {
+        width: 280px;
+        padding: 20px;
+        background-color: #fff;
+        margin: 0px 5px 20px 5px;
+        
+
+        .card-header {
+            display: flex;
+            justify-content: space-between; 
+
+            div {
+                display: flex;
+                align-items: center;
+
+                h4 {
+                    margin-left: 10px;
+                }
+
+                span {
+                    font-size: 12px;
+                }
+            }
+
+            img {
+                & + img {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .card-body {
+            margin-top: 15px;
+
+            li {
+                padding: 12px 0px;
+                border-top: 1px solid var(--gray);
+            }
+        }
+    }
+
+    @media (max-width: 1180px) {
+
+        & {
+            display: flex;
+        }
+
+    }
 `

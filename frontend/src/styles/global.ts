@@ -44,7 +44,6 @@ export default createGlobalStyle`
         border: 1px solid #E3E3E3;
         background-color: #fff; 
         padding: 0px 15px;
-        margin-bottom: 30px;
         transition: 1s box-shadow;
 
         &::placeholder {
@@ -62,6 +61,7 @@ export default createGlobalStyle`
         background-color: #24B338;
         border: none;
         height: 44px;
+        width: 100px;
         border-radius: 5px;
         padding: 12px 20px;
         cursor: pointer;

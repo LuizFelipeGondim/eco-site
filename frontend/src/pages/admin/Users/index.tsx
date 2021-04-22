@@ -6,7 +6,7 @@ import editar from '../../../assets/editar.svg'
 import excluir from '../../../assets/excluir.svg'
 import left from '../../../assets/left.svg'
 import right from '../../../assets/right.svg'
-import { HeaderContent, Table } from './styles'
+import { HeaderContent, Table, Cards } from './styles'
 
 const UsersCMS: React.FC = () => {
 
@@ -62,6 +62,125 @@ const UsersCMS: React.FC = () => {
                         </div>
 
                     </div>
+
+                    <Cards>
+                        <div className="card">
+                            <div className="card-header">
+                                
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                        <span> - Admin</span>
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>E-MAIL: luizfelipe@gmail.com </li>
+                                <li>ENDEREÇO: Guanambi/BA</li>
+                                <li>WHATSAPP: 77 99999-9999</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header">
+                                
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                        <span> - Admin</span>
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>E-MAIL: luizfelipe@gmail.com </li>
+                                <li>ENDEREÇO: Guanambi/BA</li>
+                                <li>WHATSAPP: 77 99999-9999</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header">
+                                
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                        <span> - Admin</span>
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>E-MAIL: luizfelipe@gmail.com </li>
+                                <li>ENDEREÇO: Guanambi/BA</li>
+                                <li>WHATSAPP: 77 99999-9999</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header">
+                                
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                        <span> - Admin</span>
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>E-MAIL: luizfelipe@gmail.com </li>
+                                <li>ENDEREÇO: Guanambi/BA</li>
+                                <li>WHATSAPP: 77 99999-9999</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header">
+                                
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                        <span> - Admin</span>
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>E-MAIL: luizfelipe@gmail.com </li>
+                                <li>ENDEREÇO: Guanambi/BA</li>
+                                <li>WHATSAPP: 77 99999-9999</li>
+                            </ul>
+                        </div>
+                    </Cards>
+                    
                     <table>
                         <thead>
                             <tr>

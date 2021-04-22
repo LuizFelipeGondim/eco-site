@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Sidebar = styled.div`
-    height: calc(100vh - 90px);
+    height: 100vh;
     width: 210px;
     position: fixed;
     left: 0;
@@ -125,6 +125,11 @@ export const MainContent = styled.div`
     margin-left: 210px;
     transition: 0.5s;
 
+    h1 {
+        width: 100%;
+        padding: 0px 20px;
+    }
+
     &.active {
         margin-left: 55px;
     }
@@ -132,7 +137,8 @@ export const MainContent = styled.div`
     @media (max-width: 900px) {
 
         & {
-            margin-left: 0px;       
+            margin-left: 0px !important;  
+            width: 100%;     
         }
 
     }
@@ -172,7 +178,7 @@ export const Header = styled.header`
     @media (max-width: 900px) {
 
         & {
-            width: 100%;
+            width: 100% !important;
         }
 
     }
@@ -195,6 +201,12 @@ export const Content = styled.main`
     @media (max-width: 900px) {
 
         & {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        &.active {
+            max-width: 100%;
             width: 100%;
         }
 

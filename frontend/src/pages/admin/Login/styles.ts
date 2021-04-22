@@ -11,11 +11,13 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     margin: auto;
-    max-width: 350px;
+    width: 350px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
     padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
 
     h1 {
         margin-bottom: 30px;

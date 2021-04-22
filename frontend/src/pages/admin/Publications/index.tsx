@@ -6,7 +6,7 @@ import editar from '../../../assets/editar.svg'
 import excluir from '../../../assets/excluir.svg'
 import left from '../../../assets/left.svg'
 import right from '../../../assets/right.svg'
-import { HeaderContent, Table } from './styles'
+import { Cards, HeaderContent, Table } from './styles'
 
 const PublicationsCMS: React.FC = () => {
 
@@ -62,6 +62,117 @@ const PublicationsCMS: React.FC = () => {
                         </div>
 
                     </div>
+
+                    <Cards>
+                        <div className="card">
+                            <div className="card-header"> 
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>TÍTULO: Erosão do solo </li>
+                                <li>CATEGORIAS: Agricultura, Meio Ambiente...</li>
+                                <li>SITUAÇÃO: Publicado</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header"> 
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>TÍTULO: Erosão do solo </li>
+                                <li>CATEGORIAS: Agricultura, Meio Ambiente...</li>
+                                <li>SITUAÇÃO: Publicado</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header"> 
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>TÍTULO: Erosão do solo </li>
+                                <li>CATEGORIAS: Agricultura, Meio Ambiente...</li>
+                                <li>SITUAÇÃO: Publicado</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header"> 
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>TÍTULO: Erosão do solo </li>
+                                <li>CATEGORIAS: Agricultura, Meio Ambiente...</li>
+                                <li>SITUAÇÃO: Publicado</li>
+                            </ul>
+                        </div>
+                        <div className="card">
+                            <div className="card-header"> 
+                                <div>
+                                    <input type="checkbox"/>
+                                    <h4>
+                                        Luiz Felipe
+                                    </h4>
+                                </div>
+
+                                <div className="card-options">
+                                    <img src={editar} alt="editar"/>    
+                                    <img src={excluir} alt="excluir"/>
+                                </div>
+                            </div>
+                            <ul className="card-body">
+                                <li>CRIADO EM: 15 Maio 2021 </li>
+                                <li>TÍTULO: Erosão do solo </li>
+                                <li>CATEGORIAS: Agricultura, Meio Ambiente...</li>
+                                <li>SITUAÇÃO: Publicado</li>
+                            </ul>
+                        </div>
+                        
+                    </Cards>
+
+
                     <table>
                         <thead>
                             <tr>
