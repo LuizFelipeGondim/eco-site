@@ -56,7 +56,7 @@ const SidebarGeneric: React.FC = (props) => {
                                 </a> 
                             </li>
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/profile">
                                     <p>Perfil</p>
                                 </a> 
                             </li>
@@ -77,7 +77,7 @@ const SidebarGeneric: React.FC = (props) => {
                                 </a> 
                             </li>
                             <li>
-                                <a href="teste">
+                                <a href="http://localhost:3000/eco-admin/create-publication">
                                     <p>Adicionar publicação</p>
                                 </a> 
                             </li>
