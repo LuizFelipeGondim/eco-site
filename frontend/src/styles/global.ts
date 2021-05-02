@@ -58,7 +58,7 @@ export default createGlobalStyle`
 
     button {
         color: #fff;
-        background-color: #24B338;
+        background-color: var(--green);
         border: none;
         height: 44px;
         width: 100px;
@@ -66,6 +66,7 @@ export default createGlobalStyle`
         padding: 12px 20px;
         cursor: pointer;
         transition: 1s opacity ease;
+        font-weight: 500 !important;
 
         &:hover{
             opacity: 0.7;
