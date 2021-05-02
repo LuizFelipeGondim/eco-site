@@ -26,7 +26,7 @@ export default createGlobalStyle`
 
    body{
        -webkit-font-smoothing: antialiased;
-       font: 16px Ubuntu, sans-serif;
+       font: 13px Ubuntu, sans-serif;
    }
 
    h1, h2, h3, h4, h5, h6 {

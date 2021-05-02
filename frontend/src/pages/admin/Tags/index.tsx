@@ -4,11 +4,11 @@ import SidebarGeneric from  '../../Generic/SidebarGeneric'
 import MainContentGeneric from  '../../Generic/MainContentGeneric'
 import { Container, Cards } from './styles'
 
-import alert from '../../../assets/alert.svg'
-import editar from '../../../assets/editar.svg'
-import excluir from '../../../assets/excluir.svg'
-import left from '../../../assets/left.svg'
-import right from '../../../assets/right.svg'
+import alert from '../../../assets/adminSVG/alert.svg'
+import editar from '../../../assets/adminSVG/editar.svg'
+import excluir from '../../../assets/adminSVG/excluir.svg'
+import left from '../../../assets/adminSVG/left.svg'
+import right from '../../../assets/adminSVG/right.svg'
 
 const TagsCMS: React.FC = () => {
 

@@ -3,7 +3,7 @@ import React from 'react'
 import SidebarGeneric from  '../../Generic/SidebarGeneric'
 import MainContentGeneric from  '../../Generic/MainContentGeneric'
 import { Container, Card, Form } from './styles'
-import usuario from '../../../assets/temp.svg'
+import usuario from '../../../assets/adminSVG/temp.svg'
 
 const ProfileCMS: React.FC = () => {
 

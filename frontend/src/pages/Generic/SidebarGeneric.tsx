@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Sidebar } from './style'
+import { Sidebar } from './styles'
 import toggleMenu from '../../utils/toggleMenu'
-import menu from '../../assets/menu.svg'
-import inicio from '../../assets/inicio.svg'
-import usuarios from '../../assets/usuarios.svg'
-import publicacoes from '../../assets/publicacoes.svg'
-import configuracoes from '../../assets/configuracoes.svg'
+import menu from '../../assets/adminSVG/menu.svg'
+import inicio from '../../assets/adminSVG/inicio.svg'
+import usuarios from '../../assets/adminSVG/usuarios.svg'
+import publicacoes from '../../assets/adminSVG/publicacoes.svg'
+import configuracoes from '../../assets/adminSVG/configuracoes.svg'
 
 const SidebarGeneric: React.FC = (props) => {
     return (

@@ -14,6 +14,9 @@ import CreateUserCMS from '../pages/admin/CreateUser'
 import CreatePublicationCMS from '../pages/admin/CreatePublication'
 
 //Página
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+
 
 const Routes: React.FC = () => (
     
@@ -29,7 +32,8 @@ const Routes: React.FC = () => (
         <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
         <Route path="/eco-admin/create-publication" component={CreatePublicationCMS}/>
 
-        
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
     </Switch>
 
 )

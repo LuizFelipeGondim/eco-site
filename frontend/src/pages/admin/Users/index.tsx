@@ -2,10 +2,10 @@ import React from 'react'
 
 import SidebarGeneric from  '../../Generic/SidebarGeneric'
 import MainContentGeneric from  '../../Generic/MainContentGeneric'
-import editar from '../../../assets/editar.svg'
-import excluir from '../../../assets/excluir.svg'
-import left from '../../../assets/left.svg'
-import right from '../../../assets/right.svg'
+import editar from '../../../assets/adminSVG/editar.svg'
+import excluir from '../../../assets/adminSVG/excluir.svg'
+import left from '../../../assets/adminSVG/left.svg'
+import right from '../../../assets/adminSVG/right.svg'
 import { HeaderContent, Table, Cards } from './styles'
 
 const UsersCMS: React.FC = () => {
