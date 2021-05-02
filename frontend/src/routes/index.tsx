@@ -1,6 +1,11 @@
 import React from 'react'
 import { Switch, Route } from "react-router-dom";
 
+//Página
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import Home from '../pages/Home'
+
 //Painel CMS
 import LoginCMS from '../pages/admin/Login'
 import DashboardCMS from '../pages/admin/Dashboard'
@@ -13,15 +18,15 @@ import ProfileCMS from '../pages/admin/UserProfile'
 import CreateUserCMS from '../pages/admin/CreateUser'
 import CreatePublicationCMS from '../pages/admin/CreatePublication'
 
-//Página
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-
 
 const Routes: React.FC = () => (
     
     <Switch>
-        <Route path="/eco-admin" exact component={LoginCMS}/>
+        <Route path="/" exact component={Home}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+
+        <Route path="/eco-admin" component={LoginCMS}/>
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>
         <Route path="/eco-admin/users" component={UsersCMS}/>
         <Route path="/eco-admin/publications" component={PublicationsCMS}/>
@@ -32,8 +37,6 @@ const Routes: React.FC = () => (
         <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
         <Route path="/eco-admin/create-publication" component={CreatePublicationCMS}/>
 
-        <Route path="/login" component={Login}/>
-        <Route path="/register" component={Register}/>
     </Switch>
 
 )

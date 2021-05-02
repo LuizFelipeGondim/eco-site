@@ -8,7 +8,7 @@ import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
 
 
-const Login: React.FC = (props) => {
+const Register: React.FC = (props) => {
 
     return (
         <>
@@ -106,4 +106,4 @@ const Login: React.FC = (props) => {
         </>
     )}
 
-export default Login
+export default Register
