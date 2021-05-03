@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
+import Blog from '../pages/Blog'
 
 //Painel CMS
 import LoginCMS from '../pages/admin/Login'
@@ -25,6 +26,7 @@ const Routes: React.FC = () => (
         <Route path="/" exact component={Home}/>
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register}/>
+        <Route path="/blog" component={Blog}/>
 
         <Route path="/eco-admin" component={LoginCMS}/>
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>
