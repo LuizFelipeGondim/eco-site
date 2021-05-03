@@ -8,8 +8,10 @@ export const Header = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fff;
     box-shadow: 0px 2px 8px rgba(8, 35, 48, 0.24);
     padding: 10px 20px;
+    position: fixed;
 
     .top {
         width: 90%;
