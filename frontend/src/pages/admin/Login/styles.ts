@@ -7,31 +7,30 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
 
+    form {
+        margin: auto;
+        width: 350px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
+        padding: 35px 30px;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin: 10px 0px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        button {
+            margin-top: 15px;
+        }
+    }
 `
 
-export const Form = styled.form`
-    margin: auto;
-    width: 350px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
-    padding: 35px 30px;
-    display: flex;
-    flex-direction: column;
-
-    label {
-        margin: 10px 0px;
-    }
-
-    h1 {
-        margin-bottom: 30px;
-    }
-
-    button {
-        margin-top: 15px;
-    }
-
-`
 
 
 

@@ -5,7 +5,6 @@ import temp from '../../assets/adminSVG/temp.svg'
 import logout from '../../assets/adminSVG/logout.svg'
 
 const MainContentGeneric: React.FC = (props) => {
-    console.log(props)
     return (
 
         <MainContent className="main-content">

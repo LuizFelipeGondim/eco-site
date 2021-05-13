@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 
-import SidebarGeneric from  '../../Generic/SidebarGeneric'
-import MainContentGeneric from  '../../Generic/MainContentGeneric'
+import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
+import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import { Container, SideOptions, Form } from './styles'
 
 const CreatePublicationCMS: React.FC = () => {

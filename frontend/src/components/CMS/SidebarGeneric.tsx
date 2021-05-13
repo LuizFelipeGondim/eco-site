@@ -8,7 +8,8 @@ import usuarios from '../../assets/adminSVG/usuarios.svg'
 import publicacoes from '../../assets/adminSVG/publicacoes.svg'
 import configuracoes from '../../assets/adminSVG/configuracoes.svg'
 
-const SidebarGeneric: React.FC = (props) => {
+
+const SidebarGeneric: React.FC = () => {
     return (
 
         <Sidebar className="sidebar">
@@ -111,6 +112,7 @@ const SidebarGeneric: React.FC = (props) => {
                 </ul>
             </div>
         </Sidebar> 
-    )}
+    )
+}
 
-    export default SidebarGeneric
+export default SidebarGeneric

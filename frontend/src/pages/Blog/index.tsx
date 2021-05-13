@@ -6,7 +6,7 @@ import Menu from '../Menu'
 import Footer from '../Footer'
 import { Main, Content, Sidebar } from './styles'
 
-const Home: React.FC = () => {
+const Blog: React.FC = () => {
     return (
         <>
             <Menu></Menu>
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -107,7 +107,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -193,4 +193,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home
+export default Blog

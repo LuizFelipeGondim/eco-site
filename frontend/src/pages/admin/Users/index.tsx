@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SidebarGeneric from  '../../Generic/SidebarGeneric'
-import MainContentGeneric from  '../../Generic/MainContentGeneric'
+import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
+import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import editar from '../../../assets/adminSVG/editar.svg'
 import excluir from '../../../assets/adminSVG/excluir.svg'
 import left from '../../../assets/adminSVG/left.svg'

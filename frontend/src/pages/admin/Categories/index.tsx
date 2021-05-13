@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SidebarGeneric from  '../../Generic/SidebarGeneric'
-import MainContentGeneric from  '../../Generic/MainContentGeneric'
+import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
+import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import { Container, Cards } from './styles'
 
 import alert from '../../../assets/adminSVG/alert.svg'

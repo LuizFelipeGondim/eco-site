@@ -1,7 +1,7 @@
 import React from 'react'
 
-import SidebarGeneric from  '../../Generic/SidebarGeneric'
-import MainContentGeneric from  '../../Generic/MainContentGeneric'
+import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
+import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import { Form } from './styles'
 
 const CreateUserCMS: React.FC = () => {

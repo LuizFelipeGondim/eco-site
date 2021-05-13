@@ -6,7 +6,7 @@ import Menu from '../Menu'
 import Footer from '../Footer'
 import { Main, Content, Sidebar } from './styles'
 
-const Home: React.FC = () => {
+const Category: React.FC = () => {
     return (
         <>
             <Menu></Menu>
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -107,7 +107,7 @@ const Home: React.FC = () => {
                                     <p>Admin</p>   
                                 </div>
 
-                                <a href="#">Leia mais 🡢</a>
+                                <a href="example">Leia mais 🡢</a>
 
                             </div>
                         </div>
@@ -126,9 +126,9 @@ const Home: React.FC = () => {
                     <h3>Outras Categorias</h3>
 
                     <div className="categories">
-                        <a href="#">Ecologia</a>
-                        <a href="#">Agricultura</a>
-                        <a href="#">Dicas</a>
+                        <a href="example">Ecologia</a>
+                        <a href="example">Agricultura</a>
+                        <a href="example">Dicas</a>
                     </div>
 
                 </Sidebar>
@@ -139,4 +139,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home
+export default Category
