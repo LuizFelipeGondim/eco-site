@@ -16,30 +16,31 @@ export default createGlobalStyle`
         --text-color: #33423899;
     }
 
-   *{
-       margin: 0;
-       padding: 0;
-       outline: 0;
-       box-sizing: border-box;
-       list-style: none;
-       text-decoration: none;
-   }
+    *{
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+    }
 
-   body{
-       -webkit-font-smoothing: antialiased;
-       font: 13px Ubuntu, sans-serif;
-   }
+    body{
+        -webkit-font-smoothing: antialiased;
+        font: 13px Ubuntu, sans-serif;
+    }
 
-   h1, h2, h3, h4, h5, h6 {
-       font: Archivo, sans-serif;
-       font-weight: 500;
-   }
+    h1, h2, h3, h4, h5, h6 {
+        font: Archivo, sans-serif;
+        font-weight: 500;
+    }
 
-   label {
+    label {
         color: #1B1B1B;
     }
 
-    input, select {
+    select {
+        width: 100%;
         height: 50px;
         border-radius: 4px;
         border: 1px solid #E3E3E3;

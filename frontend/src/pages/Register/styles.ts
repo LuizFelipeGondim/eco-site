@@ -26,6 +26,80 @@ export const Content = styled.main`
     main {
         margin-bottom: 40px;
         padding: 10px;
+
+        form {
+            margin: auto;
+            margin-top: -82px;
+            width: 95%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+
+            label {
+                margin: 10px 0px;
+            }
+
+            p {
+                font-size: 11px;
+                margin: 10px 0px;
+            }
+
+            .double-input {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    width: 48%;
+                    
+                    input {
+                        width: 100% !important;
+                    }
+                }
+            }
+
+            div {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+
+                a {
+                    font-size: 11px;
+                }
+
+                img {
+                    width: 80px;
+                }
+            }
+
+            .footer {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 5px;
+                
+                button {
+                    margin-top: 10px;
+                    width: 120px;
+                }
+            }
+
+            @media (max-width: 500px) {
+                .double-input {
+                    width: 100%;
+                    flex-direction: column;
+
+                    div {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 
     footer {
@@ -102,79 +176,4 @@ export const Content = styled.main`
             }
         }
     }
-`
-
-export const Form = styled.form`
-    margin: auto;
-    margin-top: -82px;
-    width: 95%;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
-    padding: 35px 30px;
-    display: flex;
-    flex-direction: column;
-
-    label {
-        margin: 10px 0px;
-    }
-
-    p {
-        font-size: 11px;
-        margin: 10px 0px;
-    }
-
-    .double-input {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-
-        div {
-            display: flex;
-            flex-direction: column;
-            width: 48%;
-            
-            input {
-                width: 100% !important;
-            }
-        }
-    }
-
-    div {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-
-        a {
-            font-size: 11px;
-        }
-
-        img {
-            width: 80px;
-        }
-    }
-
-    .footer {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 5px;
-        
-        button {
-            margin-top: 10px;
-            width: 120px;
-        }
-    }
-
-    @media (max-width: 500px) {
-        .double-input {
-            width: 100%;
-            flex-direction: column;
-
-            div {
-                width: 100%;
-            }
-        }
-    }
-
 `
