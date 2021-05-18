@@ -26,6 +26,59 @@ export const Content = styled.main`
     main {
         margin-bottom: 40px;
         padding: 10px;
+
+        form {
+            margin: auto;
+            margin-top: -82px;
+            width: 95%;
+            max-width: 380px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+
+            label {
+                margin: 10px 0px;
+            }
+
+            .error {
+                display: block;
+                width: 100% !important;
+                background-color: var(--red);
+                opacity: 0.9;
+                color: #fff;
+                padding: 5px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+
+            & > div {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+
+                a {
+                    font-size: 11px;
+                }
+
+                img {
+                    width: 80px;
+                }
+            }
+
+            .footer {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin-top: 5px;
+                
+                button {
+                    margin-top: 10px;
+                }
+            }
+        }
     }
 
     footer {
@@ -102,47 +155,4 @@ export const Content = styled.main`
             }
         }
     }
-`
-
-export const Form = styled.form`
-    margin: auto;
-    margin-top: -82px;
-    width: 95%;
-    max-width: 380px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(8, 35, 48, 0.24);
-    padding: 35px 30px;
-    display: flex;
-    flex-direction: column;
-
-    label {
-        margin: 10px 0px;
-    }
-
-    div {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-
-        a {
-            font-size: 11px;
-        }
-
-        img {
-            width: 80px;
-        }
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        margin-top: 5px;
-        
-        button {
-            margin-top: 10px;
-        }
-    }
-
 `

@@ -1,6 +1,10 @@
 import React from 'react'
+import { Formik, Form} from "formik"
+import * as Yup from 'yup'
 
-import { Content, Form } from './styles'
+import { Content } from './styles'
+import { InputField } from '../../components/Input'
+import api from '../../services/api'
 
 import user from '../../assets/user.svg'
 import facebook from '../../assets/facebook.svg'
@@ -8,8 +12,16 @@ import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
 
 
-const Login: React.FC = (props) => {
-
+const Login: React.FC = () => {
+    const UserLoginValidations = Yup.object().shape({
+    
+        email: Yup.string()
+            .required('O e-mail é obrigatório')
+            .email('Digite um e-mail válido'),
+    
+        password: Yup.string()
+            .min(8, 'No mínimo 8 dígitos'),
+    })
     return (
         <>
             <Content>
@@ -23,19 +35,36 @@ const Login: React.FC = (props) => {
                     </div>
                 </header>
                 <main>
-                    <Form>
-                        <div className="logo">
-                            <img src={user} alt="Usuário"/>
-                        </div>
-                        <label>E-mail</label>
-                        <input type="email" name="email" placeholder="example@gmail.com"/>
-                        <label>Senha</label>
-                        <input type="password" name="password" placeholder="Insira sua senha"/>
-                        <div className="footer">
-                            <a href="http://localhost:3000/login">Esqueci minha senha 🡢</a>
-                            <button type="submit">Acessar</button>
-                        </div>
-                    </Form>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        validationSchema={UserLoginValidations}
+                        onSubmit={values => {
+                            console.log(values);
+                        }}
+                    >
+                        {() => (
+                            <Form>
+                                <div className="logo">
+                                    <img src={user} alt="Usuário"/>
+                                </div>
+
+                                <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />                     
+                                
+                                <InputField type="password" label="Senha" name="password" placeholder="Digite sua senha"/>
+
+
+                                <div className="footer">
+                                    <a href="http://localhost:3000/login">Esqueci minha senha 🡢</a>
+                                    <button type="submit"> Acessar </button>
+                                </div>
+
+                            </Form>
+                        )}
+                    </Formik>
+                    
                 </main>
                 <footer>
                     <span>© 2020 Ecoblog</span>
