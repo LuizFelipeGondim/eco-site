@@ -1,10 +1,11 @@
-import React, { useState, useEffect, ChangeEvent } from 'react'
-import axios from 'axios';
-import { Form } from '@unform/web'
+import React, { useState, useEffect, ChangeEvent, useCallback } from 'react'
+import axios from 'axios'
+import { Formik, Form, Field } from "formik"
 
 import { Content } from './styles'
-import Input from '../../components/Input'
-import api from '../../services/api';
+import { InputField } from '../../components/Input'
+import UserRegisterValidations from '../../validations/UserRegisterValidations'
+import api from '../../services/api'
 
 import user from '../../assets/user.svg'
 import facebook from '../../assets/facebook.svg'
@@ -48,24 +49,18 @@ const Register: React.FC = () => {
 
     }, [selectedUf])
 
-    function handleSelectUF(event: ChangeEvent<HTMLSelectElement>){
+    const handleSelectUF = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const uf = event.target.value;
 
         setSelectedUf(uf);
-    }
+    }, [])
 
-    function handleSelectCity(event: ChangeEvent<HTMLSelectElement>){
+    const handleSelectCity = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const city = event.target.value;
-
         setSelectedCity(city);
-    }
-    
-    function handleSubmit(data: object): void {
+        console.log(city)
+    }, [])
 
-        const uf = selectedUf;
-        const city = selectedCity;
-        console.log(data, uf, city)
-    }
     return (
         <>
             <Content>
@@ -79,71 +74,86 @@ const Register: React.FC = () => {
                     </div>
                 </header>
                 <main>
-                    <Form onSubmit={handleSubmit}>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            name: '',
+                            last_name: '',
+                            password: '',
+                            confirm_password: '',
+                            uf: '',
+                            city: '',
+                            whatsapp: ''
+                        }}
+                        validationSchema={UserRegisterValidations}
+                        onSubmit={values => {
+                            console.log(values);
+                        }}
+                    >
+                        {() => (
+                            <Form>
+                                <div className="logo">
+                                    <img src={user} alt="Usuário"/>
+                                </div>
 
-                        <div className="logo">
-                            <img src={user} alt="Usuário"/>
-                        </div>
+                                <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />                     
 
-                        <label>E-mail</label>
-                        <Input type="email" name="email" placeholder="example@gmail.com"/>
+                                <div className="input-group-2">
+                                    <div>
+                                        <InputField label="Nome" name="name" placeholder="Digite seu sobrenome"/>
+                                    </div>
+                                    <div>
+                                        <InputField label="Sobrenome" name="last_name" placeholder="Digite seu sobrenome"/>
+                                    </div>
+                                </div>
+                                
+                                <div className="input-group-2">
+                                    <div>
+                                        <InputField type="password" label="Senha" name="password" placeholder="Digite sua senha"/>
+                                    </div>
+                                    <div>
+                                        <InputField type="password" label="Confirmar Senha" name="confirm_password" placeholder="Digite sua senha" />
+                                    </div>
+                                </div>
 
-                        <div className="double-input">
-                            <div>
-                                <label>Nome</label>
-                                <Input  name="nome" placeholder="Digite seu nome"/>
-                            </div>
-                            <div>
-                                <label>Sobrenome</label>
-                                <Input name="sobrenome" placeholder="Digite seu sobrenome"/>
-                            </div>
-                        </div>
-                        
-                        <div className="double-input">
-                            <div>
-                                <label>Senha</label>
-                                <Input type="password" name="password" placeholder="Digite sua senha"/>
-                            </div>
-                            <div>
-                                <label>Confirmar Senha</label>
-                                <Input type="password" name="confirm-password" placeholder="Digite sua senha"/>
-                            </div>
-                        </div>
+                                <div className="input-group-2">
+                                    <div>
+                                        <label>Estado</label>
+                                        <Field as="select" name="uf" value={selectedUf} onChange={handleSelectUF} >
+                                            <option value="0"> Selecione uma UF</option>
+                                            {ufs.map(uf => (
+                                                <option key={uf} value={uf}> {uf}</option>
+                                            ))}
+                                        </Field>
+                                    </div>
+                                    <div>
+                                        <label>Cidade</label>
+                                        <Field as="select" name="city" value={selectedCity} onChange={handleSelectCity}>
+                                            <option value="0"> Selecione uma Cidade</option>
+                                            {cities.map(city => (
+                                                <option key={city} value={city}> {city}</option>
+                                            ))}
+                                        </Field>
+                                    </div>
+                                </div>
+                                <div className="input-group-1">
+                                    <InputField name="whatsapp" label="Whatsapp" placeholder="(77) 99999-9999"/>
+                                </div>
 
-                        <div className="double-input">
-                            <div>
-                                <label>Estado</label>
-                                <select name="uf" id="uf" value={selectedUf} onChange={handleSelectUF}>
-                                    <option value="0"> Selecione uma UF</option>
-                                    {ufs.map(uf => (
-                                        <option key={uf} value={uf}> {uf}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label>Cidade</label>
-                                <select name="city" value={selectedCity} onChange={handleSelectCity} id="city">
-                                    <option value="0"> Selecione uma Cidade</option>
-                                    {cities.map(city => (
-                                        <option key={city} value={city}> {city}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
+                                <p>
+                                    Ao clicar em Cadrastar-se, eu concordo que li e aceito os 
+                                    <a href="example"> Termos de uso </a> e a 
+                                    <a href="example"> Política de privacidade </a> .
+                                </p>
 
-                        <label>Whatsapp</label>
-                        <Input name="whatsapp" placeholder="(77) 99999-9999"/>
-                        
-                        <p>
-                            Ao clicar em Cadrastar-se, eu concordo que li e aceito os 
-                            <a href="example"> Termos de uso </a> e a 
-                            <a href="example"> Política de privacidade </a> .
-                        </p>
+                                <div className="footer">
+                                    <button type="submit"> Cadastrar-se </button>
+                                </div>
 
-                        <div className="footer">
-                            <button type="submit"> Cadastrar-se </button>
-                        </div>
-                    </Form>
+                            </Form>
+                        )}
+                    </Formik>
+
                 </main>
 
                 <footer>

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Form } from '@unform/web'
+import { Form } from 'formik'
 
-import Input from '../../../components/Input'
+import { InputField } from '../../../components/Input'
 import { Container } from './styles'
 
 const LoginDashboard: React.FC = () => {
@@ -13,10 +13,10 @@ const LoginDashboard: React.FC = () => {
         <Container>
             <Form onSubmit={handleSubmit}>
                 <h1>Logo</h1>
-                <label>E-mail</label>
-                <Input type="email" name="email" placeholder="example@gmail.com" />
-                <label>Senha</label>
-                <Input type="password" name="password" placeholder="Insira sua senha" />
+
+                <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />
+
+                <InputField label="Senha" type="password" name="password" placeholder="Insira sua senha" />
                 <button type="submit">Acessar</button>
             </Form>
         </Container>

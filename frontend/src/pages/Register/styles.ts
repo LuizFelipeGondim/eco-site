@@ -48,23 +48,43 @@ export const Content = styled.main`
                 margin: 10px 0px;
             }
 
-            .double-input {
+            .error {
+                display: block;
+                width: 100% !important;
+                background-color: var(--red);
+                opacity: 0.9;
+                color: #fff;
+                padding: 5px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+
+            .input-group-1 {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                height: 130px;
+            }
+
+            .input-group-2 {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
 
-                div {
+                & > div {
                     display: flex;
                     flex-direction: column;
                     width: 48%;
-                    
+                    align-items: flex-start;
+                    max-height: 115px;
+
                     input {
                         width: 100% !important;
                     }
                 }
             }
 
-            div {
+            & > div {
                 display: flex;
                 width: 100%;
                 justify-content: center;
@@ -90,7 +110,7 @@ export const Content = styled.main`
             }
 
             @media (max-width: 500px) {
-                .double-input {
+                .input-group-2 {
                     width: 100%;
                     flex-direction: column;
 
@@ -159,7 +179,6 @@ export const Content = styled.main`
                         opacity: 0.8;
                     }
                 }
-
             }
         }
     }

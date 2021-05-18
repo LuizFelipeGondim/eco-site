@@ -1,27 +1,25 @@
-import React, { InputHTMLAttributes, useEffect, useRef } from 'react'
-import { useField } from '@unform/core'
+import { ErrorMessage, useField } from 'formik';
 
 import { Input } from './styles'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
+    label: string
     name: string
+    type?: string
+    placeholder?: string
 }
 
-const InputComponent: React.FC<InputProps> = ({ name, ...rest }) => {
-    const inputRef = useRef(null)
-    const { fieldName, defaultValue, error, registerField } = useField(name)
-
-    useEffect(() => {
-        registerField({
-            name: fieldName,
-            ref: inputRef.current,
-            path: 'value'
-        })
-    }, [fieldName, registerField])
-
+export const InputField = ({ label, ...props }: InputProps) => {
+    const [field, meta] = useField(props)
     return (
-        <Input ref={inputRef} defaultValue={defaultValue} {...rest} />
+        <>
+            <label htmlFor={field.name}>{label}</label>
+            <Input
+                className={`${meta.touched && meta.error}`}
+                {...field} {...props}
+                autoComplete="off"
+            />
+            <ErrorMessage component="div" name={field.name} className="error" />
+        </>
     )
 }
-
-export default InputComponent
