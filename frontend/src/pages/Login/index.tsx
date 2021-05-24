@@ -1,27 +1,34 @@
-import React from 'react'
-import { Formik, Form} from "formik"
-import * as Yup from 'yup'
+import React, { useCallback } from 'react'
+import { Formik, Form } from "formik"
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
 import api from '../../services/api'
+import { useAuth } from '../../context/AuthContext'
+import UserLoginValidations from '../../validations/UserLoginValidations'
 
-import user from '../../assets/user.svg'
+import userAvatar from '../../assets/user.svg'
 import facebook from '../../assets/facebook.svg'
 import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
 
+interface LoginFormData {
+    email: string
+    password: string
+}
 
 const Login: React.FC = () => {
-    const UserLoginValidations = Yup.object().shape({
-    
-        email: Yup.string()
-            .required('O e-mail é obrigatório')
-            .email('Digite um e-mail válido'),
-    
-        password: Yup.string()
-            .min(8, 'No mínimo 8 dígitos'),
-    })
+    const { user, login } = useAuth()
+    console.log(user)
+
+    const handleSubmit = useCallback((data: LoginFormData) => {
+        login({
+            email: data.email,
+            password: data.password
+        })
+        
+    }, [login])
+
     return (
         <>
             <Content>
@@ -41,14 +48,13 @@ const Login: React.FC = () => {
                             password: '',
                         }}
                         validationSchema={UserLoginValidations}
-                        onSubmit={values => {
-                            console.log(values);
-                        }}
+                        onSubmit={handleSubmit}
+
                     >
                         {() => (
                             <Form>
                                 <div className="logo">
-                                    <img src={user} alt="Usuário"/>
+                                    <img src={userAvatar} alt="Usuário"/>
                                 </div>
 
                                 <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />                     

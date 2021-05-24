@@ -21,28 +21,30 @@ import ProfileCMS from '../pages/admin/UserProfile'
 import CreateUserCMS from '../pages/admin/CreateUser'
 import CreatePublicationCMS from '../pages/admin/CreatePublication'
 
+import { AuthProvider } from '../context/AuthContext'
 
 const Routes: React.FC = () => (
     
     <Switch>
-        <Route path="/" exact component={Home}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/register" component={Register}/>
-        <Route path="/blog" component={Blog}/>
-        <Route path="/category" component={Category}/>
-        <Route path="/publication" component={Publication}/>
+        <AuthProvider>
+            <Route path="/" exact component={Home}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/blog" component={Blog}/>
+            <Route path="/category" component={Category}/>
+            <Route path="/publication" component={Publication}/>
 
-        <Route path="/eco-admin" exact component={LoginCMS}/>
-        <Route path="/eco-admin/dashboard" component={DashboardCMS}/>
-        <Route path="/eco-admin/users" component={UsersCMS}/>
-        <Route path="/eco-admin/publications" component={PublicationsCMS}/>
-        <Route path="/eco-admin/comments" component={CommentsCMS}/>
-        <Route path="/eco-admin/tags" component={TagsCMS}/>
-        <Route path="/eco-admin/categories" component={CategoriesCMS}/>
-        <Route path="/eco-admin/profile" component={ProfileCMS}/>
-        <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
-        <Route path="/eco-admin/create-publication" component={CreatePublicationCMS}/>
-
+            <Route path="/eco-admin" exact component={LoginCMS}/>
+            <Route path="/eco-admin/dashboard" component={DashboardCMS}/>
+            <Route path="/eco-admin/users" component={UsersCMS}/>
+            <Route path="/eco-admin/publications" component={PublicationsCMS}/>
+            <Route path="/eco-admin/comments" component={CommentsCMS}/>
+            <Route path="/eco-admin/tags" component={TagsCMS}/>
+            <Route path="/eco-admin/categories" component={CategoriesCMS}/>
+            <Route path="/eco-admin/profile" component={ProfileCMS}/>
+            <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
+            <Route path="/eco-admin/create-publication" component={CreatePublicationCMS}/>
+        </AuthProvider>
     </Switch>
 
 )

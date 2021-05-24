@@ -12,6 +12,7 @@ const UserRegisterValidations = Yup.object().shape({
         .email('Digite um e-mail válido'),
 
     password: Yup.string()
+        .required('A senha é obrigatória')
         .min(8, 'No mínimo 8 dígitos'),
         
     confirm_password: Yup.string()
@@ -20,8 +21,8 @@ const UserRegisterValidations = Yup.object().shape({
         
     //Ver melhor forma para colocar o número de telefone.
     whatsapp: Yup.string()
-        .phone('BR', true, 'O número é inválido')
-        .required('O número é obrigatório'),
+        .required('O número é obrigatório')
+        .phone('BR', true, 'O número é inválido'),
 
     uf: Yup.string(),
 
