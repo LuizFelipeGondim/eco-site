@@ -21,12 +21,12 @@ import ProfileCMS from '../pages/admin/UserProfile'
 import CreateUserCMS from '../pages/admin/CreateUser'
 import CreatePublicationCMS from '../pages/admin/CreatePublication'
 
-import { AuthProvider } from '../context/AuthContext'
+import AppProvider from '../context'
 
 const Routes: React.FC = () => (
     
     <Switch>
-        <AuthProvider>
+        <AppProvider>
             <Route path="/" exact component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
@@ -44,7 +44,7 @@ const Routes: React.FC = () => (
             <Route path="/eco-admin/profile" component={ProfileCMS}/>
             <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
             <Route path="/eco-admin/create-publication" component={CreatePublicationCMS}/>
-        </AuthProvider>
+        </AppProvider>
     </Switch>
 
 )

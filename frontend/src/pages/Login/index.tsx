@@ -3,8 +3,8 @@ import { Formik, Form } from "formik"
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
-import api from '../../services/api'
 import { useAuth } from '../../context/AuthContext'
+import { useToast } from '../../context/ToastContext'
 import UserLoginValidations from '../../validations/UserLoginValidations'
 
 import userAvatar from '../../assets/user.svg'
@@ -19,15 +19,23 @@ interface LoginFormData {
 
 const Login: React.FC = () => {
     const { user, login } = useAuth()
-    console.log(user)
+    const { addToast } = useToast()
 
-    const handleSubmit = useCallback((data: LoginFormData) => {
-        login({
-            email: data.email,
-            password: data.password
-        })
+    const handleSubmit = useCallback( async (data: LoginFormData) => {
+        try {
+            await login({
+                email: data.email,
+                password: data.password
+            })
+        } catch (err) {
+            addToast({
+                type: 'error',
+                title: 'Erro na autenticação',
+                description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+            })
+        }
         
-    }, [login])
+    }, [login, addToast])
 
     return (
         <>
