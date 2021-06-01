@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 import 'yup-phone'
 
 const UserRegisterValidations = Yup.object().shape({
-    name: Yup.string()
+    first_name: Yup.string()
         .required('O nome é obrigatório'),
 
     last_name: Yup.string(),

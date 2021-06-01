@@ -1,11 +1,13 @@
 import React, { useState, useEffect, ChangeEvent, useCallback } from 'react'
 import axios from 'axios'
 import { Formik, Form, Field } from "formik"
+import { Link, useHistory } from 'react-router-dom'
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
 import UserRegisterValidations from '../../validations/UserRegisterValidations'
 import api from '../../services/api'
+import { useToast } from '../../context/ToastContext'
 
 import user from '../../assets/user.svg'
 import facebook from '../../assets/facebook.svg'
@@ -20,7 +22,19 @@ interface IBGECityResponse{
     nome: string;
 }
 
+interface RegisterFormData{
+    email: string
+    first_name: string
+    last_name: string
+    password: string
+    uf: string
+    city: string
+    whatsapp: string
+}
+
 const Register: React.FC = () => {
+    const { addToast } = useToast()
+    const history = useHistory()
 
     const [selectedUf, setSelectedUf] = useState('0')
     const [selectedCity, setSelectedCity] = useState('0')
@@ -61,6 +75,29 @@ const Register: React.FC = () => {
         console.log(city)
     }, [])
 
+    const handleSubmit = useCallback(async (data: RegisterFormData) => {
+        
+        console.log(data)
+        try {
+            await api.post('/users', data)
+
+            history.push('/login')
+
+            addToast({
+                type: 'success',
+                title: 'Cadastro Realizado!',
+                description: 'Você já pode fazer seu login na plataforma'
+            })
+
+        } catch (err) {
+            addToast({
+                type: 'error',
+                title: 'Erro no cadastro!',
+                description: 'Ocorreu um erro ao fazer cadastro, tente novamente.'
+            })
+            console.log(err)
+        }
+    }, [addToast, history])
     return (
         <>
             <Content>
@@ -69,7 +106,7 @@ const Register: React.FC = () => {
                         <h1>CADASTRO</h1>
                         <p>
                             Já possui uma conta? 
-                            <a href="http://localhost:3000/login"> Clique aqui</a>
+                            <Link to="/login"> Clique aqui</Link>
                         </p>
                     </div>
                 </header>
@@ -77,7 +114,7 @@ const Register: React.FC = () => {
                     <Formik
                         initialValues={{
                             email: '',
-                            name: '',
+                            first_name: '',
                             last_name: '',
                             password: '',
                             confirm_password: '',
@@ -86,9 +123,7 @@ const Register: React.FC = () => {
                             whatsapp: ''
                         }}
                         validationSchema={UserRegisterValidations}
-                        onSubmit={values => {
-                            console.log(values);
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         {() => (
                             <Form>
@@ -100,7 +135,7 @@ const Register: React.FC = () => {
 
                                 <div className="input-group-2">
                                     <div>
-                                        <InputField label="Nome" name="name" placeholder="Digite seu sobrenome"/>
+                                        <InputField label="Nome" name="first_name" placeholder="Digite seu nome"/>
                                     </div>
                                     <div>
                                         <InputField label="Sobrenome" name="last_name" placeholder="Digite seu sobrenome"/>

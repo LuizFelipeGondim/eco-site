@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { Formik, Form } from "formik"
+import { Link, useHistory } from 'react-router-dom'
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
@@ -18,15 +19,20 @@ interface LoginFormData {
 }
 
 const Login: React.FC = () => {
-    const { user, login } = useAuth()
+    const history = useHistory()
+    const { login } = useAuth()
     const { addToast } = useToast()
 
     const handleSubmit = useCallback( async (data: LoginFormData) => {
         try {
+            
             await login({
                 email: data.email,
                 password: data.password
             })
+            
+            history.push('/register')
+
         } catch (err) {
             addToast({
                 type: 'error',
@@ -35,7 +41,7 @@ const Login: React.FC = () => {
             })
         }
         
-    }, [login, addToast])
+    }, [login, addToast, history])
 
     return (
         <>
@@ -45,7 +51,7 @@ const Login: React.FC = () => {
                         <h1>LOGIN</h1>
                         <p>
                             Não possui uma conta? 
-                            <a href="http://localhost:3000/register"> Cadastre-se aqui</a>
+                            <Link to="/register"> Cadastre-se aqui</Link>
                         </p>
                     </div>
                 </header>
