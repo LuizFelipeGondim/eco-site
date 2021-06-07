@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { Formik, Form } from "formik"
 import { Link, useHistory } from 'react-router-dom'
+//import HTMLParser from 'react-html-parser'
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
@@ -31,7 +32,7 @@ const Login: React.FC = () => {
                 password: data.password
             })
             
-            history.push('/register')
+            history.push('/')
 
         } catch (err) {
             addToast({

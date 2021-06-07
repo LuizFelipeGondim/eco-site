@@ -20,7 +20,7 @@ export default async function verifyAdminStatus (
         if(!user.is_staff){
             throw new Error('You are not allowed to access this page.')
         }
-        
+
         return next()
 
     } catch(err) {

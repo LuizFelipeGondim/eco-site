@@ -17,7 +17,12 @@ export default class CreateTags1612148618171 implements MigrationInterface {
                     {
                         name: 'tag_name',
                         type: 'varchar'
-                    }
+                    },
+                    {
+                        name: 'publication_id',
+                        type: 'uuid',
+                        isNullable: true
+                    },
                 ]
             }))
     }

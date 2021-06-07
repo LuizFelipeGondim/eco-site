@@ -14,7 +14,7 @@ export const Container = styled.div`
         }
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 1100px) {
         & {
             flex-direction: column-reverse;
             align-items: center;
@@ -25,44 +25,149 @@ export const Container = styled.div`
 
 export const SideOptions = styled.div`
     
-    width: 250px;
-    height: 280px;
+    width: 25%;
+    max-width: 280px;
+    min-width: 170px;
     background-color: #fff;
     margin-left: 15px;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
 
+    label{
+        margin: 10px 0px;
+    }
+
+    .input {
+        margin-bottom: 15px;
+
+        input[type="file"]{
+            background: transparent;
+            border: none;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .error {
+            display: block;
+            width: 100% !important;
+            background-color: var(--red);
+            opacity: 0.9;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+    }
+
     .categories {
-        overflow-y: scroll;
-        max-height: 50px;
+        margin-bottom: 15px;
+
+        .dropdown-container{
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            
+            button{
+                width: auto;
+                display: flex;
+                align-items: center;
+            }
+        }
+
     }
 
-    @media (max-width: 850px) {
-        & {
-            width: 100%;
-            margin-right: 0px;
+    .tags-input {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        min-height: 50px;
+        width: 100%;
+        padding: 0 8px;
+        border: 1px solid rgb(214, 216, 218);
+        border-radius: 6px;
+        &:focus-within {
+            border: 1px solid #0052cc;
+        }
+        input {
+            flex: 1;
+            border: none;
+            height: 46px;
+            font-size: 14px;
+            padding: 4px 0 0 0;
+            &:focus {
+                outline: transparent;
+            }
         }
     }
 
-    @media (max-width: 850px) {
-        & {
-            width: 100%;
-            margin-right: 0px;
+    #tags {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 8px 0 0 0;
+    }
+
+    .tag {
+        width: auto;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 0 8px;
+        font-size: 14px;
+        list-style: none;
+        border-radius: 6px;
+        margin: 0 8px 8px 0;
+        background: #0052cc;
+
+        .tag-title {
+            margin-top: 3px;
+        }
+
+        .tag-close-icon {
+            display: block;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            font-size: 14px;
+            margin-left: 8px;
+            color: #0052cc;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
         }
     }
+
+
+
+    @media (max-width: 1100px) {
+        & {
+            width: 100%;
+            max-width: 100%;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+    }
+
 `
 
-export const Form = styled.form`
+export const Editor = styled.div`
 
     background-color: #fff;
     flex: 1;
+    max-width: 1000px;
     padding: 25px;
     border-radius: 8px;
     font-size: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
 
-    @media (max-width: 850px) {
+    @media (max-width: 1100px) {
         & {
             margin-top: 25px;
             width: 100%;

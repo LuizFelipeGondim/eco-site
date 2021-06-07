@@ -8,7 +8,7 @@ import adminRouter from './admin'
 
 const routes = Router()
 
-routes.use('/admin', adminRouter)
+routes.use('/eco-admin', adminRouter)
 routes.use('/sessions', sessionsRouter)
 routes.use('/users', usersRouter)
 routes.use('/', homeRouter)

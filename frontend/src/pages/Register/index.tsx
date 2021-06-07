@@ -14,15 +14,15 @@ import facebook from '../../assets/facebook.svg'
 import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
 
-interface IBGEUFResponse{
+interface IBGEUFResponse {
     sigla: string;
 }
 
-interface IBGECityResponse{
+interface IBGECityResponse {
     nome: string;
 }
 
-interface RegisterFormData{
+interface RegisterFormData {
     email: string
     first_name: string
     last_name: string
@@ -38,7 +38,7 @@ const Register: React.FC = () => {
 
     const [selectedUf, setSelectedUf] = useState('0')
     const [selectedCity, setSelectedCity] = useState('0')
-    
+
     const [ufs, setUfs] = useState<string[]>([])
     const [cities, setCities] = useState<string[]>([])
 
@@ -50,16 +50,17 @@ const Register: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        if (selectedUf === '0'){
+        if (selectedUf === '0') {
             return
         }
 
         axios
-        .get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
-        .then(response => {
-            const cityNames = response.data.map(city => city.nome)
-            setCities(cityNames)
-        });
+            .get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
+            .then(response => {
+                const cityNames = response.data.map(city => city.nome)
+                setCities(cityNames)
+                
+            });
 
     }, [selectedUf])
 
@@ -72,12 +73,10 @@ const Register: React.FC = () => {
     const handleSelectCity = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const city = event.target.value;
         setSelectedCity(city);
-        console.log(city)
     }, [])
 
     const handleSubmit = useCallback(async (data: RegisterFormData) => {
-        
-        console.log(data)
+
         try {
             await api.post('/users', data)
 
@@ -95,7 +94,6 @@ const Register: React.FC = () => {
                 title: 'Erro no cadastro!',
                 description: 'Ocorreu um erro ao fazer cadastro, tente novamente.'
             })
-            console.log(err)
         }
     }, [addToast, history])
     return (
@@ -105,7 +103,7 @@ const Register: React.FC = () => {
                     <div>
                         <h1>CADASTRO</h1>
                         <p>
-                            Já possui uma conta? 
+                            Já possui uma conta?
                             <Link to="/login"> Clique aqui</Link>
                         </p>
                     </div>
@@ -128,23 +126,23 @@ const Register: React.FC = () => {
                         {() => (
                             <Form>
                                 <div className="logo">
-                                    <img src={user} alt="Usuário"/>
+                                    <img src={user} alt="Usuário" />
                                 </div>
 
-                                <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />                     
+                                <InputField label="E-mail" type="email" name="email" placeholder="example@gmail.com" />
 
                                 <div className="input-group-2">
                                     <div>
-                                        <InputField label="Nome" name="first_name" placeholder="Digite seu nome"/>
+                                        <InputField label="Nome" name="first_name" placeholder="Digite seu nome" />
                                     </div>
                                     <div>
-                                        <InputField label="Sobrenome" name="last_name" placeholder="Digite seu sobrenome"/>
+                                        <InputField label="Sobrenome" name="last_name" placeholder="Digite seu sobrenome" />
                                     </div>
                                 </div>
-                                
+
                                 <div className="input-group-2">
                                     <div>
-                                        <InputField type="password" label="Senha" name="password" placeholder="Digite sua senha"/>
+                                        <InputField type="password" label="Senha" name="password" placeholder="Digite sua senha" />
                                     </div>
                                     <div>
                                         <InputField type="password" label="Confirmar Senha" name="confirm_password" placeholder="Digite sua senha" />
@@ -172,12 +170,12 @@ const Register: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="input-group-1">
-                                    <InputField name="whatsapp" label="Whatsapp" placeholder="(77) 99999-9999"/>
+                                    <InputField name="whatsapp" label="Whatsapp" placeholder="(77) 99999-9999" />
                                 </div>
 
                                 <p>
-                                    Ao clicar em Cadrastar-se, eu concordo que li e aceito os 
-                                    <a href="example"> Termos de uso </a> e a 
+                                    Ao clicar em Cadrastar-se, eu concordo que li e aceito os
+                                    <a href="example"> Termos de uso </a> e a
                                     <a href="example"> Política de privacidade </a> .
                                 </p>
 
@@ -194,13 +192,13 @@ const Register: React.FC = () => {
                 <footer>
                     <span>© 2020 Ecoblog</span>
                     <div className="social-medias">
-                        <img src={facebook} alt="Facebook"/>
-                        <img src={youtube} alt="Youtube"/>
-                        <img src={instagram} alt="Instagram"/>
+                        <img src={facebook} alt="Facebook" />
+                        <img src={youtube} alt="Youtube" />
+                        <img src={instagram} alt="Instagram" />
                     </div>
                     <ul>
                         <li>
-                            <a href="http://localhost:3000/login">Termos de uso</a>  
+                            <a href="http://localhost:3000/login">Termos de uso</a>
                         </li>
                         <li>
                             <a href="http://localhost:3000/login">Políticas de privacidade</a>
@@ -212,6 +210,7 @@ const Register: React.FC = () => {
                 </footer>
             </Content>
         </>
-    )}
+    )
+}
 
 export default Register

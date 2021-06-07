@@ -20,7 +20,7 @@ const Route: React.FC<RouteProps> = ({
     component: Component, ...rest 
 }) => {
     const { user } = useAuth()
-    console.log(notAuthenticated)
+
     return (
         <ReactDOMRoute {...rest} 
                 

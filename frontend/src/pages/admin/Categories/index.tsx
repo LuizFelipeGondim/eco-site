@@ -9,6 +9,9 @@ import editar from '../../../assets/adminSVG/editar.svg'
 import excluir from '../../../assets/adminSVG/excluir.svg'
 import left from '../../../assets/adminSVG/left.svg'
 import right from '../../../assets/adminSVG/right.svg'
+import { InputField } from '../../../components/Input'
+import { Form, Formik } from 'formik'
+import UserLoginValidations from '../../../validations/UserLoginValidations'
 
 const CategoriesCMS: React.FC = () => {
 
@@ -17,30 +20,43 @@ const CategoriesCMS: React.FC = () => {
             <SidebarGeneric></SidebarGeneric>
             <MainContentGeneric>
                 <h1>Categorias</h1>
-                <Container>  
-                    <form>
-                        <h3>Adicionar categorias</h3>
-                        <hr/>
-                        <label htmlFor="category">Nome da categoria</label>
-                        <input type="text" placeholder="Insira a categoria"/>
-                        <div className="descricao">
-                            <img src={alert} alt=""/>
-                            <span>Nome que irá aparecer junto com a publicação.</span>
-                        </div>
+                <Container>
+                <Formik
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        validationSchema={UserLoginValidations}
+                        onSubmit={(email, password)=>console.log('oi')}
 
-                        <label htmlFor="category">Slug</label>
-                        <input type="text" placeholder="Insira o slug"/>
-                        <div className="descricao">
-                            <img src={alert} alt=""/>
-                            <span>
-                                O “slug” é uma versão amigável da URL. Normalmente, é 
-                                toda em letras minúsculas e contém apenas letras, números 
-                                e hífens no lugar dos espaços vazios.
-                            </span>
-                        </div>
+                    >
+                        {() => (
+                            <Form>
+                                <h3>Adicionar categorias</h3>
+                                <hr/>
+                                <InputField label="Nome da categoria" name="category" type="text" placeholder="Insira a categoria"/>
+                                <div className="descricao">
+                                    <img src={alert} alt=""/>
+                                    <span>Nome que irá aparecer junto com a publicação.</span>
+                                </div>
 
-                        <button>Salvar</button>
-                    </form>
+                                <InputField label="Slug" name="slug" type="text" placeholder="Insira o slug"/>
+
+                                <div className="descricao">
+                                    <img src={alert} alt=""/>
+                                    <span>
+                                        O “slug” é uma versão amigável da URL. Normalmente, é 
+                                        toda em letras minúsculas e contém apenas letras, números 
+                                        e hífens no lugar dos espaços vazios.
+                                    </span>
+                                </div>
+
+                                <button type="submit">Salvar</button>
+
+                            </Form>
+                        )}
+                    </Formik>  
+
                     <div className="table">
                         <div className="table-header">
                             <h3>Categorias</h3>
@@ -71,101 +87,7 @@ const CategoriesCMS: React.FC = () => {
                                     <li>NÚMERO DE USO: 2 </li>
                                 </ul>
                             </div>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
-
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
-                                    </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
-
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
-                                    </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
-
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
-                                    </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
-
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
-                                    </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
-
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
-                                    </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
+                            
                         </Cards>
 
                         <table>
@@ -193,55 +115,6 @@ const CategoriesCMS: React.FC = () => {
                                         <img src={excluir} alt="excluir"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
-                                    <td>Agricultura</td>
-                                    <td>agricultura-familiar</td>
-                                    <td>2</td>
-                                    <td>
-                                        <img src={editar} alt="editar"/>
-                                        <img src={excluir} alt="excluir"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
-                                    <td>Agricultura</td>
-                                    <td>agricultura-familiar</td>
-                                    <td>2</td>
-                                    <td>
-                                        <img src={editar} alt="editar"/>
-                                        <img src={excluir} alt="excluir"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
-                                    <td>Agricultura</td>
-                                    <td>agricultura-familiar</td>
-                                    <td>2</td>
-                                    <td>
-                                        <img src={editar} alt="editar"/>
-                                        <img src={excluir} alt="excluir"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
-                                    <td>Agricultura</td>
-                                    <td>agricultura-familiar</td>
-                                    <td>2</td>
-                                    <td>
-                                        <img src={editar} alt="editar"/>
-                                        <img src={excluir} alt="excluir"/>
-                                    </td>
-                                </tr>
-                                
                             </tbody>
                         </table>
                         <div className="table-footer">

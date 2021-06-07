@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import Publication from './Publication'
 
 @Entity('tags')
 class Tag {
@@ -7,6 +8,13 @@ class Tag {
 
     @Column()
     tag_name: string
+
+    @Column()
+    publication_id: string
+
+    @ManyToOne(() => Publication)
+    @JoinColumn({name: 'publication_id'})
+    post: Publication
 }
 
 export default Tag

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getRepository, getConnection, Any } from 'typeorm'
+import { getRepository } from 'typeorm'
 import multer from 'multer'
 
 import uploadConfig from '../../config/upload'
@@ -8,8 +8,6 @@ import ensureAuthenticated from '../../middlewares/ensureAuthenticated'
 import verifyAdminStatus from '../../middlewares/verifyAdminStatus'
 import CreateTagService from '../../services/admin/CreateTagService'
 import CreateCategoryService from '../../services/admin/CreateCategoryService'
-import Tag from '../../models/Tag'
-import Category from '../../models/Category'
 
 const PublicationsRouter = Router()
 const upload = multer(uploadConfig)
@@ -18,14 +16,19 @@ PublicationsRouter.post(
     '/create', 
     ensureAuthenticated, 
     verifyAdminStatus, 
-    upload.single('main_image'), async (request, response) => {
-
+    async (request, response) => {
+        console.log(request.user.id)
 	try {
         const { title, subtitle, content, tags, categories } = request.body
+        console.log(title)
+        console.log(subtitle)
+        console.log(content)
+        console.log(tags)
+        console.log(categories)     
         const user_id = request.user.id
 
-        const main_image = request.file.filename
-        
+        const main_image = "teste.png" //request.file.filename
+        console.log(66666)
         const publicationsRepository = getRepository(Publication)
 
         const createTag = new CreateTagService()
@@ -36,7 +39,7 @@ PublicationsRouter.post(
             title,
             subtitle,
             content,
-            main_image
+            main_image: `http://localhost:3333/files/${main_image}`
         })
         
         await publicationsRepository.save(publication) 
@@ -53,17 +56,11 @@ PublicationsRouter.post(
 			publication_id
         }) 
 
-        const createdPublication = await publicationsRepository.findOne({ 
-            where: { id: publication_id }
-        })
-
 		return response.json({
             "publication": publication, 
             "tags": createdTags,
             "categories": createdCategories
         })
-
-        return response.json(createdPublication)
 
 	} catch (err) {
 		return response.status(400).json({ error: err.message })

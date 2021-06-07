@@ -92,11 +92,6 @@ const SidebarGeneric: React.FC = () => {
                                     <p>Categorias</p>
                                 </a> 
                             </li>
-                            <li>
-                                <a href="http://localhost:3000/eco-admin/tags">
-                                    <p>Tags</p>
-                                </a> 
-                            </li>
                         </ul>
                     </li>
                 </ul>

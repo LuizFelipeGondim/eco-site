@@ -1,7 +1,6 @@
-import Publication from '../../models/Publication'
 import Tag from '../../models/Tag'
 
-import { getConnection, getRepository } from 'typeorm'
+import { getRepository } from 'typeorm'
 
 interface Request {
     tags: string[]
@@ -15,16 +14,10 @@ class CreateTagService {
 
         tags.map( async (tag_name: string) => {
             const createdTag = tagsRepository.create({
-                tag_name
+                tag_name,
+                publication_id
             })
             await tagsRepository.save(createdTag)
-
-            await getConnection()
-                .createQueryBuilder()
-                .relation(Publication, "tags")
-                .of(publication_id)
-                .add(createdTag)
-            
         })
 
         return tags

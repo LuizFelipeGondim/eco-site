@@ -11,7 +11,6 @@ import {
 } from 'typeorm'
 
 import Category from './Category'
-import Tag from './Tag'
 import User from './User'
 
 @Entity('publications')
@@ -43,12 +42,6 @@ class Publication {
     })
     @JoinTable({name: 'publications_categories'})
     categories: Category[]
-
-    @ManyToMany(() => Tag, {
-        eager: true
-    })
-    @JoinTable({name: 'publications_tags'})
-    tags: Tag[]
 
     @CreateDateColumn()
     created_at: Date
