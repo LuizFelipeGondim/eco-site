@@ -10,8 +10,6 @@ import { Container, SideOptions, Editor } from './styles'
 import api from '../../../services/api'
 import { useToast } from '../../../context/ToastContext'
 
-
-
 interface CategoryResponse {
     category_name: string
 }
@@ -29,19 +27,18 @@ const CreatePublicationCMS: React.FC = () => {
     const [categories, setCategories] = useState<CategoryArray[]>([])
     const [selectedOptions, setSelectedOptions] = useState([])
     const [tags, setTags] = useState<string[]>([])
-    const [mainImage, setMainImage] = useState<FormData>()
+    const [mainData, setMainData] = useState<FormData>()
 
-    const [formData, setFormData] = useState({
+    const [formInputData, setFormInputData] = useState({
         title: '',
         subtitle:'',
     })
 
-    const handleUploadFile = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const data = new FormData()
-            data.append('main_image', e.target.files[0])
-            setMainImage(data)
-        }
+    const handleUploadFile = useCallback((event) => {
+        const data = new FormData()
+        data?.append('main_image', event.target.files[0])
+        setMainData(data)
+
     }, [])
 
 	const removeTags = useCallback( indexToRemove => {
@@ -74,7 +71,7 @@ const CreatePublicationCMS: React.FC = () => {
     function handleInputChange(event: ChangeEvent<HTMLInputElement>){
         const { name, value } = event.target;
 
-        setFormData({ ...formData, [name]: value });
+        setFormInputData({ ...formInputData, [name]: value });
     }
 
     const handleChangeContent = useCallback((evt, editor) => {
@@ -85,16 +82,20 @@ const CreatePublicationCMS: React.FC = () => {
 
     const handleSubmit = useCallback( async (event: FormEvent) => {
         event.preventDefault()
+        const data = mainData
         
-        const data = {
-            title: formData.title,
-            subtitle: formData.subtitle,
-            main_image: mainImage,
-            categories: selectedOptions,
-            tags,
-            content,
-        }
-        console.log(data)
+        const categoriesData = selectedOptions.map(category => {
+            for (var value in category){
+                return category[value]     
+            }
+        })
+
+        data?.append('title', formInputData.title)
+        data?.append('subtitle', formInputData.subtitle)
+        data?.append('categories', categoriesData as any)
+        data?.append('tags', tags as any)
+        data?.append('content', content)
+
         try {
             await api.post('eco-admin/publications/create', data)
 
@@ -112,7 +113,7 @@ const CreatePublicationCMS: React.FC = () => {
             })
         }
         
-    }, [tags, content, selectedOptions, addToast, mainImage])
+    }, [tags, content, selectedOptions, addToast, formInputData, mainData])
 
     return (
         <>

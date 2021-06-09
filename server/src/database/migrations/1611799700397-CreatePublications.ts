@@ -35,6 +35,10 @@ export default class CreateNews1611799700397 implements MigrationInterface {
                     isNullable: true
                 },
                 {
+                    name: 'slug',
+                    type: 'varchar',
+                },
+                {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()',
@@ -43,7 +47,7 @@ export default class CreateNews1611799700397 implements MigrationInterface {
                     name: 'updated_at',
                     type: 'timestamp',
                     default: 'now()',
-                }
+                },
             ]
         }))
 

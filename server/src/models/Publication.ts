@@ -35,6 +35,9 @@ class Publication {
     content: string
 
     @Column()
+    slug: string
+
+    @Column()
     main_image: string
 
     @ManyToMany(type => Category, category => category.publications, {
