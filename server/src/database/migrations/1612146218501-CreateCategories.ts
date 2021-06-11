@@ -17,7 +17,7 @@ export default class CreateCategories1612146218501 implements MigrationInterface
                     {
                         name: 'category_name',
                         type: 'varchar'
-                    }
+                    },
                 ]
             }))
     }

@@ -1,19 +1,72 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { Form, Formik } from 'formik'
+
+import alert from '../../../assets/adminSVG/alert.svg'
+import excluir from '../../../assets/adminSVG/excluir.svg'
+import left from '../../../assets/adminSVG/left.svg'
+import right from '../../../assets/adminSVG/right.svg'
 
 import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
 import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import { Container, Cards } from './styles'
-
-import alert from '../../../assets/adminSVG/alert.svg'
-import editar from '../../../assets/adminSVG/editar.svg'
-import excluir from '../../../assets/adminSVG/excluir.svg'
-import left from '../../../assets/adminSVG/left.svg'
-import right from '../../../assets/adminSVG/right.svg'
 import { InputField } from '../../../components/Input'
-import { Form, Formik } from 'formik'
-import UserLoginValidations from '../../../validations/UserLoginValidations'
+import CategoryValidations from '../../../validations/CategoryValidations'
+import api from '../../../services/api'
+import { useToast } from '../../../context/ToastContext'
+import useCategories from '../../../context/useCategories'
+import { Input } from '../../../components/Input/styles'
+import usePagination from '../../../context/usePagination'
+
+
+interface FormData {
+    category_name: string
+}
 
 const CategoriesCMS: React.FC = () => {
+    const limit = 6
+    const { actualPage, setActualPage } = usePagination()
+    const { addToast } = useToast()
+    const { categories, fetchCategories, count } = useCategories(limit)
+
+    const countAllCategorias = count === undefined ? 0 : count
+    const pageLimit = Math.ceil(countAllCategorias/limit)
+
+    useEffect(() => {
+        fetchCategories(actualPage - 1)
+    }, [actualPage])
+
+    const handleBeforePage = useCallback(() => {
+        setActualPage(actualPage - 1 <= 0 ? 1 : actualPage - 1)
+    }, [actualPage])
+
+    const handleAfterPage = useCallback(() => {
+        setActualPage(actualPage + 1 > pageLimit  ? actualPage : actualPage + 1)
+    }, [actualPage, pageLimit])
+
+    const handleDeleteCategory = useCallback((id: string) => {
+        api.delete(`eco-admin/categories/delete/${id}`)
+        window.location.reload()
+    }, [])
+
+    const handleSubmit = useCallback( async (data: FormData) => {
+        try {
+            await api.post('eco-admin/categories/create', data)
+
+            addToast({
+                type: 'success',
+                title: 'Categoria cadastrada!',
+                description: 'A categoria foi cadastrada com sucesso.'
+            })
+
+        } catch (err) {
+            addToast({
+                type: 'error',
+                title: 'Erro na autenticação',
+                description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+            })
+        }
+        
+    }, [addToast])
 
     return (
         <>
@@ -23,32 +76,20 @@ const CategoriesCMS: React.FC = () => {
                 <Container>
                 <Formik
                         initialValues={{
-                            email: '',
-                            password: '',
+                            category_name: ''
                         }}
-                        validationSchema={UserLoginValidations}
-                        onSubmit={(email, password)=>console.log('oi')}
+                        validationSchema={CategoryValidations}
+                        onSubmit={handleSubmit}
 
                     >
                         {() => (
                             <Form>
                                 <h3>Adicionar categorias</h3>
                                 <hr/>
-                                <InputField label="Nome da categoria" name="category" type="text" placeholder="Insira a categoria"/>
+                                <InputField label="Nome da categoria" name="category_name" type="text" placeholder="Insira a categoria"/>
                                 <div className="descricao">
                                     <img src={alert} alt=""/>
                                     <span>Nome que irá aparecer junto com a publicação.</span>
-                                </div>
-
-                                <InputField label="Slug" name="slug" type="text" placeholder="Insira o slug"/>
-
-                                <div className="descricao">
-                                    <img src={alert} alt=""/>
-                                    <span>
-                                        O “slug” é uma versão amigável da URL. Normalmente, é 
-                                        toda em letras minúsculas e contém apenas letras, números 
-                                        e hífens no lugar dos espaços vazios.
-                                    </span>
                                 </div>
 
                                 <button type="submit">Salvar</button>
@@ -60,76 +101,78 @@ const CategoriesCMS: React.FC = () => {
                     <div className="table">
                         <div className="table-header">
                             <h3>Categorias</h3>
-                            <p>Todos ()</p>
+                            <p>Todos ({countAllCategorias})</p>
                         </div>
                         <hr/>
                         <form method="get">
-                            <input type="text" placeholder="Pesquise aqui!"/>
+                            <Input type="text" placeholder="Pesquise aqui!"/>
                         </form>
 
                         <Cards>
-                            <div className="card">
-                                <div className="card-header"> 
-                                    <div>
-                                        <input type="checkbox"/>
-                                        <h4>
-                                            Agricultura
-                                        </h4>
-                                    </div>
+                            {categories.map((category => {
+                                return(
 
-                                    <div className="card-options">
-                                        <img src={editar} alt="editar"/>    
-                                        <img src={excluir} alt="excluir"/>
+                                    <div className="card" key={category.id}>
+                                        <div className="card-header"> 
+                                            <div>
+                                                <input type="checkbox"/>
+                                                <h4>
+                                                    {category.category_name}
+                                                </h4>
+                                            </div>
+
+                                            <div className="card-options">    
+                                                <img src={excluir} alt="excluir"/>
+                                            </div>
+                                        </div>
+                                        <ul className="card-body">
+                                            <li>NÚMERO DE USO: 2 </li>
+                                        </ul>
                                     </div>
-                                </div>
-                                <ul className="card-body">
-                                    <li>SLUG: agricultura-familiar </li>
-                                    <li>NÚMERO DE USO: 2 </li>
-                                </ul>
-                            </div>
+                                )
+
+                            }))}
+                            
                             
                         </Cards>
 
                         <table>
                             <thead>
                                 <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
                                     <td>NOME</td>
-                                    <td>SLUG</td>
                                     <td>NÚMERO DE USO</td>
                                     <td>OPÇÕES</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"/>
-                                    </td>
-                                    <td>Agricultura</td>
-                                    <td>agricultura-familiar</td>
-                                    <td>2</td>
-                                    <td>
-                                        <img src={editar} alt="editar"/>
-                                        <img src={excluir} alt="excluir"/>
-                                    </td>
-                                </tr>
+                                {categories.map((category => {
+                                    return (
+                                        <tr key={category.id}>
+                                            <td>{category.category_name}</td>
+                                            <td>2</td>
+                                            <td>
+                                                <span onClick={() => handleDeleteCategory(category.id)}>
+                                                    <img src={excluir} alt="excluir"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    )
+                                }))}
+                                
                             </tbody>
                         </table>
                         <div className="table-footer">
                             <div>
-                                <button>
+                                <button onClick={handleBeforePage}>
                                     <img src={left} alt=""/>
                                 </button>
                                 <p>Anterior</p>
-                                <p> 1 de 9 </p>
+                                <p> {actualPage} de {pageLimit} </p>
                                 <p>Próximo</p>
-                                <button>
+                                <button onClick={handleAfterPage}>
                                     <img src={right} alt=""/>    
                                 </button>
                             </div>
-                            <button>Excluir marcados</button>
                         </div>
                     </div>
                 </Container>

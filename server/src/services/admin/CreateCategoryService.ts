@@ -12,19 +12,37 @@ class CreateCategoryService {
     public async execute({categories, publication_id}: Request): Promise<string[]>{
         
         const categoriesRepository = getRepository(Category)
-        
+
         categories.forEach( async (category_name: string) => {
-            const createdCategory = categoriesRepository.create({
-                category_name
+            category_name.toLowerCase()
+            category_name = category_name[0].toUpperCase() + category_name.substr(1)
+
+            const categoryAlreadyCreated = await categoriesRepository.findOne({
+                where: { category_name }
             })
-            await categoriesRepository.save(createdCategory)
 
-            await getConnection()
-                .createQueryBuilder()
-                .relation(Publication, "categories")
-                .of(publication_id)
-                .add(createdCategory)
+            if (!categoryAlreadyCreated){
 
+                const createdCategory = categoriesRepository.create({
+                    category_name,
+                })
+
+                await categoriesRepository.save(createdCategory)
+    
+                await getConnection()
+                    .createQueryBuilder()
+                    .relation(Publication, "categories")
+                    .of(publication_id)
+                    .add(createdCategory)
+
+            } else {
+
+                await getConnection()
+                    .createQueryBuilder()
+                    .relation(Publication, "categories")
+                    .of(publication_id)
+                    .add(categoryAlreadyCreated)
+            }
         });
 
         return categories

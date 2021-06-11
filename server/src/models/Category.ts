@@ -1,4 +1,10 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { 
+    Column, 
+    Entity, 
+    JoinTable, 
+    ManyToMany, 
+    PrimaryGeneratedColumn 
+} from 'typeorm'
 
 import Publication from './Publication'
 

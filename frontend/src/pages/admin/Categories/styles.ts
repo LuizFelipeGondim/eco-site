@@ -8,7 +8,7 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         width: 350px;
-        max-height: 420px;
+        max-height: 270px;
         padding: 25px;
         background-color: #fff;
         margin-right: 25px;
@@ -226,7 +226,7 @@ export const Cards = styled.div`
     @media (max-width: 700px) {
 
         & {
-            display: flex;
+            display: flex !important;
         }
 
     }

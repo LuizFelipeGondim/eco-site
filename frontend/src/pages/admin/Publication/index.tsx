@@ -2,13 +2,26 @@ import React, { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MultiSelect from "react-multi-select-component"
+import { useRouteMatch } from 'react-router-dom'
 
-import { InputField } from '../../../components/Input'
 import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
 import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
 import { Container, SideOptions, Editor } from './styles'
 import api from '../../../services/api'
 import { useToast } from '../../../context/ToastContext'
+import { Input } from '../../../components/Input/styles'
+
+interface RouteParams {
+    id: string
+}
+
+interface PublicationResponse {
+    id: string
+    title: string
+    subtitle: string
+    content: string
+    
+}
 
 interface CategoryResponse {
     category_name: string
@@ -20,19 +33,32 @@ interface CategoryArray {
 }
 
 
-const CreatePublicationCMS: React.FC = () => {
+const PublicationCMS: React.FC = () => {
     const { addToast } = useToast()
-
+    
     const [content, setContent] = useState('')
     const [categories, setCategories] = useState<CategoryArray[]>([])
     const [selectedOptions, setSelectedOptions] = useState([])
     const [tags, setTags] = useState<string[]>([])
     const [mainData, setMainData] = useState<FormData>()
-
     const [formInputData, setFormInputData] = useState({
         title: '',
         subtitle:'',
     })
+    
+    const { params } = useRouteMatch<RouteParams>()
+
+    useEffect(() => {
+
+        if (params) {
+            api.get(`publications/${params.id}`).then((response) => {
+                console.log(response.data)
+            }).catch((err) =>{
+                console.log(err)
+            })
+        }
+
+    }, [params])
 
     const handleUploadFile = useCallback((event) => {
         const data = new FormData()
@@ -90,6 +116,8 @@ const CreatePublicationCMS: React.FC = () => {
             }
         })
 
+        
+
         data?.append('title', formInputData.title)
         data?.append('subtitle', formInputData.subtitle)
         data?.append('categories', categoriesData as any)
@@ -141,11 +169,11 @@ const CreatePublicationCMS: React.FC = () => {
                                         <hr/>
                                     </div> 
                                     <div className="input">
-                                        <input type="text" onChange={handleInputChange}  name="title" placeholder="Digite o título"/> 
+                                        <Input type="text" onChange={handleInputChange}  name="title" placeholder="Digite o título"/> 
                                     </div>
 
                                     <div className="input">
-                                        <input type="text" onChange={handleInputChange} name="subtitle" placeholder="Digite o subtítulo"/> 
+                                        <Input type="text" onChange={handleInputChange} name="subtitle" placeholder="Digite o subtítulo"/> 
                                     </div>
 
                                     <div className="categories">
@@ -196,6 +224,6 @@ const CreatePublicationCMS: React.FC = () => {
     )
 }
 
-export default CreatePublicationCMS
+export default PublicationCMS
 
 
