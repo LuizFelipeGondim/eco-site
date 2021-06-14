@@ -20,6 +20,7 @@ import CommentsCMS from '../pages/admin/Comments'
 import CategoriesCMS from '../pages/admin/Categories'
 import ProfileCMS from '../pages/admin/UserProfile'
 import CreateUserCMS from '../pages/admin/CreateUser'
+import EditPublicationCMS from '../pages/admin/EditPublication'
 import PublicationCMS from '../pages/admin/Publication'
 
 const Routes: React.FC = () => (
@@ -40,7 +41,7 @@ const Routes: React.FC = () => (
         <Route path="/eco-admin/categories" component={CategoriesCMS}/>
         <Route path="/eco-admin/profile" component={ProfileCMS}/>
         <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
-        <Route path="/eco-admin/edit-publication/:id" component={PublicationCMS}/>
+        <Route path="/eco-admin/edit-publication/:id" component={EditPublicationCMS}/>
         <Route path="/eco-admin/create-publication" component={PublicationCMS}/>
     </Switch>
 

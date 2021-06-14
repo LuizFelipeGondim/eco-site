@@ -3,10 +3,6 @@ import { getRepository } from 'typeorm'
 
 import Publication from '../models/Publication'
 
-interface Teste extends Publication{
-	skip(n:number): Publication
-}
-
 const PublicationsRouter = Router()
 
 PublicationsRouter.get('/', async (request, response) => {
@@ -14,7 +10,7 @@ PublicationsRouter.get('/', async (request, response) => {
 		const page = request.query.page as unknown as number | 1
 		const limit = request.query.limit as unknown as number | null
  
-		const skip = (page - 1) * limit
+		const skip = page * limit
 		
 		const publicationsRepository = getRepository(Publication)
 		const publications = await publicationsRepository.find({
@@ -25,7 +21,12 @@ PublicationsRouter.get('/', async (request, response) => {
 			}
 		})
 
-        return response.json(publications)
+		const count = await publicationsRepository.count()
+
+        return response.json({
+			publications,
+			count
+		})
 
 	} catch (err) {
 		return response.status(400).json({ error: err.message })

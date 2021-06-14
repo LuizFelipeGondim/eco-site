@@ -167,7 +167,7 @@ export const Table = styled.div`
                 cursor: pointer;
 
                 & + img {
-                    margin-left: 10px;
+                    margin-left: 15px;
                 }
 
                 &:hover {
@@ -211,11 +211,6 @@ export const Table = styled.div`
 
         }
 
-        & > button {
-            background-color: var(--red);
-            width: 150px;
-        }
-
         @media (max-width: 510px) {
             & {
                 flex-direction: column-reverse;
@@ -252,10 +247,6 @@ export const Cards = styled.div`
             div {
                 display: flex;
                 align-items: center;
-
-                h4 {
-                    margin-left: 10px;
-                }
 
                 span {
                     font-size: 12px;

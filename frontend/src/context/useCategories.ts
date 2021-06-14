@@ -14,13 +14,13 @@ interface Response {
     id: string
 }
 
-export default function useCategories (limit: number) {
+export default function useCategories () {
     const [categories, setCategories] = useState<Response[]>([])
     const [count, setCount] = useState<number>()
 
-    function fetchCategories (page: number) {
+    function fetchCategories (page: number, limit: number) {
 
-        api.get<CategoryResponse>(`eco-admin/categories?page=${page}&limit=${limit}`)
+        api.get<CategoryResponse>(`eco-admin/categories/pagination?page=${page}&limit=${limit}`)
             .then(response => {
                 const responseData = Object.values(response.data)
                 const countPages = responseData[1] === undefined ? 0 : responseData[1]

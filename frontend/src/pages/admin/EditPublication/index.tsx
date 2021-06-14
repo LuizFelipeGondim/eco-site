@@ -26,7 +26,7 @@ interface CategoryArray {
 }
 
 
-const PublicationCMS: React.FC = () => {
+const EditPublicationCMS: React.FC = () => {
     const { addToast } = useToast()
     
     const [content, setContent] = useState('')
@@ -39,6 +39,20 @@ const PublicationCMS: React.FC = () => {
         subtitle:'',
         situation: ''
     })
+    
+    //const { params } = useRouteMatch<RouteParams>()
+
+    /*useEffect(() => {
+
+        if (params) {
+            api.get(`publications/${params.id}`).then((response) => {
+                console.log(response.data)
+            }).catch((err) =>{
+                console.log(err)
+            })
+        }
+
+    }, [params])*/
 
     const handleUploadFile = useCallback((event) => {
         const data = new FormData()
@@ -107,7 +121,7 @@ const PublicationCMS: React.FC = () => {
         data?.append('situation', formInputData.situation)
 
         try {
-            await api.post('eco-admin/publications/create', data)
+            await api.post('eco-admin/publications/edit', data)
 
             addToast({
                 type: 'success',
@@ -129,7 +143,7 @@ const PublicationCMS: React.FC = () => {
         <>
             <SidebarGeneric></SidebarGeneric>
             <MainContentGeneric>
-                <h1>Adicionar Publicação</h1>
+                <h1>Editar Publicação</h1>
                 <Container>  
                     <Editor>
                         <div>
@@ -215,6 +229,6 @@ const PublicationCMS: React.FC = () => {
     )
 }
 
-export default PublicationCMS
+export default EditPublicationCMS
 
 

@@ -24,28 +24,19 @@ interface FormData {
 
 const CategoriesCMS: React.FC = () => {
     const limit = 6
-    const { actualPage, setActualPage } = usePagination()
+    const { actualPage, handleAfterPage, handleBeforePage } = usePagination()
     const { addToast } = useToast()
-    const { categories, fetchCategories, count } = useCategories(limit)
+    const { categories, fetchCategories, count } = useCategories()
 
     const countAllCategorias = count === undefined ? 0 : count
     const pageLimit = Math.ceil(countAllCategorias/limit)
 
     useEffect(() => {
-        fetchCategories(actualPage - 1)
+        fetchCategories(actualPage - 1, limit)
     }, [actualPage])
-
-    const handleBeforePage = useCallback(() => {
-        setActualPage(actualPage - 1 <= 0 ? 1 : actualPage - 1)
-    }, [actualPage])
-
-    const handleAfterPage = useCallback(() => {
-        setActualPage(actualPage + 1 > pageLimit  ? actualPage : actualPage + 1)
-    }, [actualPage, pageLimit])
 
     const handleDeleteCategory = useCallback((id: string) => {
         api.delete(`eco-admin/categories/delete/${id}`)
-        window.location.reload()
     }, [])
 
     const handleSubmit = useCallback( async (data: FormData) => {
@@ -169,7 +160,7 @@ const CategoriesCMS: React.FC = () => {
                                 <p>Anterior</p>
                                 <p> {actualPage} de {pageLimit} </p>
                                 <p>Próximo</p>
-                                <button onClick={handleAfterPage}>
+                                <button onClick={() => handleAfterPage(pageLimit)}>
                                     <img src={right} alt=""/>    
                                 </button>
                             </div>

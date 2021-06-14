@@ -40,6 +40,9 @@ class Publication {
     @Column()
     main_image: string
 
+    @Column()
+    situation: boolean
+
     @ManyToMany(type => Category, category => category.publications, {
         eager: true
     })

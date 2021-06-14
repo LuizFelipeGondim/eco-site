@@ -13,6 +13,21 @@ CategoriesRouter.get(
     async (request, response) => {
         try {
             
+            const categoriesRepository = getRepository(Category)
+            const categories = await categoriesRepository.find()
+
+            return response.json(categories)
+
+        } catch (err) {
+            return response.status(400).json({ error: err.message })
+        }
+    })
+    
+CategoriesRouter.get(
+    '/pagination', 
+    async (request, response) => {
+        try {
+            
             const page = request.query.page as unknown as number | 1
             const limit = request.query.limit as unknown as number | null
     
@@ -23,7 +38,7 @@ CategoriesRouter.get(
                 skip,
                 take: limit,
             })
-            let count = await categoriesRepository.count()
+            const count = await categoriesRepository.count()
 
             return response.json({
                 categories,
@@ -33,7 +48,8 @@ CategoriesRouter.get(
         } catch (err) {
             return response.status(400).json({ error: err.message })
         }
-    })
+    }
+)
 
 CategoriesRouter.post(
     '/create',
