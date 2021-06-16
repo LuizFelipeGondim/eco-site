@@ -1,6 +1,5 @@
 import { useState } from "react"
-import api from "../services/api"
-
+import api from "../../services/api"
 
 interface Category {
     id: string,
@@ -13,6 +12,8 @@ interface PublicationResponse {
     situation: boolean
     created_at: string
     slug: string
+    main_image: string
+    subtitle: string
     categories: Category[]
 }
 

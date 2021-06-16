@@ -176,6 +176,17 @@ export const Editor = styled.div`
     font-size: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
 
+    ul > li {
+        list-style: disc;
+        margin-left: 20px;
+    }
+
+    ol > li{
+        list-style: decimal;
+        margin-left: 20px;
+    }
+
+
     @media (max-width: 1100px) {
         & {
             margin-top: 25px;

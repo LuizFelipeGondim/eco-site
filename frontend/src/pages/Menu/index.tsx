@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Header } from './styles'
 import hamburguerMenu from '../../utils/hamburguerMenu'
+import { Link } from 'react-router-dom'
 
 const Home: React.FC = () => {
 
@@ -15,7 +16,9 @@ const Home: React.FC = () => {
                 <div className="navbar">
                     <h1>Logo</h1>
                     <ul className="menu">
-                        <li>Publicações</li>
+                        <li>
+                            <Link to="/blog">Publicações</Link>
+                        </li>
                         <li>Cotações</li>
                         <li>Clima</li>
                         <li>Receitas</li>

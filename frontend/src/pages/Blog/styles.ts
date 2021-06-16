@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface ImageProps{
+    image: string
+}
+
 export const Main = styled.main`
     margin-top: 100px;
     min-height: calc(100vh);
@@ -16,6 +20,16 @@ export const Main = styled.main`
             align-items: center;
         }
     }
+`
+
+export const SmallImage = styled.div<ImageProps>`
+    width: 80px;
+    height: 100%;
+    background-image: url(${(props) => props.image});
+    background-position: center;
+    background-size: cover;
+    border-radius: 16px 0px 0px 16px;
+
 `
 
 export const Sidebar = styled.div`
@@ -38,7 +52,7 @@ export const Sidebar = styled.div`
     .small-card {
         width: 100%;
         margin-top: 20px;
-    
+        height: 80px;
         display: flex;
         background-color: #fff;
         border-radius: 16px;
@@ -46,20 +60,6 @@ export const Sidebar = styled.div`
 
         &:hover {
             box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
-        }
-
-        .image {
-            width: 80px;
-            min-height: 80px;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-
-            img {
-                position: absolute;
-                height: 100%;
-                border-radius: 16px 0px 0px 16px;
-            }
         }
 
         .info {
@@ -75,8 +75,16 @@ export const Sidebar = styled.div`
                 margin-bottom: 15px;
 
                 span {
-                    color: var(--green);
+                    background-color: var(--green);
                     font-size: 12px;
+                    font-weight: 500;
+                    color: #fff;
+                    border-radius: 5px;
+                    padding: 3px 5px;
+
+                    & + span {
+                        margin-left: 8px;
+                    }
                 }
 
                 p {
@@ -107,6 +115,23 @@ export const Sidebar = styled.div`
     }
 
 `
+export const Image = styled.div<ImageProps>`
+    width: 500px;
+    height: 100%;
+    background-image: url(${(props) => props.image});
+    background-position: center;
+    background-size: cover;
+    border-radius: 16px 0px 0px 16px;
+
+    @media (max-width: 720px) {
+
+        height: 270px;
+        width: 100%;
+        border-radius: 16px 16px 0px 0px;
+    }
+
+`
+
 
 export const Content = styled.div`
 
@@ -128,23 +153,8 @@ export const Content = styled.div`
             box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
         }
 
-        .image {
-            width: 500px;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            
-            img {
-                width: auto;
-                position: absolute;
-                height: auto;
-                border-radius: 16px 0px 0px 16px;
-            }
-
-            
-        }
-
         .info {
+            width: 100%;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -155,8 +165,15 @@ export const Content = styled.div`
                 justify-content: space-between;
 
                 span {
-                    color: var(--green);
+                    background: var(--green);
                     font-weight: 500;
+                    color: #fff;
+                    border-radius: 5px;
+                    padding: 5px 8px;
+
+                    & + span {
+                        margin-left: 8px;
+                    }
                 }
 
                 p {
@@ -190,13 +207,27 @@ export const Content = styled.div`
     }
 
     .pagination {
-        width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 25px;
+        margin-top: 20px;
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+            padding: 16px 20px;
+            border-radius: 0px 0px 8px 8px;
 
-        button {
-            width: 140px;
+            button {
+                background-color: #fff;
+                width: 30px;
+                height: 30px;
+                padding: 0;
+
+                &:focus {
+                    border: 1px solid var(--green);
+                }
+            }
         }
     }
 
@@ -224,22 +255,6 @@ export const Content = styled.div`
 
             .info {
                 height: 300px;
-            }
-        }
-    }
-
-    @media (max-width: 380px) {
-        .card {
-            .info {
-                margin-top: -7%;
-            }
-        }
-    }
-
-    @media (max-width: 320px) {
-        .card {
-            .info {
-                margin-top: -20%;
             }
         }
     }

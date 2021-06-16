@@ -31,7 +31,7 @@ const Routes: React.FC = () => (
         <Route path="/register" component={Register}/>
         <Route path="/blog" component={Blog}/>
         <Route path="/category" component={Category}/>
-        <Route path="/publication" component={Publication}/>
+        <Route path="/publication/:slug" component={Publication}/>
 
         <Route path="/eco-admin" exact component={LoginCMS} />
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>

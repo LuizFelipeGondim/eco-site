@@ -9,9 +9,9 @@ import excluir from '../../../assets/adminSVG/excluir.svg'
 import left from '../../../assets/adminSVG/left.svg'
 import right from '../../../assets/adminSVG/right.svg'
 import { Cards, HeaderContent, Table } from './styles'
-import usePagination from '../../../context/usePagination'
+import usePagination from '../../../context/Pagination/usePagination'
 import api from '../../../services/api'
-import usePublication from '../../../context/usePublications'
+import usePublication from '../../../context/Pagination/usePublications'
 
 const PublicationsCMS: React.FC = () => {
     

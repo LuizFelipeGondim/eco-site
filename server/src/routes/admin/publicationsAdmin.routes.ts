@@ -21,10 +21,14 @@ PublicationsRouter.post(
     async (request, response) => {
 
 	try {
-        const { title, subtitle, content } = request.body
+        let { title, subtitle, content } = request.body
 
-        const slug = title.toLowerCase().replace(' ', '-')
+        const slug = title.toLowerCase().replace(/\s+/g, "-")
         const situation = Boolean(request.body.situation)
+
+        content = content.replace(/class/g, "className")
+                        .replace(/oembed/g, "embed")
+                        .replace(/url/g, "src")
 
         const tags = request.body.tags.split(',') 
         let categories = request.body.categories.split(',') 
@@ -82,16 +86,15 @@ PublicationsRouter.post(
 	try {
         const { title, subtitle, content } = request.body
 
-        const slug = title.toLowerCase().replace(' ', '-')
         const situation = Boolean(request.body.situation)
 
         const tags = request.body.tags.split(',') 
-        let categories = request.body.categories.split(',') 
-
-        const user_id = request.user.id
+        const categories = request.body.categories.split(',') 
 
         const main_image = request.file.filename
-  
+        
+        const user_id = request.user.id
+
         const publicationsRepository = getRepository(Publication)
 
         const createTag = new CreateTagService()
@@ -102,7 +105,6 @@ PublicationsRouter.post(
             title,
             subtitle,
             content,
-            slug,
             situation,
             main_image: `http://localhost:3333/files/${main_image}`
         })

@@ -86,9 +86,7 @@ const PublicationCMS: React.FC = () => {
         setContent(dataContent)
     }, [])
 
-
-    const handleSubmit = useCallback( async (event: FormEvent) => {
-        event.preventDefault()
+    const handleSubmit = useCallback( async () => {
         const data = mainData
         
         const categoriesData = selectedOptions.map(category => {
@@ -96,8 +94,6 @@ const PublicationCMS: React.FC = () => {
                 return category[value]     
             }
         })
-
-        
 
         data?.append('title', formInputData.title)
         data?.append('subtitle', formInputData.subtitle)

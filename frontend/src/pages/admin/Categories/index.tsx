@@ -13,9 +13,9 @@ import { InputField } from '../../../components/Input'
 import CategoryValidations from '../../../validations/CategoryValidations'
 import api from '../../../services/api'
 import { useToast } from '../../../context/ToastContext'
-import useCategories from '../../../context/useCategories'
+import useCategories from '../../../context/Pagination/useCategories'
 import { Input } from '../../../components/Input/styles'
-import usePagination from '../../../context/usePagination'
+import usePagination from '../../../context/Pagination/usePagination'
 
 
 interface FormData {

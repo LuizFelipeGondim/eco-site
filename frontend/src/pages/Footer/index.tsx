@@ -5,6 +5,7 @@ import author from '../../assets/author.svg'
 import facebook from '../../assets/facebook.svg'
 import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
+import { Input } from '../../components/Input/styles'
 
 const Footer: React.FC = () => {
 
@@ -54,7 +55,7 @@ const Footer: React.FC = () => {
                         <form method="post">
                             <h2>Newsletter</h2>
                             <label>Informe seu melhor e-mail para receber notícias</label>
-                            <input type="text"/>
+                            <Input type="text"/>
                             <button>Cadastrar</button>
                         </form>
                     </div>

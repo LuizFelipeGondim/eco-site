@@ -41,6 +41,10 @@ export const Header = styled.header`
             width: 35%;
             min-width: 500px;
 
+            a{
+                color: var(--dark);
+            }
+
             li {
                 color: var(--dark);
                 transition: .5s ease;

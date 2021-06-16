@@ -2,46 +2,47 @@ import { Router } from 'express'
 import { getRepository } from 'typeorm'
 
 import Publication from '../models/Publication'
+import Tag from '../models/Tag'
+import User from '../models/User'
 
 const PublicationsRouter = Router()
 
-PublicationsRouter.get('/', async (request, response) => {
+PublicationsRouter.get('/:slug', async (request, response) => {
 	try {
-		const page = request.query.page as unknown as number | 1
-		const limit = request.query.limit as unknown as number | null
- 
-		const skip = page * limit
-		
+		const { slug } = request.params
 		const publicationsRepository = getRepository(Publication)
-		const publications = await publicationsRepository.find({
-			skip,
-			take: limit,
-			order: {
-				created_at: "DESC",
+		const usersRepository = getRepository(User)
+		const tagsRepository = getRepository(Tag)
+
+		const publications = await publicationsRepository.findOne({
+			where: {
+				slug
 			}
 		})
 
-		const count = await publicationsRepository.count()
+		const tags = await tagsRepository.find({
+            where: {
+                publication_id: publications.id
+            }
+		})
+
+
+
+		const user = await usersRepository.findOne({
+            where: {
+                id: publications.user_id
+            }
+		})
+
+		delete user.password
+		delete user.created_at
+		delete user.updated_at
 
         return response.json({
 			publications,
-			count
+			user,
+			tags,
 		})
-
-	} catch (err) {
-		return response.status(400).json({ error: err.message })
-	}
-
-})
-
-PublicationsRouter.get('/:id', async (request, response) => {
-	try {
-		const id = request.params.id
-		console.log(1)
-		const publicationsRepository = getRepository(Publication)
-		console.log(2)
-		const publication = await publicationsRepository.findOne(id)
-        return response.json(publication)
 
 	} catch (err) {
 		return response.status(400).json({ error: err.message })
