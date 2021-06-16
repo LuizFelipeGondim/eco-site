@@ -34,6 +34,7 @@ export default function useCategories () {
 
     return {
         fetchCategories,
+        setCategories,
         categories,
         count
     }

@@ -31,6 +31,7 @@ const PublicationsCMS: React.FC = () => {
 
     useEffect(() => {
         fetchPublications(actualPage - 1, limit)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [limit, actualPage])
 
     

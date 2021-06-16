@@ -27,7 +27,7 @@ interface PublicationResponse {
 }
 
 const Blog: React.FC = () => {
-    const [limit, setLimit] = useState(4)
+    const limit = 4
     const [latestPublications, setLatestPublications] = useState<PublicationResponse[]>([])
     const { actualPage, handleBeforePage, handleAfterPage } = usePagination()
     const { 
@@ -42,12 +42,13 @@ const Blog: React.FC = () => {
 
     useEffect(() => {
         fetchPublications(actualPage - 1, limit)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [limit, actualPage])
 
     useEffect(() => {
         setLatestPublications(publications.slice(-3))
     }, [publications])
-
+    
     const formatDate = useCallback((date: string) => {
         const [dateFormated, ] = date.split('T')
         const firstDate = parseISO(dateFormated)
@@ -64,45 +65,48 @@ const Blog: React.FC = () => {
             <Main>  
                 <Content>
                     <h1>Blog</h1>
-                    {publications.map(publication => {
-                        return (
-                            <div className="card" key={publication.id}>
-                                <Image image={publication.main_image}></Image>
-                                <div className="info">
-                                    <div className="info-header">
-                                        <div>
-                                            {publication.categories.map(category => 
-                                                <span>{category.category_name} </span> 
-                                            )}
-                                        </div>
-                                        <p>{formatDate(publication.created_at)}</p>
-                                    </div>
-
-                                    <div className="info-content">
-                                        <h1>{publication.title}</h1>
-                                        <p>
-                                            {publication.subtitle}
-                                        </p>
-                                    </div>
-
-                                    <div className="info-footer">
-
-                                        <div className="author">
-                                            <img src={author} alt="Admin"/>
-                                            <p>{users.map(user => 
-                                                    user.id === publication.user_id 
-                                                    ? user.first_name
-                                                    : ''
+                    {// eslint-disable-next-line array-callback-return
+                    publications.map(publication => {
+                        if(!publication.situation){
+                            return (
+                                <div className="card" key={publication.id}>
+                                    <Image image={publication.main_image}></Image>
+                                    <div className="info">
+                                        <div className="info-header">
+                                            <div>
+                                                {publication.categories.map(category => 
+                                                    <span>{category.category_name} </span> 
                                                 )}
-                                            </p>   
+                                            </div>
+                                            <p>{formatDate(publication.created_at)}</p>
                                         </div>
 
-                                        <Link to={`/publication/${publication.slug}`}>Leia mais 🡢</Link>
+                                        <div className="info-content">
+                                            <h1>{publication.title}</h1>
+                                            <p>
+                                                {publication.subtitle}
+                                            </p>
+                                        </div>
 
+                                        <div className="info-footer">
+
+                                            <div className="author">
+                                                <img src={author} alt="Admin"/>
+                                                <p>{users.map(user => 
+                                                        user.id === publication.user_id 
+                                                        ? user.first_name
+                                                        : ''
+                                                    )}
+                                                </p>   
+                                            </div>
+
+                                            <Link to={`/publication/${publication.slug}`}>Leia mais 🡢</Link>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
+                            )
+                        }
                     })}
 
                     <div className="pagination">
@@ -127,7 +131,8 @@ const Blog: React.FC = () => {
 
                     <h3>Últimas publicações</h3>
 
-                    {latestPublications.map(publication => {
+                    {// eslint-disable-next-line array-callback-return
+                    latestPublications.map(publication => {
                         if(!publication.situation){
                             return(
                                 

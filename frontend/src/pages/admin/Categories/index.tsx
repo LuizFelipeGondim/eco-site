@@ -26,18 +26,28 @@ const CategoriesCMS: React.FC = () => {
     const limit = 6
     const { actualPage, handleAfterPage, handleBeforePage } = usePagination()
     const { addToast } = useToast()
-    const { categories, fetchCategories, count } = useCategories()
+    const { 
+        categories, 
+        fetchCategories, 
+        count,
+        setCategories
+    } = useCategories()
 
     const countAllCategorias = count === undefined ? 0 : count
     const pageLimit = Math.ceil(countAllCategorias/limit)
 
     useEffect(() => {
         fetchCategories(actualPage - 1, limit)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [actualPage])
 
     const handleDeleteCategory = useCallback((id: string) => {
         api.delete(`eco-admin/categories/delete/${id}`)
-    }, [])
+
+        const data = categories.filter(category => id !== category.id)
+
+        setCategories(data)
+    }, [setCategories, categories])
 
     const handleSubmit = useCallback( async (data: FormData) => {
         try {

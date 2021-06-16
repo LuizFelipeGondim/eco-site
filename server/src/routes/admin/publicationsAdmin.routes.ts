@@ -1,6 +1,9 @@
 import { Router } from 'express'
 import { getRepository } from 'typeorm'
 import multer from 'multer'
+import crypto from 'crypto'
+import path from 'path'
+import fs from 'fs'
 
 import uploadConfig from '../../config/upload'
 import Publication from '../../models/Publication'
@@ -23,7 +26,9 @@ PublicationsRouter.post(
 	try {
         let { title, subtitle, content } = request.body
 
-        const slug = title.toLowerCase().replace(/\s+/g, "-")
+        const slugHash = crypto.randomBytes(5).toString('hex')
+        const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-")}`
+
         const situation = Boolean(request.body.situation)
 
         content = content.replace(/class/g, "className")
@@ -180,6 +185,20 @@ PublicationsRouter.delete(
 
         try {
             const publicationsRepository = getRepository(Publication)
+
+            const publication = await publicationsRepository.findOne({
+                id
+            })
+
+            const [, image] = publication.main_image.split('/files/')
+
+            const imageFilePath = path.join(uploadConfig.directory, image)
+			const imageFileExists = await fs.promises.stat(imageFilePath)
+
+			if (imageFileExists) {
+				await fs.promises.unlink(imageFilePath)
+            }
+            
             publicationsRepository.delete({
                 id
             })

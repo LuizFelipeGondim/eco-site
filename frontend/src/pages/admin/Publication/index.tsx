@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MultiSelect from "react-multi-select-component"
@@ -57,7 +57,6 @@ const PublicationCMS: React.FC = () => {
 			setTags([...tags, event.target.value])
 			event.target.value = ""
         }
-        
     }, [tags])
 
     useEffect(() => {
@@ -77,7 +76,6 @@ const PublicationCMS: React.FC = () => {
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>){
         const { name, value } = event.target;
-        console.log(value)
         setFormInputData({ ...formInputData, [name]: value });
     }
 
@@ -89,6 +87,7 @@ const PublicationCMS: React.FC = () => {
     const handleSubmit = useCallback( async () => {
         const data = mainData
         
+        // eslint-disable-next-line array-callback-return
         const categoriesData = selectedOptions.map(category => {
             for (var value in category){
                 return category[value]     

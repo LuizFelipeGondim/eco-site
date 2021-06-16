@@ -58,7 +58,7 @@ const EditPublicationCMS: React.FC = () => {
         const data = new FormData()
         data?.append('main_image', event.target.files[0])
         setMainData(data)
-
+        // eslint-disable-next-line array-callback-return
     }, [])
 
 	const removeTags = useCallback( indexToRemove => {
@@ -105,6 +105,7 @@ const EditPublicationCMS: React.FC = () => {
         event.preventDefault()
         const data = mainData
         
+        // eslint-disable-next-line array-callback-return
         const categoriesData = selectedOptions.map(category => {
             for (var value in category){
                 return category[value]     
