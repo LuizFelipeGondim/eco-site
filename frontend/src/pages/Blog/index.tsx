@@ -20,7 +20,6 @@ interface Category {
 interface PublicationResponse {
     title: string
     id: string
-    situation: boolean
     categories: Category[]
     slug: string
     main_image: string
@@ -67,46 +66,45 @@ const Blog: React.FC = () => {
                     <h1>Blog</h1>
                     {// eslint-disable-next-line array-callback-return
                     publications.map(publication => {
-                        if(!publication.situation){
-                            return (
-                                <div className="card" key={publication.id}>
-                                    <Image image={publication.main_image}></Image>
-                                    <div className="info">
-                                        <div className="info-header">
-                                            <div>
-                                                {publication.categories.map(category => 
-                                                    <span>{category.category_name} </span> 
+                        return (
+                            <div className="card" key={publication.id}>
+                                <Image image={publication.main_image}></Image>
+                                <div className="info">
+                                    <div className="info-header">
+                                        <div>
+                                            {publication.categories.map(category => 
+                                                <span>{category.category_name} </span> 
+                                            )}
+                                        </div>
+                                        <p>{formatDate(publication.created_at)}</p>
+                                    </div>
+
+                                    <div className="info-content">
+                                        <h1>{publication.title}</h1>
+                                        <p>
+                                            {publication.subtitle}
+                                        </p>
+                                    </div>
+
+                                    <div className="info-footer">
+
+                                        <div className="author">
+                                            <img src={author} alt="Admin"/>
+                                            <p>{users.map(user => 
+                                                    user.id === publication.user_id 
+                                                    ? user.first_name
+                                                    : ''
                                                 )}
-                                            </div>
-                                            <p>{formatDate(publication.created_at)}</p>
+                                            </p>   
                                         </div>
 
-                                        <div className="info-content">
-                                            <h1>{publication.title}</h1>
-                                            <p>
-                                                {publication.subtitle}
-                                            </p>
-                                        </div>
+                                        <Link to={`/publication/${publication.slug}`}>Leia mais 🡢</Link>
 
-                                        <div className="info-footer">
-
-                                            <div className="author">
-                                                <img src={author} alt="Admin"/>
-                                                <p>{users.map(user => 
-                                                        user.id === publication.user_id 
-                                                        ? user.first_name
-                                                        : ''
-                                                    )}
-                                                </p>   
-                                            </div>
-
-                                            <Link to={`/publication/${publication.slug}`}>Leia mais 🡢</Link>
-
-                                        </div>
                                     </div>
                                 </div>
-                            )
-                        }
+                            </div>
+                        )
+                    
                     })}
 
                     <div className="pagination">
@@ -133,33 +131,32 @@ const Blog: React.FC = () => {
 
                     {// eslint-disable-next-line array-callback-return
                     latestPublications.map(publication => {
-                        if(!publication.situation){
-                            return(
-                                
-                                <Link to={`/publication/${publication.slug}`}>
-                                    <div className="small-card" key={publication.id}>
-                                        <SmallImage image={publication.main_image}></SmallImage>
+                        return(
+                            
+                            <Link to={`/publication/${publication.slug}`}>
+                                <div className="small-card" key={publication.id}>
+                                    <SmallImage image={publication.main_image}></SmallImage>
 
-                                        <div className="info">
+                                    <div className="info">
 
-                                            <div className="info-header">
-                    
-                                                <p>
-                                                    {publication.categories.map(category => 
-                                                        <span>{category.category_name} </span> 
-                                                    )}
-                                                </p>
-                                            </div>
-
-                                            <div className="info-content">
-                                                <h3>{publication.title}</h3>
-                                            </div>
-                                            
+                                        <div className="info-header">
+                
+                                            <p>
+                                                {publication.categories.map(category => 
+                                                    <span>{category.category_name} </span> 
+                                                )}
+                                            </p>
                                         </div>
+
+                                        <div className="info-content">
+                                            <h3>{publication.title}</h3>
+                                        </div>
+                                        
                                     </div>
-                                </Link>
-                            )
-                        }
+                                </div>
+                            </Link>
+                        )
+                    
                     })}
                 </Sidebar>
    

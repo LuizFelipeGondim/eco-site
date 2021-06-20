@@ -39,10 +39,6 @@ export default class CreateNews1611799700397 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
-                    name: 'situation',
-                    type: 'boolean',
-                },
-                {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()',

@@ -41,7 +41,7 @@ const Routes: React.FC = () => (
         <Route path="/eco-admin/categories" component={CategoriesCMS}/>
         <Route path="/eco-admin/profile" component={ProfileCMS}/>
         <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
-        <Route path="/eco-admin/edit-publication/:id" component={EditPublicationCMS}/>
+        <Route path="/eco-admin/edit-publication/:slug" component={EditPublicationCMS}/>
         <Route path="/eco-admin/create-publication" component={PublicationCMS}/>
     </Switch>
 

@@ -26,8 +26,6 @@ PublicationsRouter.get('/:slug', async (request, response) => {
             }
 		})
 
-
-
 		const user = await usersRepository.findOne({
             where: {
                 id: publications.user_id

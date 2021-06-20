@@ -12,8 +12,7 @@ import { Input } from '../../../components/Input/styles'
 
 interface FormInput {
     title: string
-    subtitle: string
-    situation: string  
+    subtitle: string  
 }
 
 interface CategoryResponse {
@@ -33,17 +32,16 @@ const PublicationCMS: React.FC = () => {
     const [categories, setCategories] = useState<CategoryArray[]>([])
     const [selectedOptions, setSelectedOptions] = useState([])
     const [tags, setTags] = useState<string[]>([])
-    const [mainData, setMainData] = useState<FormData>()
+    const [image, setImage] = useState<FormData>()
     const [formInputData, setFormInputData] = useState<FormInput>({
         title: '',
         subtitle:'',
-        situation: ''
     })
 
     const handleUploadFile = useCallback((event) => {
         const data = new FormData()
         data?.append('main_image', event.target.files[0])
-        setMainData(data)
+        setImage(data)
 
     }, [])
 
@@ -85,7 +83,7 @@ const PublicationCMS: React.FC = () => {
     }, [])
 
     const handleSubmit = useCallback( async () => {
-        const data = mainData
+        const data = image
         
         // eslint-disable-next-line array-callback-return
         const categoriesData = selectedOptions.map(category => {
@@ -99,7 +97,6 @@ const PublicationCMS: React.FC = () => {
         data?.append('categories', categoriesData as any)
         data?.append('tags', tags as any)
         data?.append('content', content)
-        data?.append('situation', formInputData.situation)
 
         try {
             await api.post('eco-admin/publications/create', data)
@@ -118,7 +115,7 @@ const PublicationCMS: React.FC = () => {
             })
         }
         
-    }, [tags, content, selectedOptions, addToast, formInputData, mainData])
+    }, [tags, content, selectedOptions, addToast, formInputData, image])
 
     return (
         <>
@@ -140,69 +137,64 @@ const PublicationCMS: React.FC = () => {
                     
                     <SideOptions>
                         
-                                <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                                    <div>
-                                        <h3>Outras informações</h3>
-                                        <hr/>
-                                    </div> 
-                                   
-                                    <div className="input">
-                                        <input type="checkbox" name="situation" onChange={handleInputChange}/>
-                                        <label>Rascunho</label>
-                                    </div>
-                                    <div className="input">
-                                        <label>Título</label>
-                                        <Input type="text" onChange={handleInputChange}  name="title" placeholder="Digite o título"/> 
-                                    </div>
+                        <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                            <div>
+                                <h3>Outras informações</h3>
+                                <hr/>
+                            </div> 
+                            
+                            <div className="input">
+                                <label>Título</label>
+                                <Input type="text" onChange={handleInputChange}  name="title" placeholder="Digite o título"/> 
+                            </div>
 
-                                    <div className="input">
-                                        <label>Subtítulo</label>
-                                        <Input type="text" onChange={handleInputChange} name="subtitle" placeholder="Digite o subtítulo"/> 
-                                    </div>
+                            <div className="input">
+                                <label>Subtítulo</label>
+                                <Input type="text" onChange={handleInputChange} name="subtitle" placeholder="Digite o subtítulo"/> 
+                            </div>
 
-                                    <div className="categories">
-                                        <label htmlFor="categories">Categorias</label>
-                                        <MultiSelect
-                                            options={categories}
-                                            value={selectedOptions}
-                                            onChange={setSelectedOptions}
-                                            labelledBy="Select"
-                                            className="categories"
-                                        />
-                                    </div>
-                                    
-                                    <label>Tags</label>
-                                    <div className="tags-input">
-                                        
-                                        <ul id="tags">
-                                            {tags.map((tag, index) => (
-                                                <li key={index} className="tag">
-                                                    <span className='tag-title'>{tag}</span>
-                                                    <span className='tag-close-icon'
-                                                        onClick={() => removeTags(index)}
-                                                    >
-                                                        x
-                                                    </span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <input
-                                            type="text"
-                                            onKeyUp={event => event.key === " " ? addTags(event) : null}
-                                            placeholder="Aperte espaço para confirmar"
-                                        />
-                                    </div>
+                            <div className="categories">
+                                <label htmlFor="categories">Categorias</label>
+                                <MultiSelect
+                                    options={categories}
+                                    value={selectedOptions}
+                                    onChange={setSelectedOptions}
+                                    labelledBy="Select"
+                                    className="categories"
+                                />
+                            </div>
+                            
+                            <label>Tags</label>
+                            <div className="tags-input">
+                                
+                                <ul id="tags">
+                                    {tags.map((tag, index) => (
+                                        <li key={index} className="tag">
+                                            <span className='tag-title'>{tag}</span>
+                                            <span className='tag-close-icon'
+                                                onClick={() => removeTags(index)}
+                                            >
+                                                x
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <input
+                                    type="text"
+                                    onKeyUp={event => event.key === " " ? addTags(event) : null}
+                                    placeholder="Aperte espaço para confirmar"
+                                />
+                            </div>
 
-                                    <div className="input">
-                                        <label>Escolha uma imagem</label>
-                                        <input type="file" id="main_image" name="main_image" onChange={handleUploadFile}/> 
-                                    </div>
+                            <div className="input">
+                                <label>Escolha uma imagem</label>
+                                <input type="file" id="main_image" name="main_image" onChange={handleUploadFile}/> 
+                            </div>
 
-                                    <button type="submit" >Enviar</button>
+                            <button type="submit" >Enviar</button>
 
-                                </form>
-               
-
+                        </form>
+            
                     </SideOptions>
                 </Container>
             </MainContentGeneric>

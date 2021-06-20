@@ -13,7 +13,6 @@ export const HeaderContent = styled.div`
 
         div {
             display: flex;
-            width: 250px !important;
             align-items: center;
             
             select {

@@ -12,6 +12,9 @@ import verifyAdminStatus from '../../middlewares/verifyAdminStatus'
 import CreateTagService from '../../services/admin/CreateTagService'
 import CreateCategoryService from '../../services/admin/CreateCategoryService'
 import User from '../../models/User'
+import UpdateCategoryService from '../../services/admin/UpdateCategoryService'
+import UpdateTagService from '../../services/admin/UpdateTagService'
+import UpdateMainImageService from '../../services/admin/UpdateMainImageService'
 
 const PublicationsRouter = Router()
 const upload = multer(uploadConfig)
@@ -28,8 +31,6 @@ PublicationsRouter.post(
 
         const slugHash = crypto.randomBytes(5).toString('hex')
         const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-")}`
-
-        const situation = Boolean(request.body.situation)
 
         content = content.replace(/class/g, "className")
                         .replace(/oembed/g, "embed")
@@ -53,7 +54,6 @@ PublicationsRouter.post(
             subtitle,
             content,
             slug,
-            situation,
             main_image: `http://localhost:3333/files/${main_image}`
         })
         await publicationsRepository.save(publication) 
@@ -82,57 +82,73 @@ PublicationsRouter.post(
 })
 
 PublicationsRouter.post(
-    '/edit', 
+    '/edit/:id', 
     ensureAuthenticated, 
     verifyAdminStatus,
-    upload.single('main_image'), 
     async (request, response) => {
 
 	try {
-        const { title, subtitle, content } = request.body
 
-        const situation = Boolean(request.body.situation)
+        const { id } = request.params
+        const { title, subtitle, content, tags, categories } = request.body 
 
-        const tags = request.body.tags.split(',') 
-        const categories = request.body.categories.split(',') 
-
-        const main_image = request.file.filename
-        
-        const user_id = request.user.id
+        const slugHash = crypto.randomBytes(5).toString('hex')
+        const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-")}`
 
         const publicationsRepository = getRepository(Publication)
+   
+        const updatedTag = new UpdateTagService()
+        const updatedCategory = new UpdateCategoryService()
+    
+        const publication = await publicationsRepository.findOne(id)
 
-        const createTag = new CreateTagService()
-        const createCategory = new CreateCategoryService()
+        publication.title = title
+        publication.subtitle = subtitle
+        publication.content = content
+        publication.slug = slug
 
-        const publication = publicationsRepository.create({
-            user_id,
-            title,
-            subtitle,
-            content,
-            situation,
-            main_image: `http://localhost:3333/files/${main_image}`
-        })
-        await publicationsRepository.save(publication) 
-        
+        await publicationsRepository.save(publication)
+  
         const publication_id: string = publication.id
 
-        const createdCategories = await createCategory.execute({
+        const updatedCategories = await updatedCategory.execute({
             categories,
             publication_id
         }) 
 
-        const createdTags = await createTag.execute({
+        const updatedTags = await updatedTag.execute({
 			tags,
 			publication_id
         })
- 
+
 		return response.json({
             "publication": publication, 
-            "tags": createdTags,
-            "categories": createdCategories
+            "tags": updatedTags,
+            "categories": updatedCategories
         })
 
+	} catch (err) {
+		return response.status(400).json({ error: err.message })
+	}
+})
+
+PublicationsRouter.patch(
+    '/main-image/:id', 
+    ensureAuthenticated, 
+    verifyAdminStatus, 
+    upload.single('main_image'), 
+    async (request, response) => {
+    try {
+
+        const { id } = request.params
+		const updateMainImage = new UpdateMainImageService()
+
+		const publication = await updateMainImage.execute({
+			publication_id: id,
+			imageFilename: request.file.filename
+        })
+        
+		return response.json(publication)
 	} catch (err) {
 		return response.status(400).json({ error: err.message })
 	}

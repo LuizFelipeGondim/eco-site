@@ -39,7 +39,8 @@ export const SideOptions = styled.div`
     }
 
     button {
-        margin-top: 15px;
+        margin: 15px 0px 20px 0px;
+        width: 170px;
     }
 
     .input {
@@ -48,6 +49,7 @@ export const SideOptions = styled.div`
         input[name="situation"]{
             margin-right: 10px;
         }
+
         input[type="file"]{
             background: transparent;
             border: none;
@@ -79,10 +81,15 @@ export const SideOptions = styled.div`
             align-items: center;
             
             button{
+                margin: 0;
                 width: auto;
                 display: flex;
                 align-items: center;
             }
+        }
+
+        p {
+            color: red;
         }
 
     }
@@ -152,7 +159,18 @@ export const SideOptions = styled.div`
         }
     }
 
+    .image{
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
+        img{
+            width: 100%;
+        }
+    }
 
     @media (max-width: 1100px) {
         & {
@@ -175,6 +193,16 @@ export const Editor = styled.div`
     border-radius: 8px;
     font-size: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
+
+    ul > li {
+        list-style: disc;
+        margin-left: 20px;
+    }
+
+    ol > li{
+        list-style: decimal;
+        margin-left: 20px;
+    }
 
     @media (max-width: 1100px) {
         & {

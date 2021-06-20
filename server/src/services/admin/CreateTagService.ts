@@ -12,7 +12,7 @@ class CreateTagService {
 
         const tagsRepository = getRepository(Tag)
 
-        tags.map( async (tag_name: string) => {
+        tags.forEach( async (tag_name: string) => {
             const createdTag = tagsRepository.create({
                 tag_name,
                 publication_id

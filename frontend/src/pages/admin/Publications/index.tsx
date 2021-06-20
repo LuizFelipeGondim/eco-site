@@ -68,10 +68,6 @@ const PublicationsCMS: React.FC = () => {
                     <div className="top">
                         <h1>Publicações</h1>
                         <div>
-                            <select name="" id="">
-                                <option value="">PDF</option>
-                                <option value="">TXT</option>
-                            </select>
                             <button>Criar novo</button>
                         </div>
                     </div>
@@ -91,9 +87,6 @@ const PublicationsCMS: React.FC = () => {
                             </select>
                             <select name="" id="">
                                 <option value="">Autor</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Situação</option>
                             </select>
                         </div>
                     </div>
@@ -128,7 +121,7 @@ const PublicationsCMS: React.FC = () => {
                                         </div>
 
                                         <div className="card-options">
-                                            <Link to={`/eco-admin/edit-publication/${publication.id}`}>
+                                            <Link to={`/eco-admin/edit-publication/${publication.slug}`}>
                                                 <img src={editar} alt="editar"/>
                                             </Link>
                                             <span onClick={() => handleDeletePublication(publication.id)}>
@@ -144,12 +137,6 @@ const PublicationsCMS: React.FC = () => {
                                                 <span>{category.category_name} | </span> 
                                             )}
                                         </li>
-                                            <li>
-                                                SITUAÇÃO: 
-                                                {publication.situation
-                                                ? 'Publicado' 
-                                                : 'Rascunho'} 
-                                            </li>
                                     </ul>
                                 </div>  
                             )
@@ -165,7 +152,6 @@ const PublicationsCMS: React.FC = () => {
                                 <td>AUTOR</td>
                                 <td>CRIADO EM</td>
                                 <td>CATEGORIAS</td>
-                                <td>SITUAÇÃO</td>
                                 <td>OPÇÕES</td>
                             </tr>
                         </thead>
@@ -186,12 +172,7 @@ const PublicationsCMS: React.FC = () => {
                                             )} 
                                         </td>
                                         <td>
-                                            {publication.situation
-                                            ? 'Publicado' 
-                                            : 'Rascunho'}
-                                        </td>
-                                        <td>
-                                            <Link to={`/eco-admin/edit-publication/${publication.id}`}>
+                                            <Link to={`/eco-admin/edit-publication/${publication.slug}`}>
                                                 <img src={editar} alt="editar"/>
                                             </Link>
                                             <span onClick={() => handleDeletePublication(publication.id)}>

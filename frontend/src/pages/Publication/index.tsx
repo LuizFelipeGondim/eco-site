@@ -13,11 +13,16 @@ interface Category {
     id: string,
     category_name: string
 }
+
+interface Response {
+    publication: PublicationResponse
+    tags: TagResponse[]
+    user: UserResponse
+}
 interface PublicationResponse {
     title: string
     id: string
     user_id: string
-    situation: boolean
     created_at: string
     content: string
     slug: string

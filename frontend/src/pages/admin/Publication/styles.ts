@@ -79,6 +79,7 @@ export const SideOptions = styled.div`
             align-items: center;
             
             button{
+                margin-top: 0;
                 width: auto;
                 display: flex;
                 align-items: center;
