@@ -73,6 +73,7 @@ export const Sidebar = styled.div`
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 15px;
+                flex-wrap: wrap;
 
                 span {
                     background-color: var(--green);

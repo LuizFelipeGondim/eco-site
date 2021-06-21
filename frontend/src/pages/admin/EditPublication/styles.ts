@@ -90,6 +90,7 @@ export const SideOptions = styled.div`
 
         p {
             color: red;
+            overflow-wrap: break-word;
         }
 
     }

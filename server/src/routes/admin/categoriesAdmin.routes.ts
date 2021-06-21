@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getRepository } from 'typeorm'
+import { getRepository, Like } from 'typeorm'
 
 import ensureAuthenticated from '../../middlewares/ensureAuthenticated'
 import verifyAdminStatus from '../../middlewares/verifyAdminStatus'
@@ -30,19 +30,41 @@ CategoriesRouter.get(
             
             const page = request.query.page as unknown as number | 1
             const limit = request.query.limit as unknown as number | null
-    
+            const name = request.query.name || null
+
             const skip = page * limit
             
             const categoriesRepository = getRepository(Category)
-            const categories = await categoriesRepository.find({
-                skip,
-                take: limit,
-            })
-            const count = await categoriesRepository.count()
+
+            const categories = name ? 
+                await categoriesRepository.find({
+                    skip,
+                    take: limit,
+                    where:  {
+                        category_name: Like(`%${name}%`)
+                    } 
+                })
+                :
+                await categoriesRepository.find({
+                    skip,
+                    take: limit,
+                })
+
+            const categoriesLength = name ?
+                await categoriesRepository.count({
+                    where:  {
+                        category_name: Like(`%${name}%`)
+                    }
+                })
+                :
+                await categoriesRepository.count()
+
+            const totalCategories = await categoriesRepository.count()
 
             return response.json({
                 categories,
-                count
+                totalCategories,
+                categoriesLength
             })
 
         } catch (err) {

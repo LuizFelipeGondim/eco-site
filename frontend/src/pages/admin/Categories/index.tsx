@@ -23,23 +23,26 @@ interface FormData {
 }
 
 const CategoriesCMS: React.FC = () => {
-    const limit = 6
+    const limit = 5
     const { actualPage, handleAfterPage, handleBeforePage } = usePagination()
     const { addToast } = useToast()
     const { 
         categories, 
         fetchCategories, 
-        count,
-        setCategories
+        totalCategories,
+        categoriesLength,
+        setCategories,
+        setName,
+        name
     } = useCategories()
 
-    const countAllCategorias = count === undefined ? 0 : count
+    const countAllCategorias = categoriesLength === undefined ? 0 : categoriesLength
     const pageLimit = Math.ceil(countAllCategorias/limit)
 
     useEffect(() => {
-        fetchCategories(actualPage - 1, limit)
+        fetchCategories(actualPage - 1, limit, name)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [actualPage])
+    }, [actualPage, name])
 
     const handleDeleteCategory = useCallback((id: string) => {
         api.delete(`eco-admin/categories/delete/${id}`)
@@ -48,6 +51,10 @@ const CategoriesCMS: React.FC = () => {
 
         setCategories(data)
     }, [setCategories, categories])
+
+    const handleChangeName = useCallback((event) => {
+        setName(event.target.value)
+    }, [setName])
 
     const handleSubmit = useCallback( async (data: FormData) => {
         try {
@@ -102,11 +109,11 @@ const CategoriesCMS: React.FC = () => {
                     <div className="table">
                         <div className="table-header">
                             <h3>Categorias</h3>
-                            <p>Todos ({countAllCategorias})</p>
+                            <p>Todos ({totalCategories})</p>
                         </div>
                         <hr/>
                         <form method="get">
-                            <Input type="text" placeholder="Pesquise aqui!"/>
+                            <Input type="text" placeholder="Pesquise aqui!" onChange={handleChangeName}/>
                         </form>
 
                         <Cards>

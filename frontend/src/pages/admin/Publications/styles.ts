@@ -57,27 +57,10 @@ export const HeaderContent = styled.div`
             }
         }
 
-        .filter {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 15px;
-
-            select {
-                width: 145px;
-                margin: 15px 10px 0px 0px;
-
-            }
-        }
-
         @media (max-width: 1180px) {
 
             & {
                 flex-direction: column;
-            }
-
-            .filter {
-                margin-left: 0px;
-                margin-bottom: 20px;
             }
         }
     }

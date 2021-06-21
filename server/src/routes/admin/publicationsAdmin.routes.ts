@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getRepository } from 'typeorm'
+import { getRepository, Like } from 'typeorm'
 import multer from 'multer'
 import crypto from 'crypto'
 import path from 'path'
@@ -154,25 +154,61 @@ PublicationsRouter.patch(
 	}
 })
 
+PublicationsRouter.get('/latest-publications', async (request, response) => {
+
+    const publicationsRepository = getRepository(Publication)
+
+    const publications = await publicationsRepository.find({
+        take: 3,
+        order: {
+            created_at: "DESC",
+        }
+    })
+
+    return response.json(publications)
+})
+
 PublicationsRouter.get('/', async (request, response) => {
 	try {
 		const page = request.query.page as unknown as number | 1
 		const limit = request.query.limit as unknown as number | null
- 
+        const name = request.query.name || null
+
 		const skip = page * limit
 		
         const publicationsRepository = getRepository(Publication)
         const usersRepository = getRepository(User)
 
-		const publications = await publicationsRepository.find({
-			skip,
-			take: limit,
-			order: {
-				updated_at: "DESC",
-			}
-        })
+        const publications = name ? 
+            await publicationsRepository.find({
+                skip,
+                take: limit,
+                order: {
+                    updated_at: "DESC",
+                },
+                where:  {
+                    title: Like(`%${name}%`)
+                } 
+            })
+            :
+            await publicationsRepository.find({
+                skip,
+                take: limit,
+                order: {
+                    updated_at: "DESC",
+                }
+            })
 
-        const count = await publicationsRepository.count()
+        const publicationsLength = name ?
+            await publicationsRepository.count({
+                where:  {
+                    title: Like(`%${name}%`)
+                }
+            })
+            :
+            await publicationsRepository.count()
+
+            const totalPublications = await publicationsRepository.count()
 
         const users = await usersRepository.find({
             where: {
@@ -182,8 +218,9 @@ PublicationsRouter.get('/', async (request, response) => {
 
         return response.json({
             publications,
-            count,
-            users
+            totalPublications,
+            users,
+            publicationsLength
         })
 
 	} catch (err) {

@@ -16,17 +16,22 @@ interface Response {
 
 export default function useCategories () {
     const [categories, setCategories] = useState<Response[]>([])
-    const [count, setCount] = useState<number>()
+    const [name, setName] = useState<string>('')
+    const [totalCategories, setTotalCategories] = useState<number>()
+    const [categoriesLength, setcategoriesLength] = useState<number>()
 
-    function fetchCategories (page: number, limit: number) {
+    function fetchCategories(page: number, limit: number, name: string) {
 
-        api.get<CategoryResponse>(`eco-admin/categories/pagination?page=${page}&limit=${limit}`)
+        api.get<CategoryResponse>(
+            `eco-admin/categories/pagination?page=${page}&limit=${limit}&name=${name}`)
             .then(response => {
                 const responseData = Object.values(response.data)
-                const countPages = responseData[1] === undefined ? 0 : responseData[1]
+                const total = responseData[1] === undefined ? 0 : responseData[1]
+                const countPages = responseData[2] === undefined ? 0 : responseData[2]
                 
                 setCategories(responseData[0])
-                setCount(countPages)
+                setTotalCategories(total)
+                setcategoriesLength(countPages)
 
             })
     }
@@ -35,7 +40,10 @@ export default function useCategories () {
     return {
         fetchCategories,
         setCategories,
+        setName,
+        name,
         categories,
-        count
+        totalCategories,
+        categoriesLength
     }
 }

@@ -30,31 +30,35 @@ interface Response {
 
 export default function usePublication () {
     const [publications, setPublications] = useState<PublicationResponse[]>([])
-    const [count, setCount] = useState<number>()
     const [users, setUsers] = useState<UserResponse[]>([])
+    const [name, setName] = useState<string>('')
+    const [totalPublications, setTotalPublications] = useState<number>()
+    const [publicationsLength, setPublicationsLength] = useState<number>()
 
-    function fetchPublications (page: number, limit: number) {
+    function fetchPublications (page: number, limit: number, name: string) {
 
-        api.get<Response>(`eco-admin/publications?page=${page}&limit=${limit}`)
+        api.get<Response>(`eco-admin/publications?page=${page}&limit=${limit}&name=${name}`)
             .then(response => {
 
                 const responseData = Object.values(response.data)
-                const countPages = responseData[1] === undefined ? 0 : responseData[1]
+                const total = responseData[1] === undefined ? 0 : responseData[1]
+                const countPages = responseData[3] === undefined ? 0 : responseData[3]
                 
                 setPublications(responseData[0])
-                setCount(countPages)
+                setTotalPublications(total)
                 setUsers(responseData[2])
-
-            })
+                setPublicationsLength(countPages)
+        })
     }
-
-    
 
     return {
         fetchPublications,
         setPublications,
         publications,
-        count,
+        totalPublications,
+        publicationsLength,
+        setName,
+        name,
         users
     }
 }

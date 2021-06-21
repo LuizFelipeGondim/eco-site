@@ -11,6 +11,7 @@ import usePagination from '../../context/Pagination/usePagination'
 import usePublication from '../../context/Pagination/usePublications'
 import { Input } from '../../components/Input/styles'
 import { Link } from 'react-router-dom'
+import api from '../../services/api'
 
 interface Category {
     id: string,
@@ -32,21 +33,32 @@ const Blog: React.FC = () => {
     const { 
         publications, 
         fetchPublications, 
-        count, 
+        publicationsLength,
+        setName,
+        name,
         users 
     } = usePublication()
 
-    const countAllPublications = count === undefined ? 0 : count
+    const countAllPublications = publicationsLength === undefined ? 0 : publicationsLength
     const pageLimit = Math.ceil(countAllPublications/limit)
 
     useEffect(() => {
-        fetchPublications(actualPage - 1, limit)
+        fetchPublications(actualPage - 1, limit, name)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, actualPage])
+    }, [limit, actualPage, name])
 
     useEffect(() => {
-        setLatestPublications(publications.slice(-3))
-    }, [publications])
+
+        api.get<PublicationResponse[]>("/eco-admin/publications/latest-publications")
+        .then(response => {
+            setLatestPublications(response.data)
+        })
+
+    }, [])
+
+    const handleChangeName = useCallback((event) => {
+        setName(event.target.value)
+    }, [setName])
     
     const formatDate = useCallback((date: string) => {
         const [dateFormated, ] = date.split('T')
@@ -124,7 +136,7 @@ const Blog: React.FC = () => {
                 <Sidebar>
 
                     <form method="get">
-                        <Input type="text" placeholder="Pesquisar"/>
+                        <Input type="text" placeholder="Pesquisar" onChange={handleChangeName}/>
                     </form>
 
                     <h3>Últimas publicações</h3>
@@ -143,7 +155,9 @@ const Blog: React.FC = () => {
                 
                                             <p>
                                                 {publication.categories.map(category => 
-                                                    <span>{category.category_name} </span> 
+                                                    <span key={category.category_name}>
+                                                        {category.category_name} 
+                                                    </span> 
                                                 )}
                                             </p>
                                         </div>

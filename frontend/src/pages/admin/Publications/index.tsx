@@ -12,6 +12,7 @@ import { Cards, HeaderContent, Table } from './styles'
 import usePagination from '../../../context/Pagination/usePagination'
 import api from '../../../services/api'
 import usePublication from '../../../context/Pagination/usePublications'
+import { Input } from '../../../components/Input/styles'
 
 const PublicationsCMS: React.FC = () => {
     
@@ -22,20 +23,25 @@ const PublicationsCMS: React.FC = () => {
         publications, 
         setPublications,
         fetchPublications, 
-        count, 
+        totalPublications,
+        publicationsLength,
+        setName,
+        name,
         users 
     } = usePublication()
 
-    const countAllPublications = count === undefined ? 0 : count
+    const countAllPublications = publicationsLength === undefined ? 0 : publicationsLength
     const pageLimit = Math.ceil(countAllPublications/limit)
 
     useEffect(() => {
-        fetchPublications(actualPage - 1, limit)
+        fetchPublications(actualPage - 1, limit, name)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, actualPage])
+    }, [limit, actualPage, name])
 
+    const handleChangeName = useCallback((event) => {
+        setName(event.target.value)
+    }, [setName])
     
-
     const handleDeletePublication = useCallback((id: string) => {
         api.delete(`eco-admin/publications/delete/${id}`)
 
@@ -76,25 +82,14 @@ const PublicationsCMS: React.FC = () => {
 
                     <div className="bottom">
                         <form method="get">
-                            <input type="text" placeholder="Pesquise aqui!"/>
+                            <Input type="text" placeholder="Pesquise aqui!" onChange={handleChangeName}/>
                         </form>
-                        <div className="filter">
-                            <select name="" id="">
-                                <option value="">Data de criação</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Categorias</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Autor</option>
-                            </select>
-                        </div>
                     </div>
                 </HeaderContent>
                 <Table>
                     <div className="info">
                         <div className="results">
-                            <p>Todos({countAllPublications})</p>
+                            <p>Todos({totalPublications})</p>
                         </div>
 
                         <div className="results-per-page">

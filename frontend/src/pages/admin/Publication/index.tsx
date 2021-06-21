@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import MultiSelect from "react-multi-select-component"
@@ -9,6 +9,7 @@ import { Container, SideOptions, Editor } from './styles'
 import api from '../../../services/api'
 import { useToast } from '../../../context/ToastContext'
 import { Input } from '../../../components/Input/styles'
+import { useHistory } from 'react-router-dom'
 
 interface FormInput {
     title: string
@@ -27,6 +28,7 @@ interface CategoryArray {
 
 const PublicationCMS: React.FC = () => {
     const { addToast } = useToast()
+    const history = useHistory()
     
     const [content, setContent] = useState('')
     const [categories, setCategories] = useState<CategoryArray[]>([])
@@ -82,7 +84,9 @@ const PublicationCMS: React.FC = () => {
         setContent(dataContent)
     }, [])
 
-    const handleSubmit = useCallback( async () => {
+    const handleSubmit = useCallback( async (event: FormEvent) => {
+        event.preventDefault()
+        
         const data = image
         
         // eslint-disable-next-line array-callback-return
@@ -107,6 +111,8 @@ const PublicationCMS: React.FC = () => {
                 description: 'Sua publicação foi cadastrada com sucesso.'
             })
 
+            history.push('/eco-admin/publications')
+
         } catch (err) {
             addToast({
                 type: 'error',
@@ -115,7 +121,15 @@ const PublicationCMS: React.FC = () => {
             })
         }
         
-    }, [tags, content, selectedOptions, addToast, formInputData, image])
+    }, [
+        tags, 
+        content, 
+        selectedOptions, 
+        addToast, 
+        formInputData, 
+        image, 
+        history
+    ])
 
     return (
         <>

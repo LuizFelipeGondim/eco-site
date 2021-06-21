@@ -252,7 +252,9 @@ const EditPublicationCMS: React.FC = () => {
                                 <p>
                                     A(s) categoria(s) da publicação é(são):
                                     {publication?.categories.map(category => 
-                                        <span> |{category.category_name}|</span> 
+                                        <span key={category.category_name}> 
+                                            |{category.category_name}|
+                                        </span> 
                                     )}
                                     . Selecione-a(s) novamente para mantê-la(s).
                                 </p>
