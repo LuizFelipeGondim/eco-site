@@ -14,15 +14,23 @@ export const HeaderContent = styled.div`
         div {
             display: flex;
             width: 250px !important;
-            align-items: center;
-            
-            select {
-                margin-right: 20px;
-                width: 110px;
-            }
+            justify-content: flex-end;
 
-            button {
-                width: 110px;
+            a {
+                width: 105px;
+                color: #fff;
+                background-color: var(--green);
+                border: none;
+                height: 44px;
+                border-radius: 5px;
+                padding: 14px 20px;
+                cursor: pointer;
+                transition: 1s opacity ease;
+                font-weight: 500 !important;
+
+                &:hover{
+                    opacity: 0.7;
+                }
             }
         }
         @media (max-width: 400px) {
@@ -58,27 +66,10 @@ export const HeaderContent = styled.div`
             }
         }
 
-        .filter {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 15px;
-
-            select {
-                width: 145px;
-                margin: 15px 10px 0px 0px;
-
-            }
-        }
-
         @media (max-width: 1180px) {
 
             & {
                 flex-direction: column;
-            }
-
-            .filter {
-                margin-left: 0px;
-                margin-bottom: 20px;
             }
         }
     }
@@ -87,6 +78,13 @@ export const Table = styled.div`
     padding: 0px 20px;
     font-size: 15px;
     max-width: 1400px;
+
+    .img-avatar {
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+    }
 
     input[type=checkbox] {
                 height: 20px;
@@ -145,10 +143,18 @@ export const Table = styled.div`
         }
 
         td {
-            max-width: 110px;
             word-wrap: break-word;
             padding: 0px 16px;
+
         }
+        
+        .avatar{
+            padding: 0px 10px !important;
+            display: flex;
+            align-items: center;
+            margin-top: 23px;
+        }
+
 
         thead {
             background-color: var(--gray);

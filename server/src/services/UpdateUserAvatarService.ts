@@ -22,17 +22,20 @@ class UpdateUserAvatarService {
 
 		if (user.avatar) {
 			// Deletar avatar anterior
+			const [, filename] = user.avatar.split('/files/')
 
-			const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar)
-			const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath)
+			if(filename !== 'unknown.png'){
+				const userAvatarFilePath = path.join(uploadConfig.directory, filename)
+				const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath)
 
-			if (userAvatarFileExists) {
-				await fs.promises.unlink(userAvatarFilePath)
+				if (userAvatarFileExists) {
+					await fs.promises.unlink(userAvatarFilePath)
+				}
 			}
 
 		}
 
-		user.avatar = avatarFilename
+		user.avatar = `http://localhost:3333/files/${avatarFilename}`
 
 		await usersRepository.save(user)
 

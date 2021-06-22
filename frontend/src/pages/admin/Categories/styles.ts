@@ -13,6 +13,17 @@ export const Container = styled.div`
         background-color: #fff;
         margin-right: 25px;
         border-radius: 8px;
+        
+        .error {
+            display: block;
+            width: 100% !important;
+            background-color: var(--red);
+            opacity: 0.9;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
 
         h3 {
             margin-bottom: 15px;

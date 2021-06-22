@@ -88,6 +88,7 @@ export const Sidebar = styled.div`
             &:hover ul{
                 display: flex;
             }
+
         }
 
 
@@ -124,7 +125,9 @@ export const MainContent = styled.div`
     position: relative;
     margin-left: 210px;
     transition: 0.5s;
-
+    min-height: calc(100vh - 100px);
+    height: calc(100vh - 100px);
+    
     h1 {
         width: 100%;
         padding: 0px 20px;

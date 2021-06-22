@@ -113,6 +113,6 @@ server/config
 
 server/tmp/*
 
-!server/tmp/.gitkeep
+!server/tmp/unknown.png
 
 

@@ -1,15 +1,59 @@
-import React from 'react'
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import { parseISO, format } from 'date-fns'
 
 import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
 import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
-import editar from '../../../assets/adminSVG/editar.svg'
-import excluir from '../../../assets/adminSVG/excluir.svg'
-import left from '../../../assets/adminSVG/left.svg'
-import right from '../../../assets/adminSVG/right.svg'
 import { HeaderContent, Table, Cards } from './styles'
+import { Input } from '../../../components/Input/styles'
+import usePagination from '../../../context/Pagination/usePagination'
+import useUsers from '../../../context/Pagination/useUsers'
+
+import right from '../../../assets/adminSVG/right.svg'
+import left from '../../../assets/adminSVG/left.svg'
+import { Link } from 'react-router-dom'
+
 
 const UsersCMS: React.FC = () => {
+    const [limit, setLimit] = useState(6)
+    const { actualPage, handleBeforePage, handleAfterPage } = usePagination()
 
+    const { 
+        fetchUsers, 
+        totalUsers,
+        usersLength,
+        setName,
+        name,
+        users 
+    } = useUsers()
+
+    const countAllUsers = usersLength === undefined ? 0 : usersLength
+    const pageLimit = Math.ceil(countAllUsers/limit)
+
+    useEffect(() => {
+        fetchUsers(actualPage - 1, limit, name)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [limit, actualPage, name])
+
+    const handleChangeName = useCallback((event) => {
+        setName(event.target.value)
+    }, [setName])
+
+    const formatDate = useCallback((date: string) => {
+        const [dateFormated, ] = date.split('T')
+        const firstDate = parseISO(dateFormated)
+        
+        return format(
+            firstDate,
+            "dd'/'MM'/'yyyy",
+        )
+    }, [])
+
+    function handleLimitChange(event: ChangeEvent<HTMLInputElement>){
+        const { value } = event.target
+
+        setLimit(Number(value))
+    }
+    
     return (
         <>
             <SidebarGeneric></SidebarGeneric>
@@ -18,11 +62,7 @@ const UsersCMS: React.FC = () => {
                     <div className="top">
                         <h1>Usuários</h1>
                         <div>
-                            <select name="" id="">
-                                <option value="">PDF</option>
-                                <option value="">TXT</option>
-                            </select>
-                            <button>Criar novo</button>
+                            <Link to="/eco-admin/create-user">Criar novo</Link>
                         </div>
                     </div>
 
@@ -30,264 +70,91 @@ const UsersCMS: React.FC = () => {
 
                     <div className="bottom">
                         <form method="get">
-                            <input type="text" placeholder="Pesquise aqui!"/>
+                            <Input type="text" placeholder="Pesquise aqui!" onChange={handleChangeName}/>
                         </form>
-                        <div className="filter">
-                            <select name="" id="">
-                                <option value="">Data de criação</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Estado</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Cidade</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">Status</option>
-                            </select>
-                        </div>
                     </div>
                 </HeaderContent>
                 <Table>
                     <div className="info">
                         <div className="results">
-                            <p>Todos()</p>
-                            <p>Administradores()</p>
-                            <p>Comuns()</p>
+                            <p>Todos({totalUsers})</p>
                         </div>
 
                         <div className="results-per-page">
                             <span>Resultados por página:</span>
-                            <input type="number"/>
+                            <Input type="number" value={limit} onChange={handleLimitChange}/>
                         </div>
 
                     </div>
 
                     <Cards>
-                        <div className="card">
-                            <div className="card-header">
-                                
-                                <div>
-                                    <input type="checkbox"/>
-                                    <h4>
-                                        Luiz Felipe
-                                        <span> - Admin</span>
-                                    </h4>
+                        {users.map(user => {
+                            return (
+                                <div className="card" key={user.id}>
+                                    <div className="card-header">
+                                        
+                                        <div>
+                                            <h4>
+                                                {user.first_name}
+                                                <span> 
+                                                    {user.is_staff ? ' - Admin' : ' - Comum' }
+                                                </span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <ul className="card-body">
+                                        <li>CRIADO EM: {formatDate(user.created_at)} </li>
+                                        <li>E-MAIL: {user.email} </li>
+                                        <li>ENDEREÇO: {user.city}/{user.uf}</li>
+                                        <li>WHATSAPP: {user.whatsapp}</li>
+                                    </ul>
                                 </div>
-
-                                <div className="card-options">
-                                    <img src={editar} alt="editar"/>    
-                                    <img src={excluir} alt="excluir"/>
-                                </div>
-                            </div>
-                            <ul className="card-body">
-                                <li>CRIADO EM: 15 Maio 2021 </li>
-                                <li>E-MAIL: luizfelipe@gmail.com </li>
-                                <li>ENDEREÇO: Guanambi/BA</li>
-                                <li>WHATSAPP: 77 99999-9999</li>
-                            </ul>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">
-                                
-                                <div>
-                                    <input type="checkbox"/>
-                                    <h4>
-                                        Luiz Felipe
-                                        <span> - Admin</span>
-                                    </h4>
-                                </div>
-
-                                <div className="card-options">
-                                    <img src={editar} alt="editar"/>    
-                                    <img src={excluir} alt="excluir"/>
-                                </div>
-                            </div>
-                            <ul className="card-body">
-                                <li>CRIADO EM: 15 Maio 2021 </li>
-                                <li>E-MAIL: luizfelipe@gmail.com </li>
-                                <li>ENDEREÇO: Guanambi/BA</li>
-                                <li>WHATSAPP: 77 99999-9999</li>
-                            </ul>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">
-                                
-                                <div>
-                                    <input type="checkbox"/>
-                                    <h4>
-                                        Luiz Felipe
-                                        <span> - Admin</span>
-                                    </h4>
-                                </div>
-
-                                <div className="card-options">
-                                    <img src={editar} alt="editar"/>    
-                                    <img src={excluir} alt="excluir"/>
-                                </div>
-                            </div>
-                            <ul className="card-body">
-                                <li>CRIADO EM: 15 Maio 2021 </li>
-                                <li>E-MAIL: luizfelipe@gmail.com </li>
-                                <li>ENDEREÇO: Guanambi/BA</li>
-                                <li>WHATSAPP: 77 99999-9999</li>
-                            </ul>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">
-                                
-                                <div>
-                                    <input type="checkbox"/>
-                                    <h4>
-                                        Luiz Felipe
-                                        <span> - Admin</span>
-                                    </h4>
-                                </div>
-
-                                <div className="card-options">
-                                    <img src={editar} alt="editar"/>    
-                                    <img src={excluir} alt="excluir"/>
-                                </div>
-                            </div>
-                            <ul className="card-body">
-                                <li>CRIADO EM: 15 Maio 2021 </li>
-                                <li>E-MAIL: luizfelipe@gmail.com </li>
-                                <li>ENDEREÇO: Guanambi/BA</li>
-                                <li>WHATSAPP: 77 99999-9999</li>
-                            </ul>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">
-                                
-                                <div>
-                                    <input type="checkbox"/>
-                                    <h4>
-                                        Luiz Felipe
-                                        <span> - Admin</span>
-                                    </h4>
-                                </div>
-
-                                <div className="card-options">
-                                    <img src={editar} alt="editar"/>    
-                                    <img src={excluir} alt="excluir"/>
-                                </div>
-                            </div>
-                            <ul className="card-body">
-                                <li>CRIADO EM: 15 Maio 2021 </li>
-                                <li>E-MAIL: luizfelipe@gmail.com </li>
-                                <li>ENDEREÇO: Guanambi/BA</li>
-                                <li>WHATSAPP: 77 99999-9999</li>
-                            </ul>
-                        </div>
+                            )
+                        })}
+                        
                     </Cards>
                     
                     <table>
                         <thead>
                             <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
                                 <td>USUÁRIO</td>
                                 <td>CRIADO EM</td>
                                 <td>E-MAIL</td>
                                 <td>ENDEREÇO</td>
                                 <td>WHATSAPP</td>
                                 <td>STATUS</td>
-                                <td>OPÇÕES</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
-                                <td>Luiz Felipe</td>
-                                <td>15 de maio</td>
-                                <td>luizfelipe@gmail.com</td>
-                                <td>Guanambi/BA</td>
-                                <td>(77) 99999-9999</td>
-                                <td>Admin</td>
-                                <td>
-                                    <img src={editar} alt="editar"/>
-                                    <img src={excluir} alt="excluir"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
-                                <td>Luiz Felipe</td>
-                                <td>15 de maio</td>
-                                <td>luizfelipe@gmail.com</td>
-                                <td>Guanambi/BA</td>
-                                <td>(77) 99999-9999</td>
-                                <td>Admin</td>
-                                <td>
-                                    <img src={editar} alt="editar"/>
-                                    <img src={excluir} alt="excluir"/>
-                                </td>
-                            </tr>
-                           
-                            <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
-                                <td>Luiz Felipe</td>
-                                <td>15 de maio</td>
-                                <td>luizfelipe@gmail.com</td>
-                                <td>Guanambi/BA</td>
-                                <td>(77) 99999-9999</td>
-                                <td>Admin</td>
-                                <td>
-                                    <img src={editar} alt="editar"/>
-                                    <img src={excluir} alt="excluir"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
-                                <td>Luiz Felipe</td>
-                                <td>15 de maio</td>
-                                <td>luizfelipe@gmail.com</td>
-                                <td>Guanambi/BA</td>
-                                <td>(77) 99999-9999</td>
-                                <td>Admin</td>
-                                <td>
-                                    <img src={editar} alt="editar"/>
-                                    <img src={excluir} alt="excluir"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox"/>
-                                </td>
-                                <td>Luiz Felipe</td>
-                                <td>15 de maio</td>
-                                <td>luizfelipe@gmail.com</td>
-                                <td>Guanambi/BA</td>
-                                <td>(77) 99999-9999</td>
-                                <td>Admin</td>
-                                <td>
-                                    <img src={editar} alt="editar"/>
-                                    <img src={excluir} alt="excluir"/>
-                                </td>
-                            </tr>
+                            {users.map(user => {
+                                return (
+                                    <tr key={user.id}>
+                                        <td className="avatar">
+                                            <img className="img-avatar" src={user.avatar} alt=""/>
+                                            <p>{user.first_name}</p> 
+                                        </td>
+                                        <td>{formatDate(user.created_at)}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.city}/{user.uf}</td>
+                                        <td>{user.whatsapp}</td>
+                                        <td>{user.is_staff ? 'Admin' : 'Comum'}</td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                     <div className="table-footer">
                         <div>
-                            <button>
+                            <button onClick={handleBeforePage}>
                                 <img src={left} alt=""/>
                             </button>
                             <p>Anterior</p>
-                            <p> 1 de 9 </p>
+                            <p> {actualPage} de {pageLimit} </p>
                             <p>Próximo</p>
-                            <button>
+                            <button onClick={() => handleAfterPage(pageLimit)}>
                                 <img src={right} alt=""/>    
                             </button>
                         </div>
-                        <button>Excluir marcados</button>
                     </div>
                 </Table>
             </MainContentGeneric>

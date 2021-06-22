@@ -14,14 +14,22 @@ export const HeaderContent = styled.div`
         div {
             display: flex;
             align-items: center;
-            
-            select {
-                margin-right: 20px;
-                width: 110px;
-            }
 
-            button {
-                width: 110px;
+            a {
+                width: 105px;
+                color: #fff;
+                background-color: var(--green);
+                border: none;
+                height: 44px;
+                border-radius: 5px;
+                padding: 14px 20px;
+                cursor: pointer;
+                transition: 1s opacity ease;
+                font-weight: 500 !important;
+
+                &:hover{
+                    opacity: 0.7;
+                }
             }
         }
         @media (max-width: 400px) {

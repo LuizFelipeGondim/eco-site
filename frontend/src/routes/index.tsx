@@ -8,7 +8,6 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import Blog from '../pages/Blog'
-import Category from '../pages/Category'
 import Publication from '../pages/Publication'
 
 //Painel CMS
@@ -30,7 +29,6 @@ const Routes: React.FC = () => (
         <Route path="/login" notAuthenticated component={Login} />
         <Route path="/register" component={Register}/>
         <Route path="/blog" component={Blog}/>
-        <Route path="/category" component={Category}/>
         <Route path="/publication/:slug" component={Publication}/>
 
         <Route path="/eco-admin" exact component={LoginCMS} />

@@ -74,7 +74,7 @@ const PublicationsCMS: React.FC = () => {
                     <div className="top">
                         <h1>Publicações</h1>
                         <div>
-                            <button>Criar novo</button>
+                            <Link to="/eco-admin/create-publication">Criar novo</Link>
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@ const PublicationsCMS: React.FC = () => {
 
                         <div className="results-per-page">
                             <span>Resultados por página:</span>
-                            <input type="number" value={limit} onChange={handleLimitChange}/>
+                            <Input type="number" value={limit} onChange={handleLimitChange}/>
                         </div>
 
                     </div>

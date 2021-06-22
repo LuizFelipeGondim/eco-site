@@ -11,10 +11,24 @@ interface Request {
     city: string
     uf: string
     whatsapp: string
+    is_staff?: boolean
+    avatar: string
 }
 
 class CreateUserService {
-    public async execute({ first_name, last_name, email, password, city, uf, whatsapp }: Request): Promise<User> {
+    public async execute(
+        { 
+            first_name, 
+            last_name, 
+            email, 
+            password, 
+            city, 
+            uf, 
+            whatsapp, 
+            is_staff,
+            avatar
+        }: Request): Promise<User> {
+
         const usersRepository = getRepository(User)
 
         const checkUserExists = await usersRepository.findOne({
@@ -34,7 +48,9 @@ class CreateUserService {
             password: hashedPassword,
             city,
             uf,
-            whatsapp
+            whatsapp,
+            is_staff,
+            avatar
         })
 
         await usersRepository.save(user)

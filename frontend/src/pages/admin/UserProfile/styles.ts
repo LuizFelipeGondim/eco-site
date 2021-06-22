@@ -20,7 +20,7 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 280px;
+    height: 300px;
     background-color: #fff;
     margin-right: 25px;
     border-radius: 8px;
@@ -28,7 +28,7 @@ export const Card = styled.div`
 
     .top {
         background: linear-gradient(277.67deg, #08AEEA -5.11%, #11A68C 27.36%, #15A261 59.71%, #4BD648 94.41%);
-        height: 75px;
+        height: 95px !important;
         border-radius: 5px 5px 0px 0px;
     }
 
@@ -41,6 +41,7 @@ export const Card = styled.div`
         img {
             width: 75px;
             margin-bottom: 5px;
+            border-radius: 50%;
         }
 
         p {
@@ -148,28 +149,6 @@ export const Form = styled.form`
         }
     }
 
-    .line-3 {
-        margin-top: 20px;
-        width: 100%;
-        display: flex;
-
-        div {
-            width: 30%;
-            
-            & + div {
-                display: flex;
-                align-items: center;
-            }
-
-            input[type="checkbox"] {
-                height: 20px;
-                width: 20px;
-                margin-right: 5px;
-                cursor: pointer;
-            }
-        }
-    }
-
     @media (max-width: 850px) {
         & {
             margin-top: 25px;
@@ -178,7 +157,7 @@ export const Form = styled.form`
     }
 
     @media (max-width: 500px) {
-        .line-1, .line-2, .line-3 {
+        .line-1, .line-2{
             flex-direction: column;
 
             div{
@@ -191,3 +170,45 @@ export const Form = styled.form`
         }
     }
 `
+
+export const AvatarInput = styled.div`
+  margin-bottom: 32px;
+  position: relative;
+  align-self: center;
+
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  label {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: var(--blue);
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      display: none;
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+      color: #ffffff;
+    }
+
+    &:hover {
+      background: var(--dark);
+    }
+  }
+`
+

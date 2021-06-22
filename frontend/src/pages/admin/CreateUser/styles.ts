@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Form = styled.form`
+export const FormContainer = styled.div`
 
     background-color: #fff;
     max-width: 1000px;
@@ -12,6 +12,21 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    form {
+        width: 100%;
+
+        .error {
+                display: block;
+                width: 100% !important;
+                background-color: var(--red);
+                opacity: 0.9;
+                color: #fff;
+                padding: 5px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+    }
 
     div {
         width: 100%;
@@ -26,13 +41,10 @@ export const Form = styled.form`
         margin-top: 5px;
     }
 
-    input {
-        margin-bottom: 25px;
-    }
-
     .line-1 {
         width: 100%;
         display: flex;
+        margin-bottom: 25px;
         justify-content: space-between;
 
         div {
@@ -53,6 +65,7 @@ export const Form = styled.form`
 
     .line-2 {
         margin-top: 20px;
+        margin-bottom: 25px;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -66,28 +79,13 @@ export const Form = styled.form`
         }
     }
 
-    .line-3 {
-        margin-top: 20px;
-        width: 100%;
-        display: flex;
-
-        div {
-            width: 50%;
-            
-            
-        }
-    }
-
-
     @media (max-width: 900px) {
-        .line-1, .line-2, .line-3 {
+        .line-1, .line-2 {
             flex-direction: column;
-
+            margin-bottom: 0;
             div{
+                margin-bottom: 25px;
                 width: 100%;
-
-                input, select {
-                    margin-bottom: 25px;
             }
         }
     }
