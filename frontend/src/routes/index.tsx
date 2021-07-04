@@ -9,6 +9,9 @@ import Register from '../pages/Register'
 import Home from '../pages/Home'
 import Blog from '../pages/Blog'
 import Publication from '../pages/Publication'
+import Quotes from '../pages/Quotes'
+import Weather from '../pages/Weather'
+import Forum from '../pages/Forum'
 
 //Painel CMS
 import LoginCMS from '../pages/admin/Login'
@@ -30,6 +33,9 @@ const Routes: React.FC = () => (
         <Route path="/register" component={Register}/>
         <Route path="/blog" component={Blog}/>
         <Route path="/publication/:slug" component={Publication}/>
+        <Route path="/quotes" component={Quotes}/>
+        <Route path="/weather" component={Weather}/>
+        <Route path="/forum" component={Forum}/>
 
         <Route path="/eco-admin" exact component={LoginCMS} />
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>

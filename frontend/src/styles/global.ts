@@ -33,6 +33,11 @@ export default createGlobalStyle`
     h1, h2, h3, h4, h5, h6 {
         font: Archivo, sans-serif;
         font-weight: 500;
+        color: var(--dark);
+    }
+
+    p {
+        color: var(--dark);
     }
 
     label {

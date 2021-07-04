@@ -19,10 +19,15 @@ const Home: React.FC = () => {
                         <li>
                             <Link to="/blog">Publicações</Link>
                         </li>
-                        <li>Cotações</li>
-                        <li>Clima</li>
-                        <li>Receitas</li>
-                        <li>Fórum</li>
+                        <li>
+                            <Link to="/quotes">Cotações</Link>
+                        </li>
+                        <li>
+                            <Link to="/weather">Clima</Link>
+                        </li>
+                        <li>
+                            <Link to="/forum">Fórum</Link>
+                        </li>
                         <li><button>Entrar</button></li>
                     </ul>
                     <div className="hamburguer" onClick={hamburguerMenu}></div>
