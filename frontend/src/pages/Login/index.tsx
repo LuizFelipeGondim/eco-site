@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { Formik, Form } from "formik"
 import { Link, useHistory } from 'react-router-dom'
-//import HTMLParser from 'react-html-parser'
 
 import { Content } from './styles'
 import { InputField } from '../../components/Input'
@@ -78,7 +77,7 @@ const Login: React.FC = () => {
 
 
                                 <div className="footer">
-                                    <a href="http://localhost:3000/login">Esqueci minha senha 🡢</a>
+                                    <Link to="login">Esqueci minha senha 🡢</Link>
                                     <button type="submit"> Acessar </button>
                                 </div>
 
