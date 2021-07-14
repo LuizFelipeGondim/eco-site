@@ -12,6 +12,7 @@ import Publication from '../pages/Publication'
 import Quotes from '../pages/Quotes'
 import Weather from '../pages/Weather'
 import Forum from '../pages/Forum'
+import CreateDoubt from '../pages/CreateDoubt';
 
 //Painel CMS
 import LoginCMS from '../pages/admin/Login'
@@ -35,7 +36,8 @@ const Routes: React.FC = () => (
         <Route path="/publication/:slug" component={Publication}/>
         <Route path="/quotes" component={Quotes}/>
         <Route path="/weather" component={Weather}/>
-        <Route path="/forum" component={Forum}/>
+        <Route path="/forum" exact component={Forum}/>
+        <Route path="/forum/create" component={CreateDoubt}/>
 
         <Route path="/eco-admin" exact component={LoginCMS} />
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>

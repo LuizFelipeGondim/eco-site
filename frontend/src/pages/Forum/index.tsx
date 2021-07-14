@@ -9,7 +9,7 @@ const Forum: React.FC = () => {
         <>
             <Menu></Menu>
             <Main>
-                
+                asdasdasd
             </Main>
             <Footer></Footer>
         </>

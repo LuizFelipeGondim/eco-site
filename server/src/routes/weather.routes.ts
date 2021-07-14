@@ -45,7 +45,6 @@ WeatherRouter.get('/:city', async (request, response) => {
         route = `https://api.hgbrasil.com/weather?array_limit=7&fields=only_results,temp,city_name,time,description,currently,humidity,wind_speedy,sunrise,sunset,forecast,date,min,max,weekday,description&key=3512d740`
     } 
 
-    console.log(route)
 	try {
         api(`${route}`, (err: any, res: object, body: string) => {
             const data = JSON.parse(body)

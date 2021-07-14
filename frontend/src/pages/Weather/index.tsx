@@ -44,15 +44,6 @@ const Weather: React.FC = () => {
     const [city, setCity] = useState<string>('-')
     const [weather, setWeather] = useState<bodyParams>()
     
-
-    useEffect( ()=>{
-        if(localStorage.getItem('@Ecoblog:user')){
-            const user = JSON.parse(localStorage.getItem('@Ecoblog:user') || 'gambiarra')
-            const userCity = user.city.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-            setCity(userCity)
-        }
-    },[])
-
     useEffect( ()=>{
         api.get(`/weather/${city}`)
         .then(response => setWeather(response.data))
@@ -100,8 +91,8 @@ const Weather: React.FC = () => {
     }
 
     const handleSubmit = useCallback( (data) => {
-
-        setCity(data.city)
+        const selectedCity =  data.city.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+        setCity(selectedCity)
     }, [])
     console.log(city)
     return (
