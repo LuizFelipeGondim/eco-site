@@ -71,7 +71,7 @@ UsersRouter.patch('/avatar', ensureAuthenticated, upload.single('avatar'), async
 		const updateUserAvatar = new UpdateUserAvatarService()
 
 		const user = await updateUserAvatar.execute({
-			user_id: request.user.id,
+            user_id: request.user.id,
 			avatarFilename: request.file.filename
 		})
 

@@ -13,6 +13,7 @@ import Quotes from '../pages/Quotes'
 import Weather from '../pages/Weather'
 import Forum from '../pages/Forum'
 import CreateDoubt from '../pages/CreateDoubt';
+import Doubt from '../pages/Doubt';
 
 //Painel CMS
 import LoginCMS from '../pages/admin/Login'
@@ -38,6 +39,7 @@ const Routes: React.FC = () => (
         <Route path="/weather" component={Weather}/>
         <Route path="/forum" exact component={Forum}/>
         <Route path="/forum/create" component={CreateDoubt}/>
+        <Route path="/forum/:slug" component={Doubt}/>
 
         <Route path="/eco-admin" exact component={LoginCMS} />
         <Route path="/eco-admin/dashboard" component={DashboardCMS}/>

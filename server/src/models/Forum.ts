@@ -18,7 +18,7 @@ class Forum {
     @Column()
     user_id: string
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, user => user.forum)
     @JoinColumn({name: 'user_id'})
     author: User
 

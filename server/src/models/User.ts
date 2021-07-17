@@ -3,8 +3,10 @@ import {
     Column, 
     PrimaryGeneratedColumn, 
     CreateDateColumn, 
-    UpdateDateColumn 
+    UpdateDateColumn, 
+    OneToMany
 } from 'typeorm'
+import Forum from './Forum'
 
 @Entity('users')
 class User {
@@ -38,6 +40,9 @@ class User {
 
     @Column()
     is_staff: boolean 
+
+    @OneToMany(() => Forum, forum => forum.author)
+    forum: Forum[]
 
     @CreateDateColumn()
     created_at: Date

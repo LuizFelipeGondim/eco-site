@@ -110,7 +110,7 @@ const ProfileCMS: React.FC = () => {
             const data = new FormData();
     
             data.append('avatar', e.target.files[0]);
-    
+            console.log(data)
             api.patch('/eco-admin/users/avatar', data).then(response => {
               setAvatar(response.data);
     
@@ -130,7 +130,7 @@ const ProfileCMS: React.FC = () => {
             city: selectedCity,
             uf: selectedUf
         }
-        console.log(data)
+
         try {
 
             await api.post('/eco-admin/users/edit', data)
