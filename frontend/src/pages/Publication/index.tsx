@@ -93,7 +93,7 @@ const Publication: React.FC = () => {
                             <p>{publication.subtitle}</p>
                             <div className="metadata">
                                 <span>Por {user.first_name}</span>
-                                <p>{formatDate(publication.created_at)}</p>
+                                <p>- {formatDate(publication.created_at)}</p>
                             </div>
                         </div>
                     </Banner>

@@ -195,6 +195,11 @@ export const Editor = styled.div`
     font-size: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
 
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred,
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-focused{
+        min-height: 300px;
+    }
+
     ul > li {
         list-style: disc;
         margin-left: 20px;

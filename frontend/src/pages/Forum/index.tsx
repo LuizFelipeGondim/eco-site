@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 
 
 const Blog: React.FC = () => {
-    const limit = 2
+    const limit = 10
     const { actualPage, handleBeforePage, handleAfterPage } = usePagination()
     const { 
         forums, 

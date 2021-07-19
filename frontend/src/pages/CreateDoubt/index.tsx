@@ -83,7 +83,7 @@ const CreateDoubt: React.FC = () => {
             <Menu></Menu>
             <Main>
                 <Container>  
-                    <Editor>
+                    <Editor className="editor">
                         <div>
                             <h3>Escreva sua dúvida</h3>
                             <hr/>

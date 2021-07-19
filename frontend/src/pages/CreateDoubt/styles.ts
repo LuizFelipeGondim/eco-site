@@ -14,11 +14,22 @@ export const Container = styled.div`
     padding: 15px;
     max-width: 1200px;
 
+    .editor {
+        width: 900px;
+        max-width: 900px;
+        
+    }
+
     div {
         
         hr {
             margin: 15px 0px 10px 0px;
             border: 1px solid var(--medium-gray)
+        }
+    }
+    @media (max-width: 1200px) {
+        .editor {
+            width: 750px;
         }
     }
 
@@ -27,6 +38,16 @@ export const Container = styled.div`
             flex-direction: column-reverse;
             align-items: center;
             padding: 10px;
+            width: 95%;
+
+            div.editor {
+                width: 100%;
+                max-width: 100%;
+                margin-right: 15px;
+                margin-bottom: 15px;
+
+                
+            }
         }
     }
 `
@@ -153,6 +174,11 @@ export const Editor = styled.div`
     border-radius: 8px;
     font-size: 15px;
     box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.04);
+
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred,
+    .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-focused{
+        min-height: 300px;
+    }
 
     ul > li {
         list-style: disc;

@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export default class CreateForum1626117906317 implements MigrationInterface {
+export default class CreateForumComments1626580703101 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable( new Table({
-            name: 'forum',
+            name: 'forum_comments',
             columns: [
                 {
                     name: 'id',
@@ -12,10 +12,6 @@ export default class CreateForum1626117906317 implements MigrationInterface {
                     isPrimary: true,
                     generationStrategy: 'uuid',
                     default: 'uuid_generate_v4()' 
-                },
-                {
-                    name: 'title',
-                    type: 'varchar'
                 },
                 {
                     name: 'content',
@@ -27,41 +23,43 @@ export default class CreateForum1626117906317 implements MigrationInterface {
                     isNullable: true
                 },
                 {
-                    name: 'slug',
-                    type: 'varchar',
-                },
-                {
-                    name: 'resolved',
-                    type: 'boolean',
-                    default: false
+                    name: 'forum_id',
+                    type: 'uuid',
+                    isNullable: true
                 },
                 {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()',
                 },
-                {
-                    name: 'updated_at',
-                    type: 'timestamp',
-                    default: 'now()',
-                },
             ]
         }))
 
-        await queryRunner.createForeignKey('forum', new TableForeignKey({
-			name: 'ForumAuthor',
+        await queryRunner.createForeignKey('forum_comments', new TableForeignKey({
+			name: 'CommentUser',
 			columnNames: ['user_id'],
 			referencedColumnNames: ['id'],
 			referencedTableName: 'users',
-			onDelete: 'SET NULL',
+			onDelete: 'CASCADE',
+			onUpdate: 'CASCADE',
+		}))
+
+        await queryRunner.createForeignKey('forum_comments', new TableForeignKey({
+			name: 'ForumId',
+			columnNames: ['forum_id'],
+			referencedColumnNames: ['id'],
+			referencedTableName: 'forum',
+			onDelete: 'CASCADE',
 			onUpdate: 'CASCADE',
 		}))
     }
+    
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('forum', 'ForumAuthor')
+        await queryRunner.dropForeignKey('forum_comments', 'ForumId')
+        await queryRunner.dropForeignKey('forum_comments', 'CommentUser')
 
-        await queryRunner.dropTable('forum')
+        await queryRunner.dropTable('forum_comments')
     }
 
 }

@@ -39,7 +39,7 @@ export const Banner = styled.div<BannerProps>`
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        color: #fff;
+        color: #fff !important;
 
         .categories {
             margin-bottom: 20px;
@@ -58,19 +58,32 @@ export const Banner = styled.div<BannerProps>`
 
         h1 {
             margin-bottom: 10px; 
+            color: #fff;
         }
 
         & > p {
             margin-bottom: 15px;
+            color: #fff;
         }
 
         .metadata {
             display: flex;
+
             p {
                 margin-left: 8px;
+                color: #fff;
+                opacity: 0.8;
             }
         }
     }
+
+    @media (max-width: 780px) {
+
+        & > div {
+            padding: 20px;
+        }
+    }
+
 `
 
 export const Container = styled.div`
@@ -90,6 +103,7 @@ export const Container = styled.div`
             margin: 30px;
             width: 100%;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             
             span {
@@ -144,8 +158,7 @@ export const Container = styled.div`
         blockquote {
             align-self: flex-start;
             border-left: 4px solid var(--green);
-            padding-left: 10px;
-            margin: 15px 0px;
+            padding: 10px 0px 10px 15px;
         }
 
         figure > embed {
@@ -167,6 +180,17 @@ export const Container = styled.div`
             thead{
                 background-color: var(--dark-gray) ;
             }
+        }
+    }
+    @media (max-width: 780px) {
+        & {
+            width: 95% !important;
+            justify-content: center;
+        }
+
+        .header, .content{
+            width: 100%;
+            padding: 20px;
         }
     }
 `

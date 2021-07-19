@@ -12,9 +12,9 @@ class TagForum {
     @Column()
     forum_id: string
 
-    @ManyToOne(() => Forum)
+    @ManyToOne(() => Forum, forum => forum.tags)
     @JoinColumn({name: 'forum_id'})
-    doubt: Forum
+    forum: Forum
 }
 
 export default TagForum

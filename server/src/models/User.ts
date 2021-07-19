@@ -4,9 +4,11 @@ import {
     PrimaryGeneratedColumn, 
     CreateDateColumn, 
     UpdateDateColumn, 
-    OneToMany
+    OneToMany,
+    JoinColumn
 } from 'typeorm'
 import Forum from './Forum'
+import ForumComment from './ForumComment'
 
 @Entity('users')
 class User {
@@ -43,6 +45,10 @@ class User {
 
     @OneToMany(() => Forum, forum => forum.author)
     forum: Forum[]
+
+    @OneToMany(() => ForumComment, comment => comment.user)
+    @JoinColumn({name: 'comment'})
+    comment: ForumComment
 
     @CreateDateColumn()
     created_at: Date
