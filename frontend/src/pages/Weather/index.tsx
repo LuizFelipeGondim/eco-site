@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Slider from "react-slick"
 import { Form, Formik } from 'formik'
 
-import Menu from '../Menu'
-import Footer from '../Footer'
+import Menu from '../../components/Menu'
+import Footer from '../../components/Footer'
 import { Content, MainCard, Cards } from './styles'
 import api from '../../services/api'
 import { InputField } from '../../components/Input'
@@ -94,7 +94,7 @@ const Weather: React.FC = () => {
         const selectedCity =  data.city.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
         setCity(selectedCity)
     }, [])
-    console.log(city)
+
     return (
         <>
             <Menu></Menu>

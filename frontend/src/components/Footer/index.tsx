@@ -5,7 +5,7 @@ import author from '../../assets/author.svg'
 import facebook from '../../assets/facebook.svg'
 import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
-import { Input } from '../../components/Input/styles'
+import { Input } from '../Input/styles'
 
 const Footer: React.FC = () => {
 

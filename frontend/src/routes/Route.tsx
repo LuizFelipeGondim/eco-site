@@ -10,21 +10,38 @@ import { useAuth } from '../context/AuthContext'
 interface RouteProps extends ReactDOMRouterProps {
     isPrivate?: boolean
     notAuthenticated?: boolean
+    isAdmin?: boolean
     component: React.ComponentType
 }
 
 const Route: React.FC<RouteProps> = ({ 
     isPrivate = false, 
     notAuthenticated = false,
+    isAdmin = false,
     component: Component, ...rest 
 }) => {
-    const { user } = useAuth()
+    const { user, isStaff } = useAuth()
 
     return (
         <ReactDOMRoute {...rest} 
                 
             render={({ location }) => {
-                return isPrivate ? ((!!user ? <Component /> : 
+                return isAdmin ? ((!!user ? (isStaff ? <Component /> :
+                            <Redirect 
+                                to={{ 
+                                    pathname: '/',
+                                    state: { from: location },
+                                }}
+                            />
+                        ) : 
+                            <Redirect 
+                                to={{ 
+                                    pathname: '/login',
+                                    state: { from: location },
+                                }}
+                            />
+                        ))        
+                    : (isPrivate ? ((!!user ? <Component /> : 
                         <Redirect 
                             to={{ 
                                 pathname: '/login',
@@ -36,7 +53,7 @@ const Route: React.FC<RouteProps> = ({
                             to={{ 
                                 pathname: '/',
                             }}
-                        /> : <Component /> )  
+                        /> : <Component /> ))  
             }} 
         />
     )

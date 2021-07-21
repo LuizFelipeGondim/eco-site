@@ -7,8 +7,8 @@ import api from '../../services/api'
 import { useToast } from '../../context/ToastContext'
 import { Input } from '../../components/Input/styles'
 import { useHistory } from 'react-router-dom'
-import Footer from '../Footer'
-import Menu from '../Menu'
+import Footer from '../../components/Footer'
+import Menu from '../../components/Menu'
 
 
 const CreateDoubt: React.FC = () => {

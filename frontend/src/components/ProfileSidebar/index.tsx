@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Menu from '../../pages/Menu'
-import Footer from '../../pages/Footer'
+import Menu from '../Menu'
+import Footer from '../Footer'
 import { Main } from './styles'
 
 const ProfileSidebar: React.FC = () => {

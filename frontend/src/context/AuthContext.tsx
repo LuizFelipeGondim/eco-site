@@ -3,7 +3,16 @@ import api from '../services/api'
 
 interface AuthState {
     token: string
-    user: object
+    user: {
+        is_staff: boolean 
+        email: string
+        first_name: string
+        last_name: string
+        whatsapp: string
+        id: string
+        uf: string
+        city: string
+    }
 }
 
 interface LoginCredentials {
@@ -11,8 +20,10 @@ interface LoginCredentials {
     password: string
 }
 
+
 interface AuthContextData {
     user: object
+    isStaff?: boolean
     login(credentials: LoginCredentials): Promise<void>
     logout(): void
 }
@@ -27,8 +38,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
         if (token && user) {
             api.defaults.headers.authorization = `Bearer ${token}`
-            return { token, user: JSON.parse(user) }
-        }
+            return { token, user : JSON.parse(user) }
+        } 
 
         return {} as AuthState
     })
@@ -57,10 +68,14 @@ export const AuthProvider: React.FC = ({ children }) => {
         setData({ token, user })
     }, [])
 
-    return (
-        <AuthContext.Provider value={{ user: data.user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
+    return ( !!data.user ? 
+            <AuthContext.Provider value={{ user: data.user, isStaff: data.user.is_staff, login, logout }}>
+                {children}
+            </AuthContext.Provider>
+            : 
+            <AuthContext.Provider value={{ user: data.user, login, logout }}>
+                {children}
+            </AuthContext.Provider>
     )
 }
 

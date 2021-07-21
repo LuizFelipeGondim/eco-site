@@ -16,7 +16,6 @@ import CreateDoubt from '../pages/CreateDoubt';
 import Doubt from '../pages/Doubt';
 
 //Painel CMS
-import LoginCMS from '../pages/admin/Login'
 import DashboardCMS from '../pages/admin/Dashboard'
 import UsersCMS from '../pages/admin/Users'
 import PublicationsCMS from '../pages/admin/Publications'
@@ -37,20 +36,19 @@ const Routes: React.FC = () => (
         <Route path="/publication/:slug" component={Publication}/>
         <Route path="/quotes" component={Quotes}/>
         <Route path="/weather" component={Weather}/>
-        <Route path="/forum" exact component={Forum}/>
-        <Route path="/forum/create" component={CreateDoubt}/>
-        <Route path="/forum/:slug" component={Doubt}/>
+        <Route path="/forum" isPrivate exact component={Forum}/>
+        <Route path="/forum/create" isPrivate component={CreateDoubt}/>
+        <Route path="/forum/:slug" isPrivate component={Doubt}/>
 
-        <Route path="/eco-admin" exact component={LoginCMS} />
-        <Route path="/eco-admin/dashboard" component={DashboardCMS}/>
-        <Route path="/eco-admin/users" component={UsersCMS}/>
-        <Route path="/eco-admin/publications" component={PublicationsCMS}/>
-        <Route path="/eco-admin/comments" component={CommentsCMS}/>
-        <Route path="/eco-admin/categories" component={CategoriesCMS}/>
-        <Route path="/eco-admin/profile" component={ProfileCMS}/>
-        <Route path="/eco-admin/create-user" component={CreateUserCMS}/>
-        <Route path="/eco-admin/edit-publication/:slug" component={EditPublicationCMS}/>
-        <Route path="/eco-admin/create-publication" component={PublicationCMS}/>
+        <Route path="/eco-admin" exact isAdmin component={DashboardCMS}/>
+        <Route path="/eco-admin/users" isAdmin component={UsersCMS}/>
+        <Route path="/eco-admin/publications" isAdmin component={PublicationsCMS}/>
+        <Route path="/eco-admin/comments" isAdmin component={CommentsCMS}/>
+        <Route path="/eco-admin/categories" isAdmin component={CategoriesCMS}/>
+        <Route path="/eco-admin/profile" isAdmin component={ProfileCMS}/>
+        <Route path="/eco-admin/create-user" isAdmin component={CreateUserCMS}/>
+        <Route path="/eco-admin/edit-publication/:slug" isAdmin component={EditPublicationCMS}/>
+        <Route path="/eco-admin/create-publication" isAdmin component={PublicationCMS}/>
     </Switch>
 
 )
