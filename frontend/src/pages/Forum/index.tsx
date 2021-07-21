@@ -72,9 +72,9 @@ const Blog: React.FC = () => {
                                 </div>
 
                                 <div className="info-content">
-                                    <p>
+                                    <span>
                                         {ReactHtmlParser(forum.content)}
-                                    </p>
+                                    </span>
                                 </div>
 
                                 <div className="info-footer">

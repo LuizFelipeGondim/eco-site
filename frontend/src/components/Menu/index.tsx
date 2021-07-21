@@ -5,14 +5,10 @@ import hamburguerMenu from '../../utils/hamburguerMenu'
 import { Link } from 'react-router-dom'
 
 const Home: React.FC = () => {
-
+    const user = localStorage.getItem('@Ecoblog:user')
     return (
         <>
             <Header>
-                <div className="top">
-                    <p>Guanambi/BA 28º 18º</p>
-                </div>
-                <hr/>
                 <div className="navbar">
                     <h1>Logo</h1>
                     <ul className="menu">
@@ -28,10 +24,33 @@ const Home: React.FC = () => {
                         <li>
                             <Link to="/forum">Fórum</Link>
                         </li>
-                        <li><button>Entrar</button></li>
+                        {!!user ? 
+                            <li>
+                                <Link to="/profile">
+                                    <button>Perfil</button>
+                                </Link>
+                            </li>
+                            :
+                            <li>
+                                <Link to="/login">
+                                    <button>Entrar</button>
+                                </Link>
+                            </li>
+                        }
+                        
                     </ul>
                     <div className="hamburguer" onClick={hamburguerMenu}></div>
-                    <button>Entrar</button>
+                    {!!user ? 
+
+                        <Link to="/profile" className="button-responsive">
+                            <button>Perfil</button>
+                        </Link>
+                        :
+                        <Link to="/login" className="button-responsive">
+                            <button>Entrar</button>
+                        </Link>
+               
+                    }
                 </div>
             </Header>
         </>

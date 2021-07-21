@@ -95,13 +95,13 @@ const Login: React.FC = () => {
                     </div>
                     <ul>
                         <li>
-                            <a href="http://localhost:3000/login">Termos de uso</a>  
+                            <Link to="/login">Termos de uso</Link>  
                         </li>
                         <li>
-                            <a href="http://localhost:3000/login">Políticas de privacidade</a>
+                            <Link to="/login">Políticas de privacidade</Link>
                         </li>
                         <li>
-                            <a href="http://localhost:3000/login">Entre em contato</a>
+                            <Link to="/login">Entre em contato</Link>
                         </li>
                     </ul>
                 </footer>

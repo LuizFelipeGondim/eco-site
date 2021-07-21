@@ -6,6 +6,7 @@ import facebook from '../../assets/facebook.svg'
 import youtube from '../../assets/youtube.svg'
 import instagram from '../../assets/instagram.svg'
 import { Input } from '../Input/styles'
+import { Link } from 'react-router-dom'
 
 const Footer: React.FC = () => {
 
@@ -17,39 +18,29 @@ const Footer: React.FC = () => {
                         <ul className="links">
                             <h3>Publicações</h3>
 
-                            <li> <a href="example">Últimas notícias</a></li>
-                            <li> <a href="example">Agropecuária</a> </li>
-                            <li> <a href="example">Notícias mais lidas</a> </li>
-                        </ul>
-
-                        <ul className="links">
-                            <h3>Receitas</h3>
-
-                            <li> <a href="example">Últímas receitas</a> </li>
-                            <li> <a href="example">Receitas mais lidas</a> </li>
-                            <li> <a href="example">Receitas do campo</a> </li>
-                            <li> <a href="example">Massas</a> </li>
-                            <li> <a href="example">Vegetais</a> </li>
+                            <li> <Link to="/blog">Últimas notícias</Link></li>
+                            <li> <Link to="/blog">Agropecuária</Link> </li>
+                            <li> <Link to="/blog">Notícias mais lidas</Link> </li>
                         </ul>
 
                         <ul className="links">
                             <h3>Cotações</h3>
 
-                            <li> <a href="example">Algodão</a> </li>
-                            <li> <a href="example">Carne bovina</a> </li>
-                            <li> <a href="example">Carne suína</a> </li>
-                            <li> <a href="example">Trigo</a> </li>
-                            <li> <a href="example">Soja</a> </li>
+                            <li> <Link to="/quotes">Algodão</Link> </li>
+                            <li> <Link to="/quotes">Carne bovina</Link> </li>
+                            <li> <Link to="/quotes">Carne suína</Link> </li>
+                            <li> <Link to="/quotes">Trigo</Link> </li>
+                            <li> <Link to="/quotes">Soja</Link> </li>
                         </ul>
 
                         <ul className="links">
                             <h3>Sobre nós</h3>
 
-                            <li> <a href="example">Quem somos?</a> </li>
-                            <li> <a href="example">Política de privacidade</a> </li>
-                            <li> <a href="example">Termos de uso</a> </li>
-                            <li> <a href="example">Perguntas frequentes</a> </li>
-                            <li> <a href="example">Entre em contato</a> </li>
+                            <li> <Link to="example">Quem somos?</Link> </li>
+                            <li> <Link to="example">Política de privacidade</Link> </li>
+                            <li> <Link to="example">Termos de uso</Link> </li>
+                            <li> <Link to="example">Perguntas frequentes</Link> </li>
+                            <li> <Link to="example">Entre em contato</Link> </li>
                         </ul>
 
                         <form method="post">

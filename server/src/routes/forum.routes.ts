@@ -240,18 +240,54 @@ ForumRouter.get('/to-close/:slug', ensureAuthenticated, async (request, response
 
 ForumRouter.delete('/comments/delete/:id', ensureAuthenticated, async (request, response) => {
 
-        const { id } = request.params
-
-        try {
+    try {
+            const { id } = request.params
+            
             const commentsRepository = getRepository(ForumComment)
 
-            await commentsRepository.delete({
-                id
-            })
+            await commentsRepository.delete({id})
 
         } catch (err) {
             return response.status(400).json({ err: err.message })
         }
-    })
+})
+
+ForumRouter.get('/profile/doubts', ensureAuthenticated, async (request, response) => {
+	try {
+		
+        const forumRepository = getRepository(Forum)
+
+ 
+        const forum = await forumRepository.find({
+                select: ["title", "resolved", "created_at", "id"],
+                order: {
+                    updated_at: "DESC",
+                },
+                where: {
+                    user_id: request.user.id
+                }
+            })
+
+        return response.json(forum)
+
+	} catch (err) {
+		return response.status(400).json({ error: err.message })
+	}
+
+})
+
+ForumRouter.delete('/delete/doubts/:id', ensureAuthenticated, async (request, response) => {
+	try {
+		const { id } = request.params
+
+        const forumRepository = getRepository(Forum)
+
+        await forumRepository.delete({id})
+
+	} catch (err) {
+		return response.status(400).json({ error: err.message })
+	}
+
+})
 
 export default ForumRouter

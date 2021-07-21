@@ -175,8 +175,8 @@ const Register: React.FC = () => {
 
                                 <p>
                                     Ao clicar em Cadrastar-se, eu concordo que li e aceito os
-                                    <a href="example"> Termos de uso </a> e a
-                                    <a href="example"> Política de privacidade </a> .
+                                    <Link to="/example"> Termos de uso </Link> e a
+                                    <Link to="/example"> Política de privacidade </Link> .
                                 </p>
 
                                 <div className="footer">
@@ -198,13 +198,13 @@ const Register: React.FC = () => {
                     </div>
                     <ul>
                         <li>
-                            <a href="http://localhost:3000/login">Termos de uso</a>
+                            <Link to="/register">Termos de uso</Link>
                         </li>
                         <li>
-                            <a href="http://localhost:3000/login">Políticas de privacidade</a>
+                            <Link to="/register">Políticas de privacidade</Link>
                         </li>
                         <li>
-                            <a href="http://localhost:3000/login">Entre em contato</a>
+                            <Link to="/register">Entre em contato</Link>
                         </li>
                     </ul>
                 </footer>

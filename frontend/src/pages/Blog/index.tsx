@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { format, parseISO } from 'date-fns'
+import { Link } from 'react-router-dom'
 
-import author from '../../assets/imagensRemoviveis/author.svg'
 import Menu from '../../components/Menu'
 import Footer from '../../components/Footer'
 import left from '../../assets/adminSVG/left.svg'
@@ -10,7 +10,6 @@ import { Main, Content, Sidebar, Image, SmallImage } from './styles'
 import usePagination from '../../context/Pagination/usePagination'
 import usePublication from '../../context/Pagination/usePublications'
 import { Input } from '../../components/Input/styles'
-import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 interface Category {
@@ -85,7 +84,7 @@ const Blog: React.FC = () => {
                                     <div className="info-header">
                                         <div>
                                             {publication.categories.map(category => 
-                                                <span>{category.category_name} </span> 
+                                                <span key={category.id}>{category.category_name} </span> 
                                             )}
                                         </div>
                                         <p>{formatDate(publication.created_at)}</p>
@@ -101,10 +100,10 @@ const Blog: React.FC = () => {
                                     <div className="info-footer">
 
                                         <div className="author">
-                                            <img src={author} alt="Admin"/>
+
                                             <p>{users.map(user => 
                                                     user.id === publication.user_id 
-                                                    ? user.first_name
+                                                    ? <span key={publication.id}>{user.first_name}</span>  
                                                     : ''
                                                 )}
                                             </p>   
@@ -145,8 +144,8 @@ const Blog: React.FC = () => {
                     latestPublications.map(publication => {
                         return(
                             
-                            <Link to={`/publication/${publication.slug}`}>
-                                <div className="small-card" key={publication.id}>
+                            <Link to={`/publication/${publication.slug}`} key={publication.id}>
+                                <div className="small-card" >
                                     <SmallImage image={publication.main_image}></SmallImage>
 
                                     <div className="info">

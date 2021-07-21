@@ -50,7 +50,7 @@ const CreateDoubt: React.FC = () => {
             tags,
             content
         }
-        console.log(data)
+
         try {
             await api.post('forum/create', data)
 

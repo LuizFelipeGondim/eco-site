@@ -7,6 +7,7 @@ import inicio from '../../assets/adminSVG/inicio.svg'
 import usuarios from '../../assets/adminSVG/usuarios.svg'
 import publicacoes from '../../assets/adminSVG/publicacoes.svg'
 import configuracoes from '../../assets/adminSVG/configuracoes.svg'
+import { Link } from 'react-router-dom'
 
 
 const SidebarGeneric: React.FC = () => {
@@ -31,7 +32,7 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="http://localhost:3000/eco-admin/dashboard">
+                                <a href="/eco-admin/dashboard">
                                     <p>Dashboard</p>
                                 </a> 
                             </li>
@@ -47,19 +48,19 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="http://localhost:3000/eco-admin/users">
+                                <Link to="/eco-admin/users">
                                     <p>Todos os usuários</p>
-                                </a> 
+                                </Link> 
                             </li>
                             <li>
-                                <a href="http://localhost:3000/eco-admin/create-user">
+                                <Link to="/eco-admin/create-user">
                                     <p>Adicionar usuário</p>
-                                </a> 
+                                </Link> 
                             </li>
                             <li>
-                                <a href="http://localhost:3000/eco-admin/profile">
+                                <Link to="/eco-admin/profile">
                                     <p>Perfil</p>
-                                </a> 
+                                </Link> 
                             </li>
                         </ul>
                     </li>
@@ -73,24 +74,24 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="http://localhost:3000/eco-admin/publications">
+                                <Link to="/eco-admin/publications">
                                     <p>Todas as publicações</p>
-                                </a> 
+                                </Link> 
                             </li>
                             <li>
-                                <a href="http://localhost:3000/eco-admin/create-publication">
+                                <Link to="/eco-admin/create-publication">
                                     <p>Adicionar publicação</p>
-                                </a> 
+                                </Link> 
                             </li>
                             <li>
-                                <a href="http://localhost:3000/eco-admin/comments">
+                                <Link to="/eco-admin/comments">
                                     <p>Comentários</p>
-                                </a> 
+                                </Link> 
                             </li>
                             <li>
-                                <a href="http://localhost:3000/eco-admin/categories">
+                                <Link to="/eco-admin/categories">
                                     <p>Categorias</p>
-                                </a> 
+                                </Link> 
                             </li>
                         </ul>
                     </li>

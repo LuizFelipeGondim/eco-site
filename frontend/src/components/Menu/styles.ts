@@ -6,6 +6,7 @@ export const Header = styled.header`
     top: 0;
     z-index: 999;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
@@ -13,24 +14,10 @@ export const Header = styled.header`
     padding: 10px 20px;
     position: fixed;
 
-    .top {
-        width: 90%;
-        max-width: 1220px;
-        height: 20px;
-
-    }
-
-    hr {
-        margin: 12px 0px 10px 0px;
-        border: 1px solid var(--medium-gray);
-        width: 90%;
-        max-width: 1220px;
-    }
-
     .navbar {
         width: 90%;
         max-width: 1200px;
-        height: 42px;
+        height: 62px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -110,6 +97,10 @@ export const Header = styled.header`
             }
         }
         @media screen and (max-width: 980px){
+            .button-responsive {
+                display: none;
+            }
+            
             .hamburguer {
                 display: block !important;
                 z-index: 999;

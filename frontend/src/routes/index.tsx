@@ -12,8 +12,10 @@ import Publication from '../pages/Publication'
 import Quotes from '../pages/Quotes'
 import Weather from '../pages/Weather'
 import Forum from '../pages/Forum'
-import CreateDoubt from '../pages/CreateDoubt';
-import Doubt from '../pages/Doubt';
+import CreateDoubt from '../pages/CreateDoubt'
+import Doubt from '../pages/Doubt'
+import ProfileDoubts from '../pages/ProfileDoubts'
+import Profile from '../pages/Profile'
 
 //Painel CMS
 import DashboardCMS from '../pages/admin/Dashboard'
@@ -39,6 +41,8 @@ const Routes: React.FC = () => (
         <Route path="/forum" isPrivate exact component={Forum}/>
         <Route path="/forum/create" isPrivate component={CreateDoubt}/>
         <Route path="/forum/:slug" isPrivate component={Doubt}/>
+        <Route path="/profile/" isPrivate exact component={Profile}/>
+        <Route path="/profile/doubts" isPrivate component={ProfileDoubts}/>
 
         <Route path="/eco-admin" exact isAdmin component={DashboardCMS}/>
         <Route path="/eco-admin/users" isAdmin component={UsersCMS}/>
