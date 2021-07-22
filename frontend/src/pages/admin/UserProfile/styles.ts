@@ -51,32 +51,31 @@ export const Card = styled.div`
 
     ul {
         display: flex;
-        margin-top: 15px;
-        justify-content: center;
-        padding: 25px;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 25px;
+        color: var(--dark) !important;
+
 
         li {
-
+            margin-top: 5px;
             text-align: center;
-            padding: 0px 10px;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 15px;
 
-            & + li {
-                border-left: 1px solid var(--medium-gray);
+            &:hover {
+                border: 2px solid var(--green);
             }
 
-            strong {
-                display: block;
-                font-size: 16px;
-                color: #3d3d4d;
+            a {
+                color: var(--dark) !important;
             }
 
             span {
-                display: block;
-                font-size: 15px;
-                margin-top: 4px;
-                color: var(--dark);
+                cursor: pointer;
             }
-
         }
     }
 
@@ -114,6 +113,10 @@ export const Form = styled.form`
             margin: 15px 0px 10px 0px;
             border: 1px solid var(--medium-gray)
         }
+    }
+
+    button {
+        margin-top: 15px;
     }
 
     input, select {

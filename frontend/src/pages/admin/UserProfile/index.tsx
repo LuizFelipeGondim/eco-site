@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { FiCamera } from 'react-icons/fi'
 
 import SidebarGeneric from  '../../../components/CMS/SidebarGeneric'
 import MainContentGeneric from  '../../../components/CMS/MainContentGeneric'
@@ -7,7 +9,7 @@ import { Container, Card, Form, AvatarInput } from './styles'
 import { useToast } from '../../../context/ToastContext'
 import api from '../../../services/api'
 import { Input } from '../../../components/Input/styles'
-import { FiCamera } from 'react-icons/fi'
+import { useAuth } from '../../../context/AuthContext'
 
 interface IBGEUFResponse {
     sigla: string;
@@ -30,6 +32,8 @@ interface UserProps {
 
 const ProfileCMS: React.FC = () => {
     const { addToast } = useToast()
+    const { logout } = useAuth()
+    const history = useHistory()
 
     const [selectedUf, setSelectedUf] = useState('0')
     const [selectedCity, setSelectedCity] = useState('0')
@@ -157,6 +161,11 @@ const ProfileCMS: React.FC = () => {
         whatsapp
     ])
 
+    const handleLogout = useCallback(() => {
+        logout()
+        history.push('/login')
+    }, [logout, history])
+
     return (
         <>
             <SidebarGeneric></SidebarGeneric>
@@ -180,12 +189,7 @@ const ProfileCMS: React.FC = () => {
                         </div>
                         <ul>
                             <li>
-                                <strong>20</strong>
-                                <span>Publicações</span>
-                            </li>
-                            <li>
-                                <strong>20</strong>
-                                <span>Comentários</span>
+                                <span onClick={handleLogout}>Sair</span>
                             </li>
                         </ul>
                     </Card>

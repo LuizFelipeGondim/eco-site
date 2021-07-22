@@ -10,7 +10,9 @@ const Home: React.FC = () => {
         <>
             <Header>
                 <div className="navbar">
-                    <h1>Logo</h1>
+                    <Link to="/">
+                        <h1>Ecoblog</h1>
+                    </Link>
                     <ul className="menu">
                         <li>
                             <Link to="/blog">Publicações</Link>

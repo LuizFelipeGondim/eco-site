@@ -18,10 +18,8 @@ import ProfileDoubts from '../pages/ProfileDoubts'
 import Profile from '../pages/Profile'
 
 //Painel CMS
-import DashboardCMS from '../pages/admin/Dashboard'
 import UsersCMS from '../pages/admin/Users'
 import PublicationsCMS from '../pages/admin/Publications'
-import CommentsCMS from '../pages/admin/Comments'
 import CategoriesCMS from '../pages/admin/Categories'
 import ProfileCMS from '../pages/admin/UserProfile'
 import CreateUserCMS from '../pages/admin/CreateUser'
@@ -44,12 +42,10 @@ const Routes: React.FC = () => (
         <Route path="/profile/" isPrivate exact component={Profile}/>
         <Route path="/profile/doubts" isPrivate component={ProfileDoubts}/>
 
-        <Route path="/eco-admin" exact isAdmin component={DashboardCMS}/>
+        <Route path="/eco-admin" exact isAdmin component={ProfileCMS}/>
         <Route path="/eco-admin/users" isAdmin component={UsersCMS}/>
         <Route path="/eco-admin/publications" isAdmin component={PublicationsCMS}/>
-        <Route path="/eco-admin/comments" isAdmin component={CommentsCMS}/>
         <Route path="/eco-admin/categories" isAdmin component={CategoriesCMS}/>
-        <Route path="/eco-admin/profile" isAdmin component={ProfileCMS}/>
         <Route path="/eco-admin/create-user" isAdmin component={CreateUserCMS}/>
         <Route path="/eco-admin/edit-publication/:slug" isAdmin component={EditPublicationCMS}/>
         <Route path="/eco-admin/create-publication" isAdmin component={PublicationCMS}/>

@@ -126,7 +126,9 @@ export const MainContent = styled.div`
     margin-left: 210px;
     transition: 0.5s;
     min-height: calc(100vh - 100px);
-    height: calc(100vh - 100px);
+    height: 100%;
+    margin-bottom: 0px;
+    background-color: var(--gray);
     
     h1 {
         width: 100%;
@@ -174,9 +176,13 @@ export const Header = styled.header`
         margin: 0rem 0.5rem;
     }
     
-    a img {
-        width: 20px;
+    img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
     }
+
 
     @media (max-width: 900px) {
 
@@ -192,8 +198,6 @@ export const Content = styled.main`
     margin-top: 90px;
     margin-bottom: 0px;
     max-width: calc(100vw - 210px);
-    height: 100%;
-    background-color: var(--gray);
     transition: width 0.5s;
     padding: 20px 0px;
 

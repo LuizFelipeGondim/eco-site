@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 
 const SidebarGeneric: React.FC = () => {
+    
     return (
 
         <Sidebar className="sidebar">
@@ -23,7 +24,7 @@ const SidebarGeneric: React.FC = () => {
             <div className="sidebar-menu">
                 <ul>
                     <li>
-                        <div className="main-li active-option">
+                        <div className="main-li">
                             <span className="icon">
                                 <img src={inicio} alt="inicio"/>
                             </span>
@@ -32,8 +33,8 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="/eco-admin/dashboard">
-                                    <p>Dashboard</p>
+                                <a href="/eco-admin">
+                                    <p>Perfil do usuário</p>
                                 </a> 
                             </li>
                         </ul>
@@ -57,11 +58,6 @@ const SidebarGeneric: React.FC = () => {
                                     <p>Adicionar usuário</p>
                                 </Link> 
                             </li>
-                            <li>
-                                <Link to="/eco-admin/profile">
-                                    <p>Perfil</p>
-                                </Link> 
-                            </li>
                         </ul>
                     </li>
                     <li>
@@ -81,11 +77,6 @@ const SidebarGeneric: React.FC = () => {
                             <li>
                                 <Link to="/eco-admin/create-publication">
                                     <p>Adicionar publicação</p>
-                                </Link> 
-                            </li>
-                            <li>
-                                <Link to="/eco-admin/comments">
-                                    <p>Comentários</p>
                                 </Link> 
                             </li>
                             <li>

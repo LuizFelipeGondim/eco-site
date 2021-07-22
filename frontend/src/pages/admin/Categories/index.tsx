@@ -66,6 +66,8 @@ const CategoriesCMS: React.FC = () => {
                 description: 'A categoria foi cadastrada com sucesso.'
             })
 
+            window.location.reload()
+
         } catch (err) {
             addToast({
                 type: 'error',

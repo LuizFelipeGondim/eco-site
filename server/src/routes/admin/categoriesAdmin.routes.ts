@@ -38,6 +38,7 @@ CategoriesRouter.get(
 
             const categories = name ? 
                 await categoriesRepository.find({
+                    relations: ["publications"],
                     skip,
                     take: limit,
                     where:  {
@@ -49,6 +50,8 @@ CategoriesRouter.get(
                     skip,
                     take: limit,
                 })
+
+            console.log(categories)
 
             const categoriesLength = name ?
                 await categoriesRepository.count({

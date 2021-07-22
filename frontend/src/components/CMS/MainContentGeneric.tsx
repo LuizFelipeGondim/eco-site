@@ -1,22 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { MainContent, Header, Content } from './styles'
-import temp from '../../assets/adminSVG/temp.svg'
-import logout from '../../assets/adminSVG/logout.svg'
+import api from '../../services/api'
+
+interface UserProps {
+    first_name: string  
+    email: string
+    last_name: string
+    uf: string
+    city: string
+    whatsapp: string
+    is_staff: boolean
+    avatar: string
+}
 
 const MainContentGeneric: React.FC = (props) => {
+    const [user, setUser] = useState<UserProps>()
+
+    useEffect(() => {
+        api.get('/eco-admin/users/profile')
+        .then(response => {
+            setUser(response.data)
+        })
+    }, [])
     return (
 
         <MainContent className="main-content">
             <Header className="header">
-
-                <img src={temp} alt="" />
-                <p>Luiz Felipe</p>
-                <hr />
-                <a href="teste">
-                    <img src={logout} alt="" />
-                </a>
-
+  
+                <img src={user?.avatar} alt=""/>
+                <p>{user?.first_name}</p>
+             
             </Header>
             <Content className="content">
                 {props.children}
