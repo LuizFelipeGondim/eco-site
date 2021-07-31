@@ -239,5 +239,9 @@ export const Doubt = styled.div`
         }
     }
 
-
+    @media (max-width: 750px) {
+        & {
+            height: auto;
+        }
+    }
 `
