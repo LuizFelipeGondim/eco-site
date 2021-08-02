@@ -146,12 +146,11 @@ const Doubt: React.FC = () => {
         window.location.reload(true)
 
     }, [])
-
+    console.log(forum)
     return (
         <>
             <Menu></Menu>
             <Main>
-                
                 {forum && (
                     <Container key={forum.id}>
                         <div className="header">

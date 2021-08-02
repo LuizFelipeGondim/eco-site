@@ -90,10 +90,15 @@ PublicationsRouter.post(
 	try {
 
         const { id } = request.params
-        const { title, subtitle, content, tags, categories } = request.body 
-
+        const { title, subtitle, tags, categories } = request.body 
+        let { content } = request.body
+        
         const slugHash = crypto.randomBytes(5).toString('hex')
         const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-")}`
+
+        content = content.replace(/class/g, "className")
+                        .replace(/oembed/g, "embed")
+                        .replace(/url/g, "src")
 
         const publicationsRepository = getRepository(Publication)
    

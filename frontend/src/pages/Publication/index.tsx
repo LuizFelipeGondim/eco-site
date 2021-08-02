@@ -102,6 +102,7 @@ const Publication: React.FC = () => {
                     <Container>
                         <div className="content">
                             {ReactHtmlParser(publication.content)}
+        
                             <div className="tags">
                                 <p>Tags: </p>
                                 {tags.map(tag => 

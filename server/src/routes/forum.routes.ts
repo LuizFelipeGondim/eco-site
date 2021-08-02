@@ -18,7 +18,7 @@ ForumRouter.post(
         let { title, content, tags } = request.body
 
         const slugHash = crypto.randomBytes(5).toString('hex')
-        const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-")}`
+        const slug = `${slugHash}-${title.toLowerCase().replace(/\s+/g, "-").replace(/\?+/g, "")}`
 
         
         content = content.replace(/class/g, "className")
@@ -138,7 +138,8 @@ ForumRouter.get('/:slug', async (request, response) => {
                 slug
 			}
 		})
-
+        console.log(slug)
+        console.log(forum)
         delete forum.author.password
         delete forum.author.email
         delete forum.author.city

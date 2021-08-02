@@ -51,7 +51,6 @@ CategoriesRouter.get(
                     take: limit,
                 })
 
-            console.log(categories)
 
             const categoriesLength = name ?
                 await categoriesRepository.count({

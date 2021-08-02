@@ -68,11 +68,16 @@ export const Sidebar = styled.div`
                 border-right: none;
 
                 li {
-                    display: flex;
-                    align-content: center;
-                    align-items: center;
                     width: 100%;
                     height: 50px;
+
+                    a {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        align-content: center;
+                        align-items: center;
+                    }
                 }
 
                 p {

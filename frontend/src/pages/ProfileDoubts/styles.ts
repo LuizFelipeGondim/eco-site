@@ -12,6 +12,7 @@ export const Container = styled.div`
     display: flex;
     padding: 25px;
     max-width: 1400px;
+    width: 100%;
 
     @media (max-width: 850px) {
         & {
@@ -26,7 +27,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     margin-top: -30px;
-    flex: 1;
+    width: 100%;
     padding: 25px;
     border-radius: 8px;
     font-size: 15px;

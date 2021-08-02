@@ -33,9 +33,9 @@ const SidebarGeneric: React.FC = () => {
                         
                         <ul className="dropdown">
                             <li>
-                                <a href="/eco-admin">
+                                <Link to="/eco-admin">
                                     <p>Perfil do usuário</p>
-                                </a> 
+                                </Link> 
                             </li>
                         </ul>
                     </li>
